@@ -1,0 +1,249 @@
+﻿生成启动时间为 2018/8/13 10:45:57。
+     1>项目“D:\Vs_code\libupload_info\libupload_info\libupload_info.vcxproj”在节点 2 上(rebuild 个目标)。
+     1>_PrepareForClean:
+         正在删除文件“Debug\libupload_info.lastbuildstate”。
+       InitializeBuildStatus:
+         正在创建“Debug\libupload_info.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\Vs_code\libupload_info\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt zx_upload_info.cpp
+         zx_upload_info.cpp
+     1>d:\vs_code\libupload_info\include\http_buf.h(120): warning C4086: 杂注参数应为“1”、“2”、“4”、“8”或者“16”
+       Lib:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"D:\Vs_code\libupload_info\Debug\libupload_info.lib" libcurl_cjson.lib /LIBPATH:D:\Vs_code\libupload_info\lib /NOLOGO Debug\zx_upload_info.obj
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __IMPORT_DESCRIPTOR_libcurl 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: libcurl_NULL_THUNK_DATA 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_cleanup 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_cleanup 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_duphandle 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_duphandle 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_escape 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_escape 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_getinfo 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_getinfo 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_pause 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_pause 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_perform 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_perform 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_recv 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_recv 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_reset 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_reset 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_send 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_send 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_setopt 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_setopt 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_strerror 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_strerror 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_easy_unescape 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_easy_unescape 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_escape 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_escape 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_formadd 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_formadd 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_formfree 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_formfree 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_formget 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_formget 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_free 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_free 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_getdate 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_getdate 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_getenv 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_getenv 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_global_cleanup 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_global_cleanup 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_global_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_global_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_global_init_mem 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_global_init_mem 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_global_sslset 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_global_sslset 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_maprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_maprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mfprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mfprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_addpart 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_addpart 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_data 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_data 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_data_cb 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_data_cb 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_encoder 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_encoder 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_filedata 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_filedata 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_filename 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_filename 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_free 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_free 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_headers 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_headers 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_name 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_name 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_subparts 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_subparts 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mime_type 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mime_type 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_msnprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_msnprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_msprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_msprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_add_handle 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_add_handle 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_assign 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_assign 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_cleanup 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_cleanup 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_fdset 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_fdset 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_info_read 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_info_read 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_perform 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_perform 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_remove_handle 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_remove_handle 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_setopt 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_setopt 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_socket 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_socket 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_socket_action 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_socket_action 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_socket_all 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_socket_all 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_strerror 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_strerror 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_timeout 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_timeout 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_multi_wait 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_multi_wait 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mvaprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mvaprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mvfprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mvfprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mvprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mvprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mvsnprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mvsnprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_mvsprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_mvsprintf 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_pushheader_byname 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_pushheader_byname 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_pushheader_bynum 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_pushheader_bynum 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_share_cleanup 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_share_cleanup 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_share_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_share_init 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_share_setopt 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_share_setopt 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_share_strerror 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_share_strerror 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_slist_append 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_slist_append 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_slist_free_all 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_slist_free_all 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_strequal 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_strequal 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_strnequal 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_strnequal 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_unescape 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_unescape 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_version 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_version 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: _curl_version_info 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4006: __imp__curl_version_info 已在 libcurl_cjson.lib(libcurl.dll) 中定义；已忽略第二个定义
+     1>libcurl_cjson.lib(libcurl.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+         libupload_info.vcxproj -> D:\Vs_code\libupload_info\Debug\libupload_info.lib
+       FinalizeBuildStatus:
+         正在删除文件“Debug\libupload_info.unsuccessfulbuild”。
+         正在对“Debug\libupload_info.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“D:\Vs_code\libupload_info\libupload_info\libupload_info.vcxproj”(rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.45
