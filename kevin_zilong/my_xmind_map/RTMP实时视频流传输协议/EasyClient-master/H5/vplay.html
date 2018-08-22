@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	@@include("./common.html")
+	<link rel="stylesheet" href="./video-js-5.19.2/video-js.css" />
+	<script src="./video-js-5.19.2/video.js"></script>
+	<script src="./video-js-5.19.2/videojs-contrib-hls4.js"></script>
+	<style>
+		.channel-title {
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			color: #fff;
+			text-align: center;
+			padding: 0 15px;
+			font-size: 20px;
+			line-height: 50px;
+			font-weight: 700;
+		}
+	</style>
+</head>
+
+<body class="hold-transition skin-green layout-top-nav">
+	<div class="wrapper">
+		<header class="main-header">
+			<nav class="navbar navbar-static-top" role="navigation">
+				<div class="channel-title"></div>
+				<div class="navbar-custom-menu pull-left">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="./index.html"><i class="fa fa-chevron-left"></i> 返回</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<div class="content-wrapper">
+			<section class="content">
+				<br>
+			</section>
+		</div>
+		<!-- content-wrapper -->
+		@@include("./footer.html")
+	</div>
+	<!-- wrapper-->
+	<script>
+        videojs.options.flash.swf = './video-js-5.19.2/video-js-fixed.swf';
+        videojs.options.techOrder = ['html5','flash'];
+		var player = null;
+		if (!$.cookie("videoUrl")) {
+			top.location.href = "./index.html";
+		}
+
+		function showProgress2(src, cb) {
+			var timeout = 10000;
+			var step = 125;
+			var cnt = 0;
+			function test(){
+				cnt += step;
+				$.ajax(src,{
+					type : 'HEAD',
+					global : false,
+					complete : function(xhr,ts){
+						if(cnt > timeout){
+							$(".content-wrapper .content").unmask();
+							$.gritter.add("请求数据失败");
+							return;
+						}
+						//xhr.status == 0 , when cross domain request not found
+						if(xhr.status == 404 || xhr.status == 0 || (xhr.status != 200 && !isPC())){
+							console.log("video is no ready, waiting...");
+							setTimeout(test,step);
+						}else{
+							$(".content-wrapper .content").unmask();
+							if (cb) cb();
+						}
+					}
+				})
+			}	
+			$(".content-wrapper .content").mask("加载中...", 100);		
+			test();
+		}
+
+		var src = $.cookie("videoUrl") || "";
+		console.log(src);
+		$.ajax("./video-template.html").then(function (data) {
+			var $v = $(data);
+			$v.find("video").attr("poster", $.cookie("videoImg") || "./images/snap.png").attr("id", "easy-player");
+			$(".content-wrapper .content").append($v);
+			if(src.indexOf("rtmp") == 0){
+				$v.find("video source").attr("src", src).attr("type","rtmp/mp4");
+                player = videojs("easy-player",{
+                    notSupportedMessage : '您的浏览器没有安装或开启Flash',
+                    techOrder : ["flash"],
+                    autoplay : true
+                });
+                player.on("error",function(e){
+                    var $e = $(".vjs-error .vjs-error-display .vjs-modal-dialog-content");
+                    var $a = $("<a href='http://www.adobe.com/go/getflashplayer' target='_blank'></a>").text($e.text());
+                    $e.empty().append($a);
+                })				
+			} else {
+				showProgress2(src, function () {
+					$v.find("video source").attr("src", src).attr("type", "application/x-mpegURL");
+					player = videojs("easy-player",{
+						autoplay : true
+					});
+				});	
+			}
+		})
+
+		$(function () {
+			$(".channel-title").text($.cookie("videoTitle") || "");
+		});
+	</script>
+</body>
+
+</html>

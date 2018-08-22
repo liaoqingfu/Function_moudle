@@ -1,0 +1,1266 @@
+<!DOCTYPE html> <html> <head> <title>C15</title> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">  <style> .markdown-preview-enhanced pre, .markdown-preview-enhanced .host { color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); }
+.markdown-preview-enhanced pre .line.cursor-line, .markdown-preview-enhanced .host .line.cursor-line { background-color: rgba(153, 187, 255, 0.0392157); }
+.markdown-preview-enhanced pre .invisible, .markdown-preview-enhanced .host .invisible { color: rgb(171, 178, 191); }
+.markdown-preview-enhanced pre .cursor, .markdown-preview-enhanced .host .cursor { border-left-width: 2px; border-left-style: solid; border-left-color: rgb(82, 139, 255); }
+.markdown-preview-enhanced pre .selection .region, .markdown-preview-enhanced .host .selection .region { background-color: rgb(62, 68, 81); }
+.markdown-preview-enhanced pre .bracket-matcher .region, .markdown-preview-enhanced .host .bracket-matcher .region { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(82, 139, 255); box-sizing: border-box; }
+.markdown-preview-enhanced pre .invisible-character, .markdown-preview-enhanced .host .invisible-character { color: rgba(171, 178, 191, 0.14902); }
+.markdown-preview-enhanced pre .indent-guide, .markdown-preview-enhanced .host .indent-guide { color: rgba(171, 178, 191, 0.14902); }
+.markdown-preview-enhanced pre .wrap-guide, .markdown-preview-enhanced .host .wrap-guide { background-color: rgba(171, 178, 191, 0.14902); }
+.markdown-preview-enhanced pre .find-result .region.region.region, .markdown-preview-enhanced .host .find-result .region.region.region, .markdown-preview-enhanced pre .current-result .region.region.region, .markdown-preview-enhanced .host .current-result .region.region.region { border-radius: 0px; transition: border-color 0.4s; background-color: rgba(82, 139, 255, 0.239216); }
+.markdown-preview-enhanced pre .find-result .region.region.region, .markdown-preview-enhanced .host .find-result .region.region.region { border: 2px solid transparent; }
+.markdown-preview-enhanced pre .current-result .region.region.region, .markdown-preview-enhanced .host .current-result .region.region.region { border: 2px solid rgb(82, 139, 255); transition-duration: 0.1s; }
+.markdown-preview-enhanced pre .gutter .line-number, .markdown-preview-enhanced .host .gutter .line-number { color: rgb(99, 109, 131); -webkit-font-smoothing: antialiased; }
+.markdown-preview-enhanced pre .gutter .line-number.cursor-line, .markdown-preview-enhanced .host .gutter .line-number.cursor-line { color: rgb(171, 178, 191); background-color: rgb(44, 49, 58); }
+.markdown-preview-enhanced pre .gutter .line-number.cursor-line-no-selection, .markdown-preview-enhanced .host .gutter .line-number.cursor-line-no-selection { background-color: transparent; }
+.markdown-preview-enhanced pre .gutter .line-number .icon-right, .markdown-preview-enhanced .host .gutter .line-number .icon-right { color: rgb(171, 178, 191); }
+.markdown-preview-enhanced pre .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before, .markdown-preview-enhanced .host .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before { bottom: -3px; }
+.markdown-preview-enhanced pre .gutter:not(.git-diff-icon) .line-number.git-line-removed::after, .markdown-preview-enhanced .host .gutter:not(.git-diff-icon) .line-number.git-line-removed::after { content: ""; position: absolute; left: 0px; bottom: 0px; width: 25px; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgba(224, 82, 82, 0.498039); pointer-events: none; }
+.markdown-preview-enhanced pre .gutter .line-number.folded, .markdown-preview-enhanced .host .gutter .line-number.folded, .markdown-preview-enhanced pre .gutter .line-number::after, .markdown-preview-enhanced .host .gutter .line-number::after, .markdown-preview-enhanced pre .fold-marker::after, .markdown-preview-enhanced .host .fold-marker::after { color: rgb(171, 178, 191); }
+.markdown-preview-enhanced { font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 1.6; color: rgb(171, 178, 191); overflow: initial; margin: 10px 13px; padding: 2em; box-sizing: border-box; word-wrap: break-word; background-color: rgb(40, 44, 52); }
+.markdown-preview-enhanced[data-use-github-style] { color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced > :first-child { margin-top: 0px; }
+.markdown-preview-enhanced[is="space-pen-div"] { width: 100%; margin: 0px; z-index: 999; overflow: scroll; font-size: 16px; display: block; position: absolute; }
+.markdown-preview-enhanced[is="space-pen-div"][data-use-github-style] { }
+.markdown-preview-enhanced[is="space-pen-div"][data-use-github-style] ::-webkit-scrollbar-track { box-shadow: rgba(218, 218, 218, 0.6) 0px 0px 3px inset; background-color: rgb(244, 244, 244); }
+.markdown-preview-enhanced[is="space-pen-div"][data-use-github-style] ::-webkit-scrollbar-thumb { border-radius: 10px; border-color: transparent; background-color: rgb(204, 204, 204); }
+.markdown-preview-enhanced h1, .markdown-preview-enhanced h2, .markdown-preview-enhanced h3, .markdown-preview-enhanced h4, .markdown-preview-enhanced h5, .markdown-preview-enhanced h6 { line-height: 1.2; margin-top: 1em; margin-bottom: 16px; color: rgb(255, 255, 255); }
+.markdown-preview-enhanced[data-use-github-style] h1, .markdown-preview-enhanced[data-use-github-style] h2, .markdown-preview-enhanced[data-use-github-style] h3, .markdown-preview-enhanced[data-use-github-style] h4, .markdown-preview-enhanced[data-use-github-style] h5, .markdown-preview-enhanced[data-use-github-style] h6 { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced h1 { font-size: 2.4em; font-weight: 300; padding-bottom: 0.3em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced h2 { font-size: 1.8em; font-weight: 400; padding-bottom: 0.3em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview-enhanced h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview-enhanced h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview-enhanced h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview-enhanced[data-use-github-style] h1, .markdown-preview-enhanced[data-use-github-style] h2 { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(231, 231, 231); }
+.markdown-preview-enhanced strong { color: rgb(255, 255, 255); }
+.markdown-preview-enhanced[data-use-github-style] strong { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced del { color: rgb(124, 135, 156); }
+.markdown-preview-enhanced a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview-enhanced a { color: rgb(0, 136, 204); text-decoration: none; }
+.markdown-preview-enhanced a:hover { color: rgb(0, 80, 163); text-decoration: none; }
+.markdown-preview-enhanced img { max-width: 100%; }
+.markdown-preview-enhanced > p { margin-top: 0px; margin-bottom: 16px; word-wrap: break-word; }
+.markdown-preview-enhanced > ul, .markdown-preview-enhanced > ol { margin-bottom: 16px; }
+.markdown-preview-enhanced ul, .markdown-preview-enhanced ol { padding-left: 2em; }
+.markdown-preview-enhanced ul.no-list, .markdown-preview-enhanced ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview-enhanced ul ul, .markdown-preview-enhanced ul ol, .markdown-preview-enhanced ol ol, .markdown-preview-enhanced ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview-enhanced li { margin-bottom: 0px; }
+.markdown-preview-enhanced li.task-list-item { list-style: none; }
+.markdown-preview-enhanced li > p { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview-enhanced .task-list-item-checkbox { margin: 0px 0.2em 0.25em -1.6em; vertical-align: middle; }
+.markdown-preview-enhanced .task-list-item-checkbox:hover { cursor: pointer; }
+.markdown-preview-enhanced blockquote { margin: 16px 0px; font-size: inherit; padding: 0px 15px; color: rgb(124, 135, 156); border-left-width: 4px; border-left-style: solid; border-left-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced blockquote > :first-child { margin-top: 0px; }
+.markdown-preview-enhanced blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview-enhanced[data-use-github-style] blockquote { color: rgb(119, 119, 119); border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); }
+.markdown-preview-enhanced hr { height: 4px; margin: 32px 0px; border: 0px none; background-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced[data-use-github-style] hr { background-color: rgb(231, 231, 231); }
+.markdown-preview-enhanced table { margin: 10px 0px 15px; border-collapse: collapse; border-spacing: 0px; display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview-enhanced table th { font-weight: bold; color: rgb(255, 255, 255); }
+.markdown-preview-enhanced table td, .markdown-preview-enhanced table th { border: 1px solid rgb(75, 83, 98); padding: 6px 13px; }
+.markdown-preview-enhanced[data-use-github-style] th { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced[data-use-github-style] td, .markdown-preview-enhanced[data-use-github-style] th { border: 1px solid rgb(221, 221, 221); }
+.markdown-preview-enhanced dl { padding: 0px; }
+.markdown-preview-enhanced dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview-enhanced dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview-enhanced code { font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; color: rgb(255, 255, 255); font-size: 0.85em !important; background-color: rgb(58, 63, 75); }
+.markdown-preview-enhanced[data-use-github-style] code { color: inherit; background-color: rgba(0, 0, 0, 0.0392157); }
+.markdown-preview-enhanced pre > code { padding: 0px; margin: 0px; word-break: normal; white-space: pre; border: 0px; font-size: 0.85em !important; background: transparent; }
+.markdown-preview-enhanced .highlight { margin-bottom: 16px; }
+.markdown-preview-enhanced .highlight pre, .markdown-preview-enhanced pre { font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; padding: 16px; overflow: auto; line-height: 1.45; color: rgb(171, 178, 191); border: rgb(75, 83, 98); border-radius: 3px; font-size: 0.85em !important; background-color: rgb(49, 54, 63); }
+.markdown-preview-enhanced .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview-enhanced pre { word-wrap: break-word; white-space: normal; word-break: break-all; }
+.markdown-preview-enhanced pre .section { opacity: 1; }
+.markdown-preview-enhanced pre code, .markdown-preview-enhanced pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; border: 0px; background-color: transparent; }
+.markdown-preview-enhanced pre code::before, .markdown-preview-enhanced pre tt::before, .markdown-preview-enhanced pre code::after, .markdown-preview-enhanced pre tt::after { content: normal; }
+.markdown-preview-enhanced p, .markdown-preview-enhanced blockquote, .markdown-preview-enhanced ul, .markdown-preview-enhanced ol, .markdown-preview-enhanced dl, .markdown-preview-enhanced pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview-enhanced pre.editor-colors { margin: 16px 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview-enhanced kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); background-color: rgb(58, 63, 75); }
+.markdown-preview-enhanced[data-use-github-style] kbd { color: rgb(51, 51, 51); border-style: solid; border-width: 1px; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; background-color: rgb(252, 252, 252); }
+.markdown-preview-enhanced .pagebreak, .markdown-preview-enhanced .newpage { page-break-before: always; }
+@media screen and (min-width: 914px) { 
+  .markdown-preview-enhanced { width: 854px; margin: 10px auto; background: rgb(40, 44, 52); }
+}
+@media screen and (max-width: 400px) { 
+  .markdown-preview-enhanced { font-size: 14px; }
+}
+@media screen and (min-width: 914px) { 
+  .markdown-preview-enhanced[data-use-github-style] { background: rgb(255, 255, 255); }
+}
+@media print { 
+  .markdown-preview-enhanced { background-color: rgb(40, 44, 52); }
+  .markdown-preview-enhanced h1, .markdown-preview-enhanced h2, .markdown-preview-enhanced h3, .markdown-preview-enhanced h4, .markdown-preview-enhanced h5, .markdown-preview-enhanced h6 { color: rgb(255, 255, 255); page-break-after: avoid; }
+  .markdown-preview-enhanced blockquote { color: rgb(124, 135, 156); }
+  .markdown-preview-enhanced table, .markdown-preview-enhanced pre { page-break-inside: avoid; }
+  .markdown-preview-enhanced table { display: table; }
+  .markdown-preview-enhanced img { display: block; max-width: 100%; max-height: 100%; }
+  .markdown-preview-enhanced pre, .markdown-preview-enhanced code { word-wrap: break-word; white-space: normal; }
+}
+@media print { 
+  .markdown-preview-enhanced[data-use-github-style] { background-color: rgb(255, 255, 255); }
+  .markdown-preview-enhanced[data-use-github-style] h1, .markdown-preview-enhanced[data-use-github-style] h2, .markdown-preview-enhanced[data-use-github-style] h3, .markdown-preview-enhanced[data-use-github-style] h4, .markdown-preview-enhanced[data-use-github-style] h5, .markdown-preview-enhanced[data-use-github-style] h6 { color: rgb(34, 34, 34); }
+  .markdown-preview-enhanced[data-use-github-style] blockquote { color: rgb(119, 119, 119); }
+  .markdown-preview-enhanced[data-use-github-style] pre { border: 2px solid rgb(246, 246, 246); }
+}
+.markdown-preview-enhanced .mermaid { margin-bottom: 16px; }
+.markdown-preview-enhanced .mermaid .edgePath .path { stroke: rgb(255, 255, 255); }
+.markdown-preview-enhanced .mermaid .edgePath marker path { fill: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid line, .markdown-preview-enhanced .mermaid marker { stroke: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid .messageText { fill: rgb(255, 255, 255); }
+.markdown-preview-enhanced[data-use-github-style] .mermaid .edgePath .path { stroke: rgb(51, 51, 51); }
+.markdown-preview-enhanced[data-use-github-style] .mermaid marker path { fill: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] line, .markdown-preview-enhanced[data-use-github-style] marker { stroke: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] .messageText { fill: rgb(51, 51, 51); }
+.markdown-preview-enhanced[is="space-pen-div"] .erd { overflow-x: auto; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk { position: relative; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk.hide-chunk { display: block !important; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk:hover .run-all-btn { display: block !important; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk:hover .btn-group { opacity: 1; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .btn-group { position: absolute; right: 0px; top: 0px; padding: 4px; opacity: 0.4; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .btn-group .btn { text-align: center; color: rgb(255, 255, 255); float: right; margin-left: 2px; border-radius: 4px; border-style: none; background-image: none; background-color: rgb(147, 187, 124); }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .btn-group .btn:hover { cursor: pointer; background-color: rgb(119, 170, 90); }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .btn-group .btn.run-btn { display: block !important; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk.running .run-btn span { display: none; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk.running .run-btn::after { content: "ᕕ(╯°□°)ᕗ"; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk.running .run-btn:hover { cursor: not-allowed; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .output-div { overflow-x: auto; margin-bottom: 16px; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk pre { cursor: text; }
+.markdown-preview-enhanced:not([is="space-pen-div"]) .code-chunk.hide-chunk pre.editor-colors, .markdown-preview-enhanced:not([is="space-pen-div"]) .code-chunk.hide-chunk .btn-group { display: none; }
+.markdown-preview-enhanced:not([is="space-pen-div"]) .code-chunk.hide-chunk .output-div { display: block; }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors, .markdown-preview-enhanced .github-syntax-theme .host { color: rgb(51, 51, 51); background-color: rgb(247, 247, 247); }
+.markdown-preview-enhanced .github-syntax-theme pre { color: rgb(51, 51, 51); background-color: rgb(247, 247, 247); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .gutter, .markdown-preview-enhanced .github-syntax-theme .host .gutter { color: rgb(179, 179, 179); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .gutter .line-number.cursor-line, .markdown-preview-enhanced .github-syntax-theme .host .gutter .line-number.cursor-line { color: rgb(77, 77, 77); background-color: rgb(245, 245, 245); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .gutter .line-number.cursor-line-no-selection, .markdown-preview-enhanced .github-syntax-theme .host .gutter .line-number.cursor-line-no-selection { color: rgb(77, 77, 77); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .wrap-guide, .markdown-preview-enhanced .github-syntax-theme .host .wrap-guide { color: rgb(223, 223, 223); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .indent-guide, .markdown-preview-enhanced .github-syntax-theme .host .indent-guide { color: rgb(223, 223, 223); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .invisible-character, .markdown-preview-enhanced .github-syntax-theme .host .invisible-character { color: rgb(223, 223, 223); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .search-results .marker .region, .markdown-preview-enhanced .github-syntax-theme .host .search-results .marker .region { border: rgb(0, 0, 0); background-color: transparent; }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .search-results .marker.current-result .region, .markdown-preview-enhanced .github-syntax-theme .host .search-results .marker.current-result .region { border: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .cursor, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .cursor { border-color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .selection .region, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .selection .region { background-color: rgba(178, 215, 255, 0.4); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .line-number.cursor-line-no-selection, .markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .line.cursor-line, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .line-number.cursor-line-no-selection, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .line.cursor-line { background-color: rgba(240, 240, 240, 0.498039); }
+.markdown-preview-enhanced .github-syntax-theme .comment, .markdown-preview-enhanced .github-syntax-theme .punctuation.comment { color: rgb(176, 176, 176); }
+.markdown-preview-enhanced .github-syntax-theme .string, .markdown-preview-enhanced .github-syntax-theme .string .constant.character.escape { color: rgb(34, 115, 195); }
+.markdown-preview-enhanced .github-syntax-theme .constant.numeric { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .constant.language { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .constant.character, .markdown-preview-enhanced .github-syntax-theme .constant.other.rgb-value { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .constant.numeric.line-number.find-in-files, .markdown-preview-enhanced .github-syntax-theme .constant.numeric.line-number.match.find-in-files { color: rgb(171, 176, 179); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.class { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .entity.other.inherited-class { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .meta.tag.any.html, .markdown-preview-enhanced .github-syntax-theme .meta.tag.block.any.html { color: rgb(171, 176, 179); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.tag { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.function { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name .punctuation.definition.entity.scss, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.id.css, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.id.css .punctuation.definition.entity.css, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.class.css .punctuation.definition.entity.css { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation.definition.tag.begin.html, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.tag.end.html, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.tag.html, .markdown-preview-enhanced .github-syntax-theme .meta.tag.block.any.html { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.control { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.operator { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .storage { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .storage.type { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .support.function { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .support.constant { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .support.type, .markdown-preview-enhanced .github-syntax-theme .support.class, .markdown-preview-enhanced .github-syntax-theme .meta.property-name.scss { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .support.other.variable { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .invalid, .markdown-preview-enhanced .github-syntax-theme .invalid.illegal { color: rgb(248, 248, 248); background-color: rgb(181, 42, 29); }
+.markdown-preview-enhanced .github-syntax-theme .invalid.deprecated { color: rgb(181, 42, 29); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.filename.find-in-files { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .source.css .punctuation.definition.entity, .markdown-preview-enhanced .github-syntax-theme .punctuation.terminator.rule.scss { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .source.css .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced .github-syntax-theme .source.css .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .source.css .meta.value, .markdown-preview-enhanced .github-syntax-theme .source.css .support.constant, .markdown-preview-enhanced .github-syntax-theme .source.css .support.function { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .source.scss .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced .github-syntax-theme .source.scss .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .support.constant.property-value, .markdown-preview-enhanced .github-syntax-theme .source.scss .support.function, .markdown-preview-enhanced .github-syntax-theme .meta.property-value.scss { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .variable, .markdown-preview-enhanced .github-syntax-theme .source.scss .variable, .markdown-preview-enhanced .github-syntax-theme .variable.interpolation.scss, .markdown-preview-enhanced .github-syntax-theme .source.scss .meta.set.variable { color: rgb(222, 104, 173); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.control.else.scss, .markdown-preview-enhanced .github-syntax-theme .keyword.control.if.scss, .markdown-preview-enhanced .github-syntax-theme .keyword.control.content.scss { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.other.unit { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.other.important { color: rgb(235, 69, 53); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.tag.reference.scss { color: rgb(181, 127, 0); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.type.new.js { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .variable.language.js { color: rgb(238, 106, 66); }
+.markdown-preview-enhanced .github-syntax-theme .variable.parameter.function { color: rgb(181, 127, 0); }
+.markdown-preview-enhanced .github-syntax-theme .source.js .meta.function .entity.name.function, .markdown-preview-enhanced .github-syntax-theme .source.js .entity.name.function .meta.function { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .source.php .entity.name.type.class { color: rgb(238, 106, 66); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation.definition.heading.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.italic.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.bold.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.string.begin.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.string.end.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.metadata.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.link.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.blockquote.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.raw.markdown { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation.section.function.scss { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation, .markdown-preview-enhanced .github-syntax-theme .meta.method-call, .markdown-preview-enhanced .github-syntax-theme .meta.method { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .meta.separator { color: rgb(179, 179, 179); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.raw.block { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.raw.inline { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .meta.link, .markdown-preview-enhanced .github-syntax-theme .text.html.markdown .meta.image { color: rgb(65, 131, 196); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.underline.link, .markdown-preview-enhanced .github-syntax-theme .text.html.markdown .constant.other.reference { font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.list { color: rgb(238, 106, 66); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.bold { font-weight: bold; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.italic { font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.bold .markup.italic { font-weight: bold; font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.italic .markup.bold { font-weight: bold; font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .string.quoted.double.html .invalid.illegal.bad-ampersand.html { color: rgb(34, 115, 195); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced .github-syntax-theme .bracket-matcher .region { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgba(240, 192, 0, 0.8); z-index: 100; background-color: rgba(255, 214, 51, 0.0980392); }
+.markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular { color: rgb(34, 115, 195); }
+.markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular .punctuation.definition.block.begin.angular, .markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular .punctuation.definition.block.end.angular, .markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular .meta.brace.curly.js { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.html.angular, .markdown-preview-enhanced .github-syntax-theme .meta.attribute.html.angular { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors, .markdown-preview-enhanced[data-use-github-syntax-theme] .host { color: rgb(51, 51, 51) !important; background-color: rgb(247, 247, 247) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre { color: rgb(51, 51, 51) !important; background-color: rgb(247, 247, 247) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .gutter, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .gutter { color: rgb(179, 179, 179) !important; background-color: rgb(255, 255, 255) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .gutter .line-number.cursor-line, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .gutter .line-number.cursor-line { color: rgb(77, 77, 77) !important; background-color: rgb(245, 245, 245) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .gutter .line-number.cursor-line-no-selection, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .gutter .line-number.cursor-line-no-selection { color: rgb(77, 77, 77) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .wrap-guide, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .wrap-guide { color: rgb(223, 223, 223) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .indent-guide, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .indent-guide { color: rgb(223, 223, 223) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .invisible-character, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .invisible-character { color: rgb(223, 223, 223) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .search-results .marker .region, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .search-results .marker .region { border: rgb(0, 0, 0) !important; background-color: transparent !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .search-results .marker.current-result .region, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .search-results .marker.current-result .region { border: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .cursor, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .cursor { border-color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .selection .region, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .selection .region { background-color: rgba(178, 215, 255, 0.4) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .line-number.cursor-line-no-selection, .markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .line.cursor-line, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .line-number.cursor-line-no-selection, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .line.cursor-line { background-color: rgba(240, 240, 240, 0.498039) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .comment, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.comment { color: rgb(176, 176, 176) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .string, .markdown-preview-enhanced[data-use-github-syntax-theme] .string .constant.character.escape { color: rgb(34, 115, 195) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.numeric { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.language { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.character, .markdown-preview-enhanced[data-use-github-syntax-theme] .constant.other.rgb-value { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.numeric.line-number.find-in-files, .markdown-preview-enhanced[data-use-github-syntax-theme] .constant.numeric.line-number.match.find-in-files { color: rgb(171, 176, 179) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.class { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.inherited-class { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.any.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.block.any.html { color: rgb(171, 176, 179) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.tag { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.function { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name .punctuation.definition.entity.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.id.css, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.id.css .punctuation.definition.entity.css, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.class.css .punctuation.definition.entity.css { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.tag.begin.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.tag.end.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.tag.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.block.any.html { color: rgb(51, 51, 51) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.operator { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .storage { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .storage.type { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.function { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.constant { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.type, .markdown-preview-enhanced[data-use-github-syntax-theme] .support.class, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.property-name.scss { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.other.variable { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .invalid, .markdown-preview-enhanced[data-use-github-syntax-theme] .invalid.illegal { color: rgb(248, 248, 248) !important; background-color: rgb(181, 42, 29) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .invalid.deprecated { color: rgb(181, 42, 29) !important; background-color: rgb(255, 255, 255) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.filename.find-in-files { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .punctuation.definition.entity, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.terminator.rule.scss { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .meta.value, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .support.constant, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .support.function { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.constant.property-value, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .support.function, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.property-value.scss { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .variable, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .variable, .markdown-preview-enhanced[data-use-github-syntax-theme] .variable.interpolation.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .meta.set.variable { color: rgb(222, 104, 173) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control.else.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control.if.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control.content.scss { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.other.unit { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.other.important { color: rgb(235, 69, 53) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.tag.reference.scss { color: rgb(181, 127, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.type.new.js { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .variable.language.js { color: rgb(238, 106, 66) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .variable.parameter.function { color: rgb(181, 127, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.js .meta.function .entity.name.function, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.js .entity.name.function .meta.function { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.php .entity.name.type.class { color: rgb(238, 106, 66) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.heading.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.italic.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.bold.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.string.begin.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.string.end.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.metadata.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.link.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.blockquote.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.raw.markdown { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.section.function.scss { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.method-call, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.method { color: rgb(51, 51, 51) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .meta.separator { color: rgb(179, 179, 179) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.raw.block { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.raw.inline { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .meta.link, .markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .meta.image { color: rgb(65, 131, 196) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.underline.link, .markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .constant.other.reference { font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.list { color: rgb(238, 106, 66) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.bold { font-weight: bold !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.italic { font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.bold .markup.italic { font-weight: bold !important; font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.italic .markup.bold { font-weight: bold !important; font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .string.quoted.double.html .invalid.illegal.bad-ampersand.html { color: rgb(34, 115, 195) !important; background-color: rgb(255, 255, 255) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .bracket-matcher .region { border-bottom-width: 1px !important; border-bottom-style: solid !important; border-bottom-color: rgba(240, 192, 0, 0.8) !important; z-index: 100 !important; background-color: rgba(255, 214, 51, 0.0980392) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular { color: rgb(34, 115, 195) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular .punctuation.definition.block.begin.angular, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular .punctuation.definition.block.end.angular, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular .meta.brace.curly.js { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.html.angular, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.attribute.html.angular { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-presentation-mode] { font-size: 24px; width: 100%; box-sizing: border-box; margin: 0px; padding: 0px; }
+.markdown-preview-enhanced[data-presentation-mode] h1, .markdown-preview-enhanced[data-presentation-mode] h2, .markdown-preview-enhanced[data-presentation-mode] h3, .markdown-preview-enhanced[data-presentation-mode] h4, .markdown-preview-enhanced[data-presentation-mode] h5, .markdown-preview-enhanced[data-presentation-mode] h6 { margin-top: 0px; }
+.markdown-preview-enhanced[data-presentation-mode] strong { font-weight: bold; }
+.markdown-preview-enhanced[data-presentation-mode]::-webkit-scrollbar { display: none; }
+.markdown-preview-enhanced .slides { text-align: left !important; }
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+.spell-check-corrections {
+  width: 25em !important;
+}
+
+pre.editor-colors,
+.host {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line,
+.host .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible,
+.host .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor,
+.host .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region,
+.host .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region,
+.host .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character,
+.host .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide,
+.host .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide,
+.host .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .find-result .region.region.region,
+.host .find-result .region.region.region,
+pre.editor-colors .current-result .region.region.region,
+.host .current-result .region.region.region {
+  border-radius: 0px;
+  background-color: rgba(82, 139, 255, 0.24);
+  transition: border-color 0.4s;
+}
+pre.editor-colors .find-result .region.region.region,
+.host .find-result .region.region.region {
+  border: 2px solid transparent;
+}
+pre.editor-colors .current-result .region.region.region,
+.host .current-result .region.region.region {
+  border: 2px solid #528bff;
+  transition-duration: .1s;
+}
+pre.editor-colors .gutter .line-number,
+.host .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line,
+.host .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #2c313a;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection,
+.host .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right,
+.host .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+.host .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+.host .gutter .line-number:after,
+pre.editor-colors .fold-marker:after,
+.host .fold-marker:after {
+  color: #abb2bf;
+}
+.comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.comment .markup.link {
+  color: #5c6370;
+}
+.entity.name.type {
+  color: #e5c07b;
+}
+.entity.other.inherited-class {
+  color: #98c379;
+}
+.keyword {
+  color: #c678dd;
+}
+.keyword.control {
+  color: #c678dd;
+}
+.keyword.operator {
+  color: #abb2bf;
+}
+.keyword.other.special-method {
+  color: #61afef;
+}
+.keyword.other.unit {
+  color: #d19a66;
+}
+.storage {
+  color: #c678dd;
+}
+.storage.type.annotation,
+.storage.type.primitive {
+  color: #c678dd;
+}
+.storage.modifier.package,
+.storage.modifier.import {
+  color: #abb2bf;
+}
+.constant {
+  color: #d19a66;
+}
+.constant.variable {
+  color: #d19a66;
+}
+.constant.character.escape {
+  color: #56b6c2;
+}
+.constant.numeric {
+  color: #d19a66;
+}
+.constant.other.color {
+  color: #56b6c2;
+}
+.constant.other.symbol {
+  color: #56b6c2;
+}
+.variable {
+  color: #e06c75;
+}
+.variable.interpolation {
+  color: #be5046;
+}
+.variable.parameter {
+  color: #abb2bf;
+}
+.string {
+  color: #98c379;
+}
+.string.regexp {
+  color: #56b6c2;
+}
+.string.regexp .source.ruby.embedded {
+  color: #e5c07b;
+}
+.string.other.link {
+  color: #e06c75;
+}
+.punctuation.definition.comment {
+  color: #5c6370;
+}
+.punctuation.definition.method-parameters,
+.punctuation.definition.function-parameters,
+.punctuation.definition.parameters,
+.punctuation.definition.separator,
+.punctuation.definition.seperator,
+.punctuation.definition.array {
+  color: #abb2bf;
+}
+.punctuation.definition.heading,
+.punctuation.definition.identity {
+  color: #61afef;
+}
+.punctuation.definition.bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.punctuation.definition.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.punctuation.section.embedded {
+  color: #be5046;
+}
+.punctuation.section.method,
+.punctuation.section.class,
+.punctuation.section.inner-class {
+  color: #abb2bf;
+}
+.support.class {
+  color: #e5c07b;
+}
+.support.type {
+  color: #56b6c2;
+}
+.support.function {
+  color: #56b6c2;
+}
+.support.function.any-method {
+  color: #61afef;
+}
+.entity.name.function {
+  color: #61afef;
+}
+.entity.name.class,
+.entity.name.type.class {
+  color: #e5c07b;
+}
+.entity.name.section {
+  color: #61afef;
+}
+.entity.name.tag {
+  color: #e06c75;
+}
+.entity.other.attribute-name {
+  color: #d19a66;
+}
+.entity.other.attribute-name.id {
+  color: #61afef;
+}
+.meta.class {
+  color: #e5c07b;
+}
+.meta.class.body {
+  color: #abb2bf;
+}
+.meta.method-call,
+.meta.method {
+  color: #abb2bf;
+}
+.meta.definition.variable {
+  color: #e06c75;
+}
+.meta.link {
+  color: #d19a66;
+}
+.meta.require {
+  color: #61afef;
+}
+.meta.selector {
+  color: #c678dd;
+}
+.meta.separator {
+  background-color: #373b41;
+  color: #abb2bf;
+}
+.meta.tag {
+  color: #abb2bf;
+}
+.underline {
+  text-decoration: underline;
+}
+.none {
+  color: #abb2bf;
+}
+.invalid.deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.invalid.illegal {
+  color: #ffffff !important;
+  background-color: #e05252 !important;
+}
+.markup.bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.markup.changed {
+  color: #c678dd;
+}
+.markup.deleted {
+  color: #e06c75;
+}
+.markup.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.markup.heading {
+  color: #e06c75;
+}
+.markup.heading .punctuation.definition.heading {
+  color: #61afef;
+}
+.markup.link {
+  color: #c678dd;
+}
+.markup.inserted {
+  color: #98c379;
+}
+.markup.quote {
+  color: #d19a66;
+}
+.markup.raw {
+  color: #98c379;
+}
+.source.cs .keyword.operator {
+  color: #c678dd;
+}
+.source.css .property-name,
+.source.css .property-value {
+  color: #828997;
+}
+.source.css .property-name.support,
+.source.css .property-value.support {
+  color: #abb2bf;
+}
+.source.gfm .markup {
+  -webkit-font-smoothing: auto;
+}
+.source.gfm .link .entity {
+  color: #61afef;
+}
+.source.go .storage.type.string {
+  color: #c678dd;
+}
+.source.ini .keyword.other.definition.ini {
+  color: #e06c75;
+}
+.source.java .storage.modifier.import {
+  color: #e5c07b;
+}
+.source.java .storage.type {
+  color: #e5c07b;
+}
+.source.java .keyword.operator.instanceof {
+  color: #c678dd;
+}
+.source.java-properties .meta.key-pair {
+  color: #e06c75;
+}
+.source.java-properties .meta.key-pair > .punctuation {
+  color: #abb2bf;
+}
+.source.js .keyword.operator {
+  color: #56b6c2;
+}
+.source.js .keyword.operator.delete,
+.source.js .keyword.operator.in,
+.source.js .keyword.operator.of,
+.source.js .keyword.operator.instanceof,
+.source.js .keyword.operator.new,
+.source.js .keyword.operator.typeof,
+.source.js .keyword.operator.void {
+  color: #c678dd;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json > .punctuation.string {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json > .punctuation,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json > .punctuation {
+  color: #98c379;
+}
+.source.json .meta.structure.dictionary.json > .constant.language.json,
+.source.json .meta.structure.array.json > .constant.language.json {
+  color: #56b6c2;
+}
+.source.ruby .constant.other.symbol > .punctuation {
+  color: inherit;
+}
+.source.python .keyword.operator.logical.python {
+  color: #c678dd;
+}
+.source.python .variable.parameter {
+  color: #d19a66;
+}
+ /* Flowchart variables */
+/* Sequence Diagram variables */
+/* Gantt chart variables */
+.mermaid .label {
+  color: #333;
+}
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon {
+  fill: #ECECFF;
+  stroke: #CCCCFF;
+  stroke-width: 1px;
+}
+.mermaid .edgePath .path {
+  stroke: #333333;
+}
+.mermaid .edgeLabel {
+  background-color: #e8e8e8;
+}
+.mermaid .cluster rect {
+  fill: #ffffde !important;
+  rx: 4 !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important;
+}
+.mermaid .cluster text {
+  fill: #333;
+}
+.mermaid .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF;
+}
+.mermaid text.actor {
+  fill: black;
+  stroke: none;
+}
+.mermaid .actor-line {
+  stroke: grey;
+}
+.mermaid .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: "2 2";
+  marker-end: "url(#arrowhead)";
+  stroke: #333;
+}
+.mermaid .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: "2 2";
+  stroke: #333;
+}
+.mermaid #arrowhead {
+  fill: #333;
+}
+.mermaid #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important;
+}
+.mermaid .messageText {
+  fill: #333;
+  stroke: none;
+}
+.mermaid .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF;
+}
+.mermaid .labelText {
+  fill: black;
+  stroke: none;
+}
+.mermaid .loopText {
+  fill: black;
+  stroke: none;
+}
+.mermaid .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: "2 2";
+  marker-end: "url(#arrowhead)";
+  stroke: #CCCCFF;
+}
+.mermaid .note {
+  stroke: #aaaa33;
+  fill: #fff5ad;
+}
+.mermaid .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px;
+}
+/** Section styling */
+.mermaid .section {
+  stroke: none;
+  opacity: 0.2;
+}
+.mermaid .section0 {
+  fill: rgba(102, 102, 255, 0.49);
+}
+.mermaid .section2 {
+  fill: #fff400;
+}
+.mermaid .section1,
+.mermaid .section3 {
+  fill: white;
+  opacity: 0.2;
+}
+.mermaid .sectionTitle0 {
+  fill: #333;
+}
+.mermaid .sectionTitle1 {
+  fill: #333;
+}
+.mermaid .sectionTitle2 {
+  fill: #333;
+}
+.mermaid .sectionTitle3 {
+  fill: #333;
+}
+.mermaid .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px;
+}
+/* Grid and axis */
+.mermaid .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges;
+}
+.mermaid .grid path {
+  stroke-width: 0;
+}
+/* Today line */
+.mermaid .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px;
+}
+/* Task styling */
+/* Default task */
+.mermaid .task {
+  stroke-width: 2;
+}
+.mermaid .taskText {
+  text-anchor: middle;
+  font-size: 11px;
+}
+.mermaid .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px;
+}
+.mermaid .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px;
+}
+/* Specific task settings for the sections*/
+.mermaid .taskText0,
+.mermaid .taskText1,
+.mermaid .taskText2,
+.mermaid .taskText3 {
+  fill: white;
+}
+.mermaid .task0,
+.mermaid .task1,
+.mermaid .task2,
+.mermaid .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc;
+}
+.mermaid .taskTextOutside0,
+.mermaid .taskTextOutside2 {
+  fill: black;
+}
+.mermaid .taskTextOutside1,
+.mermaid .taskTextOutside3 {
+  fill: black;
+}
+/* Active task */
+.mermaid .active0,
+.mermaid .active1,
+.mermaid .active2,
+.mermaid .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc;
+}
+.mermaid .activeText0,
+.mermaid .activeText1,
+.mermaid .activeText2,
+.mermaid .activeText3 {
+  fill: black !important;
+}
+/* Completed task */
+.mermaid .done0,
+.mermaid .done1,
+.mermaid .done2,
+.mermaid .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2;
+}
+.mermaid .doneText0,
+.mermaid .doneText1,
+.mermaid .doneText2,
+.mermaid .doneText3 {
+  fill: black !important;
+}
+/* Tasks on the critical line */
+.mermaid .crit0,
+.mermaid .crit1,
+.mermaid .crit2,
+.mermaid .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2;
+}
+.mermaid .activeCrit0,
+.mermaid .activeCrit1,
+.mermaid .activeCrit2,
+.mermaid .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2;
+}
+.mermaid .doneCrit0,
+.mermaid .doneCrit1,
+.mermaid .doneCrit2,
+.mermaid .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges;
+}
+.mermaid .doneCritText0,
+.mermaid .doneCritText1,
+.mermaid .doneCritText2,
+.mermaid .doneCritText3 {
+  fill: black !important;
+}
+.mermaid .activeCritText0,
+.mermaid .activeCritText1,
+.mermaid .activeCritText2,
+.mermaid .activeCritText3 {
+  fill: black !important;
+}
+.mermaid .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black;
+}
+/*
+
+
+*/
+.mermaid .node text {
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px;
+}
+div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100;
+}
+ </style> <link rel="stylesheet" href="file:////Users/xueguoliang/.atom/packages/markdown-preview-enhanced/node_modules/katex/dist/katex.min.css">  </head> <body class="markdown-preview-enhanced " data-use-github-style data-use-github-syntax-theme > <ul>
+<li><p class="sync-line" data-line="3"><a href="#&#x7B2C;&#x5341;&#x4E94;&#x7AE0;-bash&#x811A;&#x672C;&#x7F16;&#x7A0B;">第十五章 Bash脚本编程</a>
+<ul>
+<li><p class="sync-line" data-line="4"><a href="#151-&#x524D;&#x8A00;">15.1 前言</a></p></li>
+<li><p class="sync-line" data-line="5"><a href="#152-&#x53D8;&#x91CF;">15.2 变量</a>
+<ul>
+<li><p class="sync-line" data-line="6"><a href="#1521-&#x5F15;&#x7528;&#x53D8;&#x91CF;">15.2.1 引用变量</a></p></li>
+<li><p class="sync-line" data-line="7"><a href="#1522-&#x73AF;&#x5883;&#x53D8;&#x91CF;">15.2.2 环境变量</a></p></li>
+<li><p class="sync-line" data-line="8"><a href="#1523-&#x53C2;&#x6570;&#x53D8;&#x91CF;">15.2.3 参数变量</a></p></li>
+<li><p class="sync-line" data-line="9"><a href="#1524-&#x5C40;&#x90E8;&#x53D8;&#x91CF;">15.2.4 局部变量</a></p></li>
+<li><p class="sync-line" data-line="10"><a href="#1525-&#x53D8;&#x91CF;&#x8D4B;&#x503C;">15.2.5 变量赋值</a></p></li>
+<li><p class="sync-line" data-line="11"><a href="#1526-&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;">15.2.6 设置环境变量</a></p></li>
+<li><p class="sync-line" data-line="12"><a href="#1527-&#x8FD0;&#x7B97;">15.2.7 运算</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="13"><a href="#153-&#x8FD0;&#x884C;&#x6D41;&#x7A0B;&#x63A7;&#x5236;">15.3 运行流程控制</a>
+<ul>
+<li><p class="sync-line" data-line="14"><a href="#1531-if-else">15.3.1 if-else</a>
+<ul>
+<li><p class="sync-line" data-line="15"><a href="#15311-&#x6570;&#x503C;&#x6761;&#x4EF6;">15.3.1.1 数值条件</a></p></li>
+<li><p class="sync-line" data-line="16"><a href="#15412-&#x5B57;&#x7B26;&#x4E32;&#x6761;&#x4EF6;">15.4.1.2 字符串条件</a></p></li>
+<li><p class="sync-line" data-line="17"><a href="#15413-&#x6587;&#x4EF6;&#x6761;&#x4EF6;">15.4.1.3 文件条件</a></p></li>
+<li><p class="sync-line" data-line="18"><a href="#15414-&#x903B;&#x8F91;&#x8868;&#x8FBE;&#x5F0F;">15.4.1.4 逻辑表达式</a></p></li>
+<li><p class="sync-line" data-line="19"><a href="#15415-&#x6761;&#x4EF6;&#x77ED;&#x8DEF;">15.4.1.5 条件短路</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="20"><a href="#1532-&#x5FAA;&#x73AF;">15.3.2 循环</a>
+<ul>
+<li><p class="sync-line" data-line="21"><a href="#15321-for">15.3.2.1 for</a></p></li>
+<li><p class="sync-line" data-line="22"><a href="#15322-while">15.3.2.2 while</a></p></li>
+<li><p class="sync-line" data-line="23"><a href="#15322-break&#x548C;continue">15.3.2.2 break和continue</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="24"><a href="#1533-&#x5206;&#x652F;">15.3.3 分支</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="25"><a href="#154-&#x6A21;&#x5757;&#x5316;">15.4 模块化</a>
+<ul>
+<li><p class="sync-line" data-line="26"><a href="#1541-&#x51FD;&#x6570;">15.4.1 函数</a></p></li>
+<li><p class="sync-line" data-line="27"><a href="#1542-&#x6587;&#x4EF6;&#x5305;&#x542B;">15.4.2 文件包含</a></p></li>
+<li><p class="sync-line" data-line="28"><a href="#1543-&#x6267;&#x884C;&#x811A;&#x672C;">15.4.3 执行脚本</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="29"><a href="#155-&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x548C;&#x91CD;&#x5B9A;&#x5411;">15.5 输入/输出和重定向</a>
+<ul>
+<li><p class="sync-line" data-line="30"><a href="#1551-&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;">15.5.1 命令行参数</a></p></li>
+<li><p class="sync-line" data-line="31"><a href="#1552-&#x91CD;&#x5B9A;&#x5411;&#x8F93;&#x5165;">15.5.2 重定向输入</a></p></li>
+<li><p class="sync-line" data-line="32"><a href="#1553-&#x9000;&#x51FA;&#x7801;">15.5.3 退出码</a></p></li>
+<li><p class="sync-line" data-line="33"><a href="#1554-&#x91CD;&#x5B9A;&#x5411;&#x8F93;&#x51FA;">15.5.4 重定向输出</a></p></li>
+<li><p class="sync-line" data-line="34"><a href="#xargs">xargs</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="35"><a href="#156-&#x9AD8;&#x7EA7;bash&#x547D;&#x4EE4;&#x548C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;">15.6 高级Bash命令和正则表达式</a>
+<ul>
+<li><p class="sync-line" data-line="36"><a href="#1561-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;">15.6.1 正则表达式</a>
+<ul>
+<li><p class="sync-line" data-line="37"><a href="#15611-&#x4F8B;&#x5B50;">15.6.1.1 例子</a></p></li>
+<li><p class="sync-line" data-line="38"><a href="#15612-&#x5143;&#x5B57;&#x7B26;&#x548C;&#x8F6C;&#x4E49;">15.6.1.2 元字符和转义</a></p></li>
+<li><p class="sync-line" data-line="39"><a href="#16613-&#x91CD;&#x590D;">16.6.1.3 重复</a></p></li>
+<li><p class="sync-line" data-line="40"><a href="#16614-&#x5206;&#x7EC4;">16.6.1.4 分组</a></p></li>
+<li><p class="sync-line" data-line="41"><a href="#16615-&#x9009;&#x62E9;">16.6.1.5 选择</a></p></li>
+<li><p class="sync-line" data-line="42"><a href="#16616-&#x8D2A;&#x5A6A;&#x548C;&#x61D2;&#x60F0;">16.6.1.6 贪婪和懒惰</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="43"><a href="#1562-awk">15.6.2 awk</a>
+<ul>
+<li><p class="sync-line" data-line="44"><a href="#15621-&#x524D;&#x8A00;">15.6.2.1 前言</a></p></li>
+<li><p class="sync-line" data-line="45"><a href="#15622-awk&#x7ED3;&#x6784;">15.6.2.2 awk结构</a></p></li>
+<li><p class="sync-line" data-line="46"><a href="#15623-&#x8F93;&#x51FA;">15.6.2.3 输出</a></p></li>
+<li><p class="sync-line" data-line="47"><a href="#15624-pattern">15.6.2.4 pattern</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="48"><a href="#1563-sed">15.6.3 sed</a>
+<ul>
+<li><p class="sync-line" data-line="49"><a href="#15631-&#x524D;&#x8A00;">15.6.3.1 前言</a></p></li>
+<li><p class="sync-line" data-line="50"><a href="#15632-&#x547D;&#x4EE4;&#x683C;&#x5F0F;">15.6.3.2 命令格式</a></p></li>
+</ul></p></li>
+</ul></p></li>
+</ul></p></li>
+</ul>
+<h1 class="sync-line" data-line="54" id="&#x7B2C;&#x5341;&#x4E94;&#x7AE0;-bash&#x811A;&#x672C;&#x7F16;&#x7A0B;">第十五章 Bash脚本编程</h1>
+<h2 class="sync-line" data-line="56" id="151-&#x524D;&#x8A00;">15.1 前言</h2>
+<p class="sync-line" data-line="57">通过之前的学习，懂得了如何在Linux下进行编程来拓展系统功能。但是一些小功能，可以通过脚本直接实现，就没有必要使用C语言来编程实现。</p>
+<p class="sync-line" data-line="59">脚本语言能快速实现一些功能，并且在不需要编译情况下直接运行。因此开发效率更高，但是运行效率略低。</p>
+<p class="sync-line" data-line="61">就像编程语言有C/C++, JAVA，Basic等等一样，脚本语言也有许多，Linux下常用的Shell脚本有Bash，也是这个课程的重点。其他的脚本语言有：JavaScript，Lua，python，php等等。</p>
+<pre class="editor-colors lang-Bash sync-line" data-line="63"><div class="line"><span class="source shell"><span class="comment line number-sign shebang shell"><span class="punctuation definition comment shebang shell"><span>#!</span></span><span>/bin/bash</span></span></span></div><div class="line"><span class="source shell"><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>hello&nbsp;world</span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></div></pre>
+<p class="sync-line" data-line="67">将以上的代码保存到hello.sh，然后<br>
+脚本的运行需要脚本解析器，因为脚本程序是文本格式，CPU无法直接运行它，因此通过脚本解析器间接运行脚本程序。</p>
+<p class="sync-line" data-line="70"><code>#</code>表示注释，但是第一行的<code>#</code>有特殊意义，用来指示解析器。</p>
+<p class="sync-line" data-line="72">参考：<br>
+<a href="http://www.runoob.com/linux/linux-shell.html">http://www.runoob.com/linux/linux-shell.html</a></p>
+<h2 class="sync-line" data-line="75" id="152-&#x53D8;&#x91CF;">15.2 变量</h2>
+<p class="sync-line" data-line="76">在Bash中，可以访问的变量有环境变量、命令行参数和自定义变量。变量并没有类型，对于Bash来说都是字符串。</p>
+<h3 class="sync-line" data-line="77" id="1521-&#x5F15;&#x7528;&#x53D8;&#x91CF;">15.2.1 引用变量</h3>
+<p class="sync-line" data-line="78">使用<code>$var</code>或者<code>${var}</code>得到变量的值，建议使用<code>${var}</code></p>
+<h3 class="sync-line" data-line="79" id="1522-&#x73AF;&#x5883;&#x53D8;&#x91CF;">15.2.2 环境变量</h3>
+<p class="sync-line" data-line="80">Bash脚本运行时，脚本可以访问环境变量</p>
+<h3 class="sync-line" data-line="81" id="1523-&#x53C2;&#x6570;&#x53D8;&#x91CF;">15.2.3 参数变量</h3>
+<p class="sync-line" data-line="82">如果执行脚本时，有携带参数，那么可以通过$1之类的方法访问参数。</p>
+<blockquote>
+<p class="sync-line" data-line="83">脚本函数也是这样访问参数的</p>
+</blockquote>
+<h3 class="sync-line" data-line="85" id="1524-&#x5C40;&#x90E8;&#x53D8;&#x91CF;">15.2.4 局部变量</h3>
+<p class="sync-line" data-line="86">可以自定义变量，但是要注意自定义变量时，等号左右不要有空格。</p>
+<h3 class="sync-line" data-line="88" id="1525-&#x53D8;&#x91CF;&#x8D4B;&#x503C;">15.2.5 变量赋值</h3>
+<p class="sync-line" data-line="89">自定义变量可以通过=赋值，除了简单的赋值之外，有些注意的事项</p>
+<ul>
+<li><p class="sync-line" data-line="90">赋值内容带空格时，需要加&quot;&quot;，在Bash里，空格是分割符号，如果没有&quot;&quot;，当然使用转义<code>\</code>也是可以的。</p></li>
+</ul>
+<pre class="editor-colors lang-Bash sync-line" data-line="91"><div class="line"><span class="text plain null-grammar"><span>var=&quot;hello&nbsp;world&quot;</span></span></div><div class="line"><span class="text plain null-grammar"><span>var=hello\&nbsp;world</span></span></div></pre>
+<blockquote>
+<p class="sync-line" data-line="95">也可以用单引号来表示字符串</p>
+</blockquote>
+<ul>
+<li><p class="sync-line" data-line="97">可以通过`符号获得其他命令或者脚本的运行结果（标准输出），比如</p></li>
+</ul>
+<pre class="editor-colors lang-Bash sync-line" data-line="98"><div class="line"><span class="text plain null-grammar"><span>var=`ls&nbsp;-al`</span></span></div></pre>
+<h3 class="sync-line" data-line="102" id="1526-&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;">15.2.6 设置环境变量</h3>
+<p class="sync-line" data-line="103">通过<code>export</code>命令可以修改环境变量，环境变量可以用于脚本解析器之间的参数传递。</p>
+<blockquote>
+<p class="sync-line" data-line="105">思考：如果有一个环境变量和一个普通变量名是一样的，会是什么情况？</p>
+</blockquote>
+<h3 class="sync-line" data-line="107" id="1527-&#x8FD0;&#x7B97;">15.2.7 运算</h3>
+<p class="sync-line" data-line="108">Bash变量都是字符串，所以不能直接进行四则混合运算，可以通过<code>expr</code>命令间接实现。</p>
+<pre class="editor-colors lang-bash sync-line" data-line="109"><div class="line"><span class="source shell"><span>xueguoliang@xueguoliang:</span><span class="keyword operator tilde shell"><span>~</span></span><span>$&nbsp;expr&nbsp;1&nbsp;+&nbsp;2</span></span></div><div class="line"><span class="source shell"><span>3</span></span></div><div class="line"><span class="source shell"><span>xueguoliang@xueguoliang:</span><span class="keyword operator tilde shell"><span>~</span></span><span>$&nbsp;expr&nbsp;3&nbsp;</span><span class="constant character escape shell"><span>\*</span></span><span>&nbsp;2</span></span></div><div class="line"><span class="source shell"><span>6</span></span></div></pre>
+<p class="sync-line" data-line="115">注意+号两边的空格是必须的，乘号*有特殊意义，所以需要<code>\</code>进行转义。</p>
+<h2 class="sync-line" data-line="117" id="153-&#x8FD0;&#x884C;&#x6D41;&#x7A0B;&#x63A7;&#x5236;">15.3 运行流程控制</h2>
+<h3 class="sync-line" data-line="118" id="1531-if-else">15.3.1 if-else</h3>
+<pre class="editor-colors lang-bash sync-line" data-line="119"><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>if</span></span><span>&nbsp;condition</span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>then</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span>&nbsp;&nbsp;</span><span class="keyword control shell"><span>do</span></span><span>&nbsp;something</span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>fi</span></span></span></span></div></pre>
+<p class="sync-line" data-line="125">then单独一行，是必须的，如果想写成一个单行，也可以使用<code>;</code>分割。</p>
+<pre class="editor-colors lang-bash sync-line" data-line="126"><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>if</span></span><span>&nbsp;condition&nbsp;</span><span class="keyword control shell"><span>then</span></span><span class="keyword operator list shell"><span>;</span></span><span>&nbsp;</span><span class="keyword control shell"><span>do</span></span><span>&nbsp;something</span><span class="keyword operator list shell"><span>;</span></span><span>&nbsp;</span><span class="keyword control shell"><span>fi</span></span></span></span></div></pre>
+<p class="sync-line" data-line="130">使用命令<code>man test</code>查看条件格式</p>
+<h4 class="sync-line" data-line="132" id="15311-&#x6570;&#x503C;&#x6761;&#x4EF6;">15.3.1.1 数值条件</h4>
+<pre class="editor-colors lang-bash sync-line" data-line="133"><div class="line"><span class="source shell"><span>var1=1</span></span></div><div class="line"><span class="source shell"><span>var2=2</span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>if</span></span><span>&nbsp;</span><span class="meta scope logical-expression shell"><span class="punctuation definition logical-expression shell"><span>[</span></span><span>&nbsp;</span><span class="variable other normal shell"><span class="punctuation definition variable shell"><span>$</span></span><span>var2</span></span><span>&nbsp;</span><span class="keyword operator logical shell"><span>-gt</span></span><span>&nbsp;</span><span class="variable other normal shell"><span class="punctuation definition variable shell"><span>$</span></span><span>var1</span></span><span>&nbsp;</span><span class="punctuation definition logical-expression shell"><span>]</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>then</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span>&nbsp;&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>var2&nbsp;is&nbsp;great&nbsp;then&nbsp;var1</span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>else</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span>&nbsp;&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>var2&nbsp;is&nbsp;not&nbsp;great&nbsp;then&nbsp;var1</span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>fi</span></span></span></span></div></pre>
+<p class="sync-line" data-line="143">类似<code>-gt</code>，有<code>-ge</code>，<code>-lt</code>，<code>-le</code>，<code>-eq</code>，<code>-ne</code>等等。</p>
+<h4 class="sync-line" data-line="145" id="15412-&#x5B57;&#x7B26;&#x4E32;&#x6761;&#x4EF6;">15.4.1.2 字符串条件</h4>
+<pre class="editor-colors lang-bash sync-line" data-line="146"><div class="line"><span class="source shell"><span>var1=a</span></span></div><div class="line"><span class="source shell"><span>var2=b</span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>if</span></span><span>&nbsp;</span><span class="meta scope logical-expression shell"><span class="punctuation definition logical-expression shell"><span>[</span></span><span>&nbsp;</span><span class="variable other normal shell"><span class="punctuation definition variable shell"><span>$</span></span><span>var1</span></span><span>&nbsp;</span><span class="keyword operator logical shell"><span>=</span></span><span>&nbsp;</span><span class="variable other normal shell"><span class="punctuation definition variable shell"><span>$</span></span><span>var2</span></span><span>&nbsp;</span><span class="punctuation definition logical-expression shell"><span>]</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>then</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span>&nbsp;&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>var1&nbsp;is&nbsp;equal&nbsp;var2</span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>fi</span></span></span></span></div></pre>
+<p class="sync-line" data-line="154">字符串的比较可以使用<code>=</code>和<code>!=</code>，以及使用<code>-n</code>和<code>-z</code>来表示是否为空。</p>
+<h4 class="sync-line" data-line="157" id="15413-&#x6587;&#x4EF6;&#x6761;&#x4EF6;">15.4.1.3 文件条件</h4>
+<pre class="editor-colors lang-bash sync-line" data-line="158"><div class="line"><span class="source shell"><span>var=/home/xueguoliang/a.txt</span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>if</span></span><span>&nbsp;</span><span class="meta scope logical-expression shell"><span class="punctuation definition logical-expression shell"><span>[</span></span><span>&nbsp;</span><span class="keyword operator logical shell"><span>-e</span></span><span>&nbsp;</span><span class="variable other normal shell"><span class="punctuation definition variable shell"><span>$</span></span><span>var</span></span><span>&nbsp;</span><span class="punctuation definition logical-expression shell"><span>]</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>then</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span>&nbsp;&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>file&nbsp;exist</span><span class="punctuation definition string end shell"><span>&quot;</span></span></span><span class="keyword operator list shell"><span>;</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>fi</span></span></span></span></div></pre>
+<p class="sync-line" data-line="165">类似<code>-e</code>，还有<code>-d</code>，<code>-f</code>等</p>
+<h4 class="sync-line" data-line="166" id="15414-&#x903B;&#x8F91;&#x8868;&#x8FBE;&#x5F0F;">15.4.1.4 逻辑表达式</h4>
+<pre class="editor-colors lang-bash sync-line" data-line="167"><div class="line"><span class="source shell"><span>var1=1</span></span></div><div class="line"><span class="source shell"><span>var2=2</span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>if</span></span><span>&nbsp;</span><span class="meta scope logical-expression shell"><span class="punctuation definition logical-expression shell"><span>[</span></span><span>&nbsp;</span><span class="variable other normal shell"><span class="punctuation definition variable shell"><span>$</span></span><span>var1</span></span><span>&nbsp;</span><span class="keyword operator logical shell"><span>-eq</span></span><span>&nbsp;1&nbsp;</span><span class="keyword operator logical shell"><span>-a</span></span><span>&nbsp;</span><span class="variable other normal shell"><span class="punctuation definition variable shell"><span>$</span></span><span>var2</span></span><span>&nbsp;</span><span class="keyword operator logical shell"><span>-eq</span></span><span>&nbsp;2&nbsp;</span><span class="punctuation definition logical-expression shell"><span>]</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>then</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span>&nbsp;&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>var1&nbsp;is&nbsp;1&nbsp;and&nbsp;var2&nbsp;is&nbsp;2</span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope if-block shell"><span class="keyword control shell"><span>fi</span></span></span></span></div></pre>
+<p class="sync-line" data-line="175">类似<code>-a</code>还有<code>-o</code>。也支持使用<code>C++</code>的<code>&amp;&amp;</code>和<code>||</code>来代替<code>-a</code>和<code>-o</code>。</p>
+<p class="sync-line" data-line="177">使用<code>!</code>表示not，表示取反。</p>
+<p class="sync-line" data-line="179">优先级 <code>!</code> &gt; <code>-a</code> &gt; <code>-o</code></p>
+<h4 class="sync-line" data-line="181" id="15415-&#x6761;&#x4EF6;&#x77ED;&#x8DEF;">15.4.1.5 条件短路</h4>
+<pre class="editor-colors lang-bash sync-line" data-line="182"><div class="line"><span class="source shell"><span>ls&nbsp;filename&nbsp;</span><span class="keyword operator list shell"><span>&amp;&amp;</span></span><span>&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>file&nbsp;exist</span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></div></pre>
+<pre class="editor-colors lang-bash sync-line" data-line="185"><div class="line"><span class="source shell"><span class="keyword operator pipe shell"><span>!</span></span><span>&nbsp;ls&nbsp;filename&nbsp;</span><span class="keyword operator list shell"><span>&amp;&amp;</span></span><span>&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>file&nbsp;not&nbsp;exist</span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></div></pre>
+<p class="sync-line" data-line="188">条件短路使用的是</p>
+<h3 class="sync-line" data-line="190" id="1532-&#x5FAA;&#x73AF;">15.3.2 循环</h3>
+<h4 class="sync-line" data-line="191" id="15321-for">15.3.2.1 for</h4>
+<pre class="editor-colors lang-bash sync-line" data-line="192"><div class="line"><span class="source shell"><span>vars=</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>a&nbsp;b&nbsp;c&nbsp;d</span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope for-in-loop shell"><span class="keyword control shell"><span>for</span></span><span>&nbsp;</span><span class="variable other loop shell"><span>var</span></span><span>&nbsp;</span><span class="keyword control shell"><span>in</span></span><span>&nbsp;</span><span class="variable other normal shell"><span class="punctuation definition variable shell"><span>$</span></span><span>vars</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope for-in-loop shell"><span class="keyword control shell"><span>do</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope for-in-loop shell"><span>&nbsp;&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="variable other normal shell"><span class="punctuation definition variable shell"><span>$</span></span><span>var</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope for-in-loop shell"><span class="keyword control shell"><span>done</span></span></span></span></div></pre>
+<h4 class="sync-line" data-line="200" id="15322-while">15.3.2.2 while</h4>
+<pre class="editor-colors lang-Bash sync-line" data-line="201"><div class="line"><span class="text plain null-grammar"><span>var=1</span></span></div><div class="line"><span class="text plain null-grammar"><span>sum=0</span></span></div><div class="line"><span class="text plain null-grammar"><span>while&nbsp;[&nbsp;$var&nbsp;-le&nbsp;100&nbsp;]</span></span></div><div class="line"><span class="text plain null-grammar"><span>do</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;sum=`expr&nbsp;$var&nbsp;+&nbsp;$sum`</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;var=`expr&nbsp;$var&nbsp;+&nbsp;1`</span></span></div><div class="line"><span class="text plain null-grammar"><span>done</span></span></div><div class="line"><span class="text plain null-grammar"><span>echo&nbsp;$sum</span></span></div></pre>
+<h4 class="sync-line" data-line="212" id="15322-break&#x548C;continue">15.3.2.2 break和continue</h4>
+<p class="sync-line" data-line="213">与C语言类似。</p>
+<h3 class="sync-line" data-line="215" id="1533-&#x5206;&#x652F;">15.3.3 分支</h3>
+<p class="sync-line" data-line="216">跟C语言的switch只能使用整数不同，Bash的switch可以使用字符串。</p>
+<pre class="editor-colors lang-Bash sync-line" data-line="217"><div class="line"><span class="text plain null-grammar"><span>var=ok</span></span></div><div class="line"><span class="text plain null-grammar"><span>case&nbsp;$var&nbsp;in</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;ok)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;echo&nbsp;&quot;ok&quot;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;;;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;notok)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;echo&nbsp;&quot;notok&quot;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;;;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;*)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;echo&nbsp;&quot;other&quot;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;;;</span></span></div><div class="line"><span class="text plain null-grammar"><span>esac</span></span></div></pre>
+<h2 class="sync-line" data-line="231" id="154-&#x6A21;&#x5757;&#x5316;">15.4 模块化</h2>
+<h3 class="sync-line" data-line="232" id="1541-&#x51FD;&#x6570;">15.4.1 函数</h3>
+<pre class="editor-colors lang-bash sync-line" data-line="233"><div class="line"><span class="source shell"><span class="meta function shell"><span class="entity name function shell"><span>myfunc</span></span><span class="punctuation definition arguments shell"><span>()</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope group shell"><span class="punctuation definition group shell"><span>{</span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope group shell"><span>&nbsp;&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>first&nbsp;is&nbsp;</span><span class="variable other positional shell"><span class="punctuation definition variable shell"><span>$</span></span><span>1</span></span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope group shell"><span>&nbsp;&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>second&nbsp;is&nbsp;</span><span class="variable other positional shell"><span class="punctuation definition variable shell"><span>$</span></span><span>2</span></span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope group shell"><span>&nbsp;&nbsp;</span><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>number&nbsp;is&nbsp;</span><span class="variable other special shell"><span class="punctuation definition variable shell"><span>$</span></span><span>#</span></span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></span></div><div class="line"><span class="source shell"><span class="meta scope group shell"><span>&nbsp;&nbsp;</span><span class="keyword control shell"><span>return</span></span><span>&nbsp;133</span></span></span></div><div class="line"><span class="source shell"><span class="meta scope group shell"><span class="punctuation definition group shell"><span>}</span></span></span></span></div><div class="line"><span class="source shell"><span>&nbsp;</span></span></div><div class="line"><span class="source shell"><span>myfunc&nbsp;hello&nbsp;world</span></span></div><div class="line"><span class="source shell"><span class="support function builtin shell"><span>echo</span></span><span>&nbsp;</span><span class="string quoted double shell"><span class="punctuation definition string begin shell"><span>&quot;</span></span><span>return&nbsp;value&nbsp;is&nbsp;</span><span class="variable other special shell"><span class="punctuation definition variable shell"><span>$</span></span><span>?</span></span><span class="punctuation definition string end shell"><span>&quot;</span></span></span></span></div></pre>
+<h3 class="sync-line" data-line="245" id="1542-&#x6587;&#x4EF6;&#x5305;&#x542B;">15.4.2 文件包含</h3>
+<pre class="editor-colors lang-Bash sync-line" data-line="246"><div class="line"><span class="text plain null-grammar"><span>#&nbsp;this&nbsp;is&nbsp;in&nbsp;a.sh</span></span></div><div class="line"><span class="text plain null-grammar"><span>var=100</span></span></div></pre>
+<pre class="editor-colors lang-Bash sync-line" data-line="250"><div class="line"><span class="text plain null-grammar"><span>#&nbsp;this&nbsp;is&nbsp;in&nbsp;b.sh</span></span></div><div class="line"><span class="text plain null-grammar"><span>.&nbsp;a.sh</span></span></div><div class="line"><span class="text plain null-grammar"><span>echo&nbsp;$var</span></span></div></pre>
+<h3 class="sync-line" data-line="255" id="1543-&#x6267;&#x884C;&#x811A;&#x672C;">15.4.3 执行脚本</h3>
+<p class="sync-line" data-line="256">如果在一个脚本A里执行另外一个脚本B，那么和使用<code>. a.sh</code>是不一样的，它<code>fork</code>了新解析器进程来执行脚本。这样，一旦B脚本运行结束，在脚本B中的变量都不存在了，设置的环境变量也不存在了。</p>
+<h2 class="sync-line" data-line="258" id="155-&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x548C;&#x91CD;&#x5B9A;&#x5411;">15.5 输入/输出和重定向</h2>
+<h3 class="sync-line" data-line="259" id="1551-&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;">15.5.1 命令行参数</h3>
+<p class="sync-line" data-line="260">执行Bash脚本时，也可以传递命令行参数，在脚本中可以通过<code>$1</code>,<code>$2</code>等等获取参数，也可以通过<code>$0</code>获得脚本文件名，通过<code>$#</code>获取脚本参数个数。</p>
+<h3 class="sync-line" data-line="261" id="1552-&#x91CD;&#x5B9A;&#x5411;&#x8F93;&#x5165;">15.5.2 重定向输入</h3>
+<p class="sync-line" data-line="262">除了可以通过命令行给Bash脚本传递参数之外，也可以通过标准输入提供参数。</p>
+<p class="sync-line" data-line="264">在脚本中可以通过<code>read</code>获取标准用户输入。</p>
+<p class="sync-line" data-line="266">也可以通过重定向，将文件内容输入到参数。</p>
+<h3 class="sync-line" data-line="268" id="1553-&#x9000;&#x51FA;&#x7801;">15.5.3 退出码</h3>
+<p class="sync-line" data-line="269">运行脚本其实是脚本解析器在运行脚本，脚本解析器进程退出时，就像其他进程退出一样，有退出码，通过<code>$?</code>可以获取进程退出码。</p>
+<h3 class="sync-line" data-line="271" id="1554-&#x91CD;&#x5B9A;&#x5411;&#x8F93;&#x51FA;">15.5.4 重定向输出</h3>
+<p class="sync-line" data-line="272">重定向输出与重定向出入差不多，通过<code>&gt;</code>可以将标准输出重定向到文件，而<code>&gt;&gt;</code>则表示追加方式写入文件。</p>
+<h3 class="sync-line" data-line="274" id="xargs">xargs</h3>
+<p class="sync-line" data-line="275">xargs和重定向配合，用来将之前命令的输出的每一个元素，作为后面一个命令的参数，进行执行。所以后面的命令有可能会执行多次。</p>
+<h2 class="sync-line" data-line="277" id="156-&#x9AD8;&#x7EA7;bash&#x547D;&#x4EE4;&#x548C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;">15.6 高级Bash命令和正则表达式</h2>
+<h3 class="sync-line" data-line="278" id="1561-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;">15.6.1 正则表达式</h3>
+<p class="sync-line" data-line="279">正则表达式是用一种规则字符串来表示一类字符串的工具，在搜索匹配方面非常有用。比如在一个文档中，搜索所有的email，或者电话号码等。</p>
+<p class="sync-line" data-line="281">正则表达式参考：<br>
+<a href="http://www.runoob.com/regexp/regexp-tutorial.html">http://www.runoob.com/regexp/regexp-tutorial.html</a><br>
+<a href="http://www.jb51.net/tools/zhengze.html">http://www.jb51.net/tools/zhengze.html</a></p>
+<h4 class="sync-line" data-line="285" id="15611-&#x4F8B;&#x5B50;">15.6.1.1 例子</h4>
+<p class="sync-line" data-line="286">参考内容：</p>
+<pre class="editor-colors lang-text sync-line" data-line="287"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>hi,&nbsp;tom,&nbsp;i&nbsp;am&nbsp;john.</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>do&nbsp;you&nbsp;know&nbsp;what&nbsp;is&nbsp;his&nbsp;name.</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>which&nbsp;is&nbsp;your&nbsp;name,&nbsp;010-11112222&nbsp;or&nbsp;0756-2222111</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>my&nbsp;email&nbsp;is&nbsp;hi@xueguoliang.cn,&nbsp;what&nbsp;is&nbsp;yours.</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>my&nbsp;email&nbsp;is&nbsp;xxx@163.com,&nbsp;his&nbsp;is&nbsp;is&nbsp;yyy@yahoo.cc</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>this&nbsp;is&nbsp;my&nbsp;website&nbsp;</span><span class="markup underline link http hyperlink"><span>http://xueguoliang.cn</span></span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>which&nbsp;site&nbsp;are&nbsp;you&nbsp;reading?</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>oh,&nbsp;it&nbsp;is&nbsp;</span><span class="markup underline link https hyperlink"><span>https://www.51job.com/index.html</span></span></span></span></div></pre>
+<p class="sync-line" data-line="297">把参考内容写入a.txt，然后输入以下命令：</p>
+<pre class="editor-colors lang-Bash sync-line" data-line="299"><div class="line"><span class="text plain null-grammar"><span>grep&nbsp;-P&nbsp;&quot;\b0[1-9][0-9]{1,2}-[1-9][0-9]{6,7}\b&quot;&nbsp;a.txt</span></span></div></pre>
+<p class="sync-line" data-line="302">其中</p>
+<pre class="editor-colors lang-text sync-line" data-line="303"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>\b0[1-9][0-9]{1,2}-[1-9][0-9]{6,7}\b</span></span></span></div></pre>
+<p class="sync-line" data-line="306">是正则表达式，该表达式表示了电话号码的规则。</p>
+<h4 class="sync-line" data-line="308" id="15612-&#x5143;&#x5B57;&#x7B26;&#x548C;&#x8F6C;&#x4E49;">15.6.1.2 元字符和转义</h4>
+<p class="sync-line" data-line="309">正则表达式规定一些字符来表示简单规则，这些被称之为元字符。</p>
+<table>
+<thead>
+<tr><th>元字符</th><th>规则</th></tr>
+</thead>
+<tbody>
+<tr><td>.</td><td>匹配除换行符以外的任意字符</td></tr>
+<tr><td>\w</td><td>匹配字母或数字或下划线或汉字</td></tr>
+<tr><td>\s</td><td>匹配任意的空白符</td></tr>
+<tr><td>\d</td><td>匹配数字，在grep中要使用-P参数才能使用该元字符</td></tr>
+<tr><td>\b</td><td>匹配单词的开始或结束</td></tr>
+<tr><td>^</td><td>匹配字符串的开始</td></tr>
+<tr><td>$</td><td>匹配字符串的结束</td></tr>
+<tr><td>\W</td><td>匹配任意不是字母，数字，下划线，汉字的字符</td></tr>
+<tr><td>\S</td><td>匹配任意不是空白符的字符</td></tr>
+<tr><td>\D</td><td>匹配任意非数字的字符</td></tr>
+<tr><td>\B</td><td>匹配不是单词开头或结束的位置</td></tr>
+<tr><td>[a-z]</td><td>匹配a到z的任意一个字符</td></tr>
+<tr><td>[0-9]</td><td>匹配数组0-9</td></tr>
+<tr><td>[acek-i]</td><td>匹配一些字母</td></tr>
+<tr><td>[^x]</td><td>匹配除了x以外的任意字符</td></tr>
+<tr><td>[^aeiou]</td><td>匹配除了aeiou这几个字母以外的任意字符</td></tr>
+</tbody>
+</table>
+<p class="sync-line" data-line="329">如果需要搜索元字符，那么需要转义，比如想搜索文章中的<code>$</code>，那么需要使用<code>\$</code>来表示。</p>
+<p class="sync-line" data-line="331">正则表达式由原字符和普通字符组成，匹配会一个个字符进行。</p>
+<h4 class="sync-line" data-line="333" id="16613-&#x91CD;&#x590D;">16.6.1.3 重复</h4>
+<p class="sync-line" data-line="334">字符或者元字符可以通过定义重复次数，比如搜索有重复的字母。</p>
+<table>
+<thead>
+<tr><th>重复符号</th><th>解释</th></tr>
+</thead>
+<tbody>
+<tr><td>*</td><td>重复零次或更多次</td></tr>
+<tr><td>+</td><td>重复一次或更多次</td></tr>
+<tr><td>?</td><td>重复零次或一次</td></tr>
+<tr><td>{n}</td><td>重复n次</td></tr>
+<tr><td>{n,}</td><td>重复n次或更多次</td></tr>
+<tr><td>{n,m}</td><td>重复n到m次</td></tr>
+</tbody>
+</table>
+<h4 class="sync-line" data-line="345" id="16614-&#x5206;&#x7EC4;">16.6.1.4 分组</h4>
+<p class="sync-line" data-line="346">如果想实现子规则重复，那么需要使用分组。使用<code>()</code>进行分组，并且使用<code>\1</code>,<code>\2</code>来表示组号。</p>
+<h4 class="sync-line" data-line="348" id="16615-&#x9009;&#x62E9;">16.6.1.5 选择</h4>
+<p class="sync-line" data-line="349">使用<code>|</code>表示选择，即匹配其中之一便可。</p>
+<h4 class="sync-line" data-line="351" id="16616-&#x8D2A;&#x5A6A;&#x548C;&#x61D2;&#x60F0;">16.6.1.6 贪婪和懒惰</h4>
+<p class="sync-line" data-line="352">当使用<code>a+</code>时，表示匹配一个或者多个a，如果内容有<code>aaaa</code>，那么可以匹配a,aa,aaa,aaaa，那么正则表达式默认是使用贪婪方式匹配，即匹配尽可能长的字符串。如果有<code>?</code>，则表示懒惰匹配：<code>a+?</code></p>
+<p class="sync-line" data-line="354">代码/语法   说明<br>
+*?  重复任意次，但尽可能少重复<br>
++?  重复1次或更多次，但尽可能少重复<br>
+??  重复0次或1次，但尽可能少重复<br>
+{n,m}?  重复n到m次，但尽可能少重复<br>
+{n,}?   重复n次以上，但尽可能少重复</p>
+<h3 class="sync-line" data-line="361" id="1562-awk">15.6.2 awk</h3>
+<p class="sync-line" data-line="362">参考：<br>
+<a href="http://xueguoliang.cn/awk">http://xueguoliang.cn/awk</a><br>
+<a href="http://awk.readthedocs.io/en/latest/index.html">http://awk.readthedocs.io/en/latest/index.html</a></p>
+<h4 class="sync-line" data-line="367" id="15621-&#x524D;&#x8A00;">15.6.2.1 前言</h4>
+<p class="sync-line" data-line="368">awk是一个特别删除处理表格数据的字符串处理工具。比如打印所有运行的进程号：</p>
+<pre class="editor-colors lang-Bash sync-line" data-line="369"><div class="line"><span class="text plain null-grammar"><span>ps&nbsp;aux&nbsp;|&nbsp;awk&nbsp;&#39;{print&nbsp;$2}&#39;</span></span></div></pre>
+<p class="sync-line" data-line="373">一个更加全面的例子：</p>
+<pre class="editor-colors lang-text sync-line" data-line="374"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>ps&nbsp;aux&nbsp;|&nbsp;awk&nbsp;&#39;$3&nbsp;&gt;&nbsp;0.0&nbsp;{print&nbsp;$2,&nbsp;$3}&#39;</span></span></span></div></pre>
+<p class="sync-line" data-line="377">打印第三列（占用CPU）大于0.0的进程号和占用CPU的百分比。</p>
+<h4 class="sync-line" data-line="379" id="15622-awk&#x7ED3;&#x6784;">15.6.2.2 awk结构</h4>
+<pre class="editor-colors lang-text sync-line" data-line="380"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>awk&nbsp;&#39;pattern&nbsp;{&nbsp;action&nbsp;}&#39;</span></span></span></div></pre>
+<p class="sync-line" data-line="383">pattern是模版，action是对应的动作。</p>
+<h4 class="sync-line" data-line="385" id="15623-&#x8F93;&#x51FA;">15.6.2.3 输出</h4>
+<p class="sync-line" data-line="386">ation最简单的做法就是通过print进行输出。<br>
+<code>$0</code>表示输出整行<br>
+<code>$1</code>表示输出第一列<br>
+<code>$2</code>表示输出第二列<br>
+以此类推。<br>
+可以使用<code>NF</code>来表示字段数量，<code>$NF</code>来表示最后一列</p>
+<h4 class="sync-line" data-line="393" id="15624-pattern">15.6.2.4 pattern</h4>
+<p class="sync-line" data-line="394">pattern表示匹配模式，用来选择处理行。比如<code>$3&gt;0.01</code><br>
+其他匹配模式</p>
+<ol>
+<li><p class="sync-line" data-line="396">BEGIN { 语句 }<br>
+在读取任何输入前执行一次 语句</p></li>
+<li><p class="sync-line" data-line="398">END { 语句 }<br>
+读取所有输入之后执行一次 语句</p></li>
+<li><p class="sync-line" data-line="400">表达式 { 语句 }<br>
+对于 表达式 为真（即，非零或非空）的行，执行 语句</p></li>
+<li><p class="sync-line" data-line="402">/正则表达式/ { 语句 }<br>
+如果输入行包含字符串与 正则表达式 相匹配，则执行 语句</p></li>
+<li><p class="sync-line" data-line="404">组合模式 { 语句 }<br>
+一个 组合模式 通过与（&amp;&amp;），或（||），非（|），以及括弧来组合多个表达式；对于组合模式为真的每个输入行，执行 语句</p></li>
+<li><p class="sync-line" data-line="406">模式1，模式2 { 语句 }<br>
+范围模式(range pattern)匹配从与 模式1 相匹配的行到与 模式2 相匹配的行（包含该行）之间的所有行，对于这些输入行，执行 语句 。</p></li>
+</ol>
+<h3 class="sync-line" data-line="410" id="1563-sed">15.6.3 sed</h3>
+<p class="sync-line" data-line="411">参考<br>
+<a href="http://man.linuxde.net/sed">http://man.linuxde.net/sed</a><br>
+<a href="http://sed.sourceforge.net/sed1line_zh-CN.html">http://sed.sourceforge.net/sed1line_zh-CN.html</a></p>
+<h4 class="sync-line" data-line="417" id="15631-&#x524D;&#x8A00;">15.6.3.1 前言</h4>
+<p class="sync-line" data-line="418">sed算是一种批处理编辑器。它的功能是读取文件内容的一行，然后按照指定规则处理，然后输出。之后再重复处理下一行，直到文件末尾。</p>
+<h4 class="sync-line" data-line="420" id="15632-&#x547D;&#x4EE4;&#x683C;&#x5F0F;">15.6.3.2 命令格式</h4>
+<pre class="editor-colors lang-text sync-line" data-line="421"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>sed&nbsp;[options]&nbsp;&#39;command&#39;&nbsp;file(s)</span></span></span></div></pre>
+<p class="sync-line" data-line="424">其中[option]是可选的，此处不讨论。'command'指sed命令，是讨论的重点。</p>
+<p class="sync-line" data-line="426">sed命令列表</p>
+<table>
+<thead>
+<tr><th>命令</th><th>解析</th></tr>
+</thead>
+<tbody>
+<tr><td>a\</td><td>在当前行下面插入文本。</td></tr>
+<tr><td>i\</td><td>在当前行上面插入文本。</td></tr>
+<tr><td>c\</td><td>把选定的行改为新的文本。</td></tr>
+<tr><td>d</td><td>删除，删除选择的行。</td></tr>
+<tr><td>D</td><td>删除模板块的第一行。</td></tr>
+<tr><td>s</td><td>替换指定字符</td></tr>
+<tr><td>h</td><td>拷贝模板块的内容到内存中的缓冲区。</td></tr>
+<tr><td>H</td><td>追加模板块的内容到内存中的缓冲区。</td></tr>
+<tr><td>g</td><td>获得内存缓冲区的内容，并替代当前模板块中的文本。</td></tr>
+<tr><td>G</td><td>获得内存缓冲区的内容，并追加到当前模板块文本的后面。</td></tr>
+<tr><td>l</td><td>列表不能打印字符的清单。</td></tr>
+<tr><td>n</td><td>读取下一个输入行，用下一个命令处理新的行而不是用第一个命令。</td></tr>
+<tr><td>N</td><td>追加下一个输入行到模板块后面并在二者间嵌入一个新行，改变当前行号码。</td></tr>
+<tr><td>p</td><td>打印模板块的行。</td></tr>
+<tr><td>P(大写)</td><td>打印模板块的第一行。</td></tr>
+<tr><td>q</td><td>退出Sed。</td></tr>
+<tr><td>b lable</td><td>分支到脚本中带有标记的地方，如果分支不存在则分支到脚本的末尾。</td></tr>
+<tr><td>r file</td><td>从file中读行。</td></tr>
+<tr><td>t label</td><td>if分支，从最后一行开始，条件一旦满足或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。</td></tr>
+<tr><td>T label</td><td>错误分支，从最后一行开始，一旦发生错误或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。</td></tr>
+<tr><td>w file</td><td>写并追加模板块到file末尾。</td></tr>
+<tr><td>W file</td><td>写并追加模板块的第一行到file末尾。</td></tr>
+<tr><td>!</td><td>表示后面的命令对所有没有被选定的行发生作用。</td></tr>
+<tr><td>=</td><td>打印当前行号码。</td></tr>
+<tr><td>#</td><td>把注释扩展到下一个换行符以前。</td></tr>
+</tbody>
+</table>
+ </body>  </html>

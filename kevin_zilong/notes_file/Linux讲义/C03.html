@@ -1,0 +1,1302 @@
+<!DOCTYPE html> <html> <head> <title>C03</title> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">  <style> .markdown-preview-enhanced pre, .markdown-preview-enhanced .host { color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); }
+.markdown-preview-enhanced pre .line.cursor-line, .markdown-preview-enhanced .host .line.cursor-line { background-color: rgba(153, 187, 255, 0.0392157); }
+.markdown-preview-enhanced pre .invisible, .markdown-preview-enhanced .host .invisible { color: rgb(171, 178, 191); }
+.markdown-preview-enhanced pre .cursor, .markdown-preview-enhanced .host .cursor { border-left-width: 2px; border-left-style: solid; border-left-color: rgb(82, 139, 255); }
+.markdown-preview-enhanced pre .selection .region, .markdown-preview-enhanced .host .selection .region { background-color: rgb(62, 68, 81); }
+.markdown-preview-enhanced pre .bracket-matcher .region, .markdown-preview-enhanced .host .bracket-matcher .region { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(82, 139, 255); box-sizing: border-box; }
+.markdown-preview-enhanced pre .invisible-character, .markdown-preview-enhanced .host .invisible-character { color: rgba(171, 178, 191, 0.14902); }
+.markdown-preview-enhanced pre .indent-guide, .markdown-preview-enhanced .host .indent-guide { color: rgba(171, 178, 191, 0.14902); }
+.markdown-preview-enhanced pre .wrap-guide, .markdown-preview-enhanced .host .wrap-guide { background-color: rgba(171, 178, 191, 0.14902); }
+.markdown-preview-enhanced pre .find-result .region.region.region, .markdown-preview-enhanced .host .find-result .region.region.region, .markdown-preview-enhanced pre .current-result .region.region.region, .markdown-preview-enhanced .host .current-result .region.region.region { border-radius: 0px; transition: border-color 0.4s; background-color: rgba(82, 139, 255, 0.239216); }
+.markdown-preview-enhanced pre .find-result .region.region.region, .markdown-preview-enhanced .host .find-result .region.region.region { border: 2px solid transparent; }
+.markdown-preview-enhanced pre .current-result .region.region.region, .markdown-preview-enhanced .host .current-result .region.region.region { border: 2px solid rgb(82, 139, 255); transition-duration: 0.1s; }
+.markdown-preview-enhanced pre .gutter .line-number, .markdown-preview-enhanced .host .gutter .line-number { color: rgb(99, 109, 131); -webkit-font-smoothing: antialiased; }
+.markdown-preview-enhanced pre .gutter .line-number.cursor-line, .markdown-preview-enhanced .host .gutter .line-number.cursor-line { color: rgb(171, 178, 191); background-color: rgb(44, 49, 58); }
+.markdown-preview-enhanced pre .gutter .line-number.cursor-line-no-selection, .markdown-preview-enhanced .host .gutter .line-number.cursor-line-no-selection { background-color: transparent; }
+.markdown-preview-enhanced pre .gutter .line-number .icon-right, .markdown-preview-enhanced .host .gutter .line-number .icon-right { color: rgb(171, 178, 191); }
+.markdown-preview-enhanced pre .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before, .markdown-preview-enhanced .host .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before { bottom: -3px; }
+.markdown-preview-enhanced pre .gutter:not(.git-diff-icon) .line-number.git-line-removed::after, .markdown-preview-enhanced .host .gutter:not(.git-diff-icon) .line-number.git-line-removed::after { content: ""; position: absolute; left: 0px; bottom: 0px; width: 25px; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgba(224, 82, 82, 0.498039); pointer-events: none; }
+.markdown-preview-enhanced pre .gutter .line-number.folded, .markdown-preview-enhanced .host .gutter .line-number.folded, .markdown-preview-enhanced pre .gutter .line-number::after, .markdown-preview-enhanced .host .gutter .line-number::after, .markdown-preview-enhanced pre .fold-marker::after, .markdown-preview-enhanced .host .fold-marker::after { color: rgb(171, 178, 191); }
+.markdown-preview-enhanced { font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 1.6; color: rgb(171, 178, 191); overflow: initial; margin: 10px 13px; padding: 2em; box-sizing: border-box; word-wrap: break-word; background-color: rgb(40, 44, 52); }
+.markdown-preview-enhanced[data-use-github-style] { color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced > :first-child { margin-top: 0px; }
+.markdown-preview-enhanced[is="space-pen-div"] { width: 100%; margin: 0px; z-index: 999; overflow: scroll; font-size: 16px; display: block; position: absolute; }
+.markdown-preview-enhanced[is="space-pen-div"][data-use-github-style] { }
+.markdown-preview-enhanced[is="space-pen-div"][data-use-github-style] ::-webkit-scrollbar-track { box-shadow: rgba(218, 218, 218, 0.6) 0px 0px 3px inset; background-color: rgb(244, 244, 244); }
+.markdown-preview-enhanced[is="space-pen-div"][data-use-github-style] ::-webkit-scrollbar-thumb { border-radius: 10px; border-color: transparent; background-color: rgb(204, 204, 204); }
+.markdown-preview-enhanced h1, .markdown-preview-enhanced h2, .markdown-preview-enhanced h3, .markdown-preview-enhanced h4, .markdown-preview-enhanced h5, .markdown-preview-enhanced h6 { line-height: 1.2; margin-top: 1em; margin-bottom: 16px; color: rgb(255, 255, 255); }
+.markdown-preview-enhanced[data-use-github-style] h1, .markdown-preview-enhanced[data-use-github-style] h2, .markdown-preview-enhanced[data-use-github-style] h3, .markdown-preview-enhanced[data-use-github-style] h4, .markdown-preview-enhanced[data-use-github-style] h5, .markdown-preview-enhanced[data-use-github-style] h6 { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced h1 { font-size: 2.4em; font-weight: 300; padding-bottom: 0.3em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced h2 { font-size: 1.8em; font-weight: 400; padding-bottom: 0.3em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview-enhanced h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview-enhanced h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview-enhanced h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview-enhanced[data-use-github-style] h1, .markdown-preview-enhanced[data-use-github-style] h2 { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(231, 231, 231); }
+.markdown-preview-enhanced strong { color: rgb(255, 255, 255); }
+.markdown-preview-enhanced[data-use-github-style] strong { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced del { color: rgb(124, 135, 156); }
+.markdown-preview-enhanced a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview-enhanced a { color: rgb(0, 136, 204); text-decoration: none; }
+.markdown-preview-enhanced a:hover { color: rgb(0, 80, 163); text-decoration: none; }
+.markdown-preview-enhanced img { max-width: 100%; }
+.markdown-preview-enhanced > p { margin-top: 0px; margin-bottom: 16px; word-wrap: break-word; }
+.markdown-preview-enhanced > ul, .markdown-preview-enhanced > ol { margin-bottom: 16px; }
+.markdown-preview-enhanced ul, .markdown-preview-enhanced ol { padding-left: 2em; }
+.markdown-preview-enhanced ul.no-list, .markdown-preview-enhanced ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview-enhanced ul ul, .markdown-preview-enhanced ul ol, .markdown-preview-enhanced ol ol, .markdown-preview-enhanced ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview-enhanced li { margin-bottom: 0px; }
+.markdown-preview-enhanced li.task-list-item { list-style: none; }
+.markdown-preview-enhanced li > p { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview-enhanced .task-list-item-checkbox { margin: 0px 0.2em 0.25em -1.6em; vertical-align: middle; }
+.markdown-preview-enhanced .task-list-item-checkbox:hover { cursor: pointer; }
+.markdown-preview-enhanced blockquote { margin: 16px 0px; font-size: inherit; padding: 0px 15px; color: rgb(124, 135, 156); border-left-width: 4px; border-left-style: solid; border-left-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced blockquote > :first-child { margin-top: 0px; }
+.markdown-preview-enhanced blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview-enhanced[data-use-github-style] blockquote { color: rgb(119, 119, 119); border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); }
+.markdown-preview-enhanced hr { height: 4px; margin: 32px 0px; border: 0px none; background-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced[data-use-github-style] hr { background-color: rgb(231, 231, 231); }
+.markdown-preview-enhanced table { margin: 10px 0px 15px; border-collapse: collapse; border-spacing: 0px; display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview-enhanced table th { font-weight: bold; color: rgb(255, 255, 255); }
+.markdown-preview-enhanced table td, .markdown-preview-enhanced table th { border: 1px solid rgb(75, 83, 98); padding: 6px 13px; }
+.markdown-preview-enhanced[data-use-github-style] th { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced[data-use-github-style] td, .markdown-preview-enhanced[data-use-github-style] th { border: 1px solid rgb(221, 221, 221); }
+.markdown-preview-enhanced dl { padding: 0px; }
+.markdown-preview-enhanced dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview-enhanced dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview-enhanced code { font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; color: rgb(255, 255, 255); font-size: 0.85em !important; background-color: rgb(58, 63, 75); }
+.markdown-preview-enhanced[data-use-github-style] code { color: inherit; background-color: rgba(0, 0, 0, 0.0392157); }
+.markdown-preview-enhanced pre > code { padding: 0px; margin: 0px; word-break: normal; white-space: pre; border: 0px; font-size: 0.85em !important; background: transparent; }
+.markdown-preview-enhanced .highlight { margin-bottom: 16px; }
+.markdown-preview-enhanced .highlight pre, .markdown-preview-enhanced pre { font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; padding: 16px; overflow: auto; line-height: 1.45; color: rgb(171, 178, 191); border: rgb(75, 83, 98); border-radius: 3px; font-size: 0.85em !important; background-color: rgb(49, 54, 63); }
+.markdown-preview-enhanced .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview-enhanced pre { word-wrap: break-word; white-space: normal; word-break: break-all; }
+.markdown-preview-enhanced pre .section { opacity: 1; }
+.markdown-preview-enhanced pre code, .markdown-preview-enhanced pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; border: 0px; background-color: transparent; }
+.markdown-preview-enhanced pre code::before, .markdown-preview-enhanced pre tt::before, .markdown-preview-enhanced pre code::after, .markdown-preview-enhanced pre tt::after { content: normal; }
+.markdown-preview-enhanced p, .markdown-preview-enhanced blockquote, .markdown-preview-enhanced ul, .markdown-preview-enhanced ol, .markdown-preview-enhanced dl, .markdown-preview-enhanced pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview-enhanced pre.editor-colors { margin: 16px 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview-enhanced kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); background-color: rgb(58, 63, 75); }
+.markdown-preview-enhanced[data-use-github-style] kbd { color: rgb(51, 51, 51); border-style: solid; border-width: 1px; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; background-color: rgb(252, 252, 252); }
+.markdown-preview-enhanced .pagebreak, .markdown-preview-enhanced .newpage { page-break-before: always; }
+@media screen and (min-width: 914px) { 
+  .markdown-preview-enhanced { width: 854px; margin: 10px auto; background: rgb(40, 44, 52); }
+}
+@media screen and (max-width: 400px) { 
+  .markdown-preview-enhanced { font-size: 14px; }
+}
+@media screen and (min-width: 914px) { 
+  .markdown-preview-enhanced[data-use-github-style] { background: rgb(255, 255, 255); }
+}
+@media print { 
+  .markdown-preview-enhanced { background-color: rgb(40, 44, 52); }
+  .markdown-preview-enhanced h1, .markdown-preview-enhanced h2, .markdown-preview-enhanced h3, .markdown-preview-enhanced h4, .markdown-preview-enhanced h5, .markdown-preview-enhanced h6 { color: rgb(255, 255, 255); page-break-after: avoid; }
+  .markdown-preview-enhanced blockquote { color: rgb(124, 135, 156); }
+  .markdown-preview-enhanced table, .markdown-preview-enhanced pre { page-break-inside: avoid; }
+  .markdown-preview-enhanced table { display: table; }
+  .markdown-preview-enhanced img { display: block; max-width: 100%; max-height: 100%; }
+  .markdown-preview-enhanced pre, .markdown-preview-enhanced code { word-wrap: break-word; white-space: normal; }
+}
+@media print { 
+  .markdown-preview-enhanced[data-use-github-style] { background-color: rgb(255, 255, 255); }
+  .markdown-preview-enhanced[data-use-github-style] h1, .markdown-preview-enhanced[data-use-github-style] h2, .markdown-preview-enhanced[data-use-github-style] h3, .markdown-preview-enhanced[data-use-github-style] h4, .markdown-preview-enhanced[data-use-github-style] h5, .markdown-preview-enhanced[data-use-github-style] h6 { color: rgb(34, 34, 34); }
+  .markdown-preview-enhanced[data-use-github-style] blockquote { color: rgb(119, 119, 119); }
+  .markdown-preview-enhanced[data-use-github-style] pre { border: 2px solid rgb(246, 246, 246); }
+}
+.markdown-preview-enhanced .mermaid { margin-bottom: 16px; }
+.markdown-preview-enhanced .mermaid .edgePath .path { stroke: rgb(255, 255, 255); }
+.markdown-preview-enhanced .mermaid .edgePath marker path { fill: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid line, .markdown-preview-enhanced .mermaid marker { stroke: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid .messageText { fill: rgb(255, 255, 255); }
+.markdown-preview-enhanced[data-use-github-style] .mermaid .edgePath .path { stroke: rgb(51, 51, 51); }
+.markdown-preview-enhanced[data-use-github-style] .mermaid marker path { fill: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] line, .markdown-preview-enhanced[data-use-github-style] marker { stroke: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] .messageText { fill: rgb(51, 51, 51); }
+.markdown-preview-enhanced[is="space-pen-div"] .erd { overflow-x: auto; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk { position: relative; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk.hide-chunk { display: block !important; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk:hover .run-all-btn { display: block !important; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk:hover .btn-group { opacity: 1; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .btn-group { position: absolute; right: 0px; top: 0px; padding: 4px; opacity: 0.4; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .btn-group .btn { text-align: center; color: rgb(255, 255, 255); float: right; margin-left: 2px; border-radius: 4px; border-style: none; background-image: none; background-color: rgb(147, 187, 124); }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .btn-group .btn:hover { cursor: pointer; background-color: rgb(119, 170, 90); }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .btn-group .btn.run-btn { display: block !important; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk.running .run-btn span { display: none; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk.running .run-btn::after { content: "ᕕ(╯°□°)ᕗ"; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk.running .run-btn:hover { cursor: not-allowed; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk .output-div { overflow-x: auto; margin-bottom: 16px; }
+.markdown-preview-enhanced[is="space-pen-div"] .code-chunk pre { cursor: text; }
+.markdown-preview-enhanced:not([is="space-pen-div"]) .code-chunk.hide-chunk pre.editor-colors, .markdown-preview-enhanced:not([is="space-pen-div"]) .code-chunk.hide-chunk .btn-group { display: none; }
+.markdown-preview-enhanced:not([is="space-pen-div"]) .code-chunk.hide-chunk .output-div { display: block; }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors, .markdown-preview-enhanced .github-syntax-theme .host { color: rgb(51, 51, 51); background-color: rgb(247, 247, 247); }
+.markdown-preview-enhanced .github-syntax-theme pre { color: rgb(51, 51, 51); background-color: rgb(247, 247, 247); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .gutter, .markdown-preview-enhanced .github-syntax-theme .host .gutter { color: rgb(179, 179, 179); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .gutter .line-number.cursor-line, .markdown-preview-enhanced .github-syntax-theme .host .gutter .line-number.cursor-line { color: rgb(77, 77, 77); background-color: rgb(245, 245, 245); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .gutter .line-number.cursor-line-no-selection, .markdown-preview-enhanced .github-syntax-theme .host .gutter .line-number.cursor-line-no-selection { color: rgb(77, 77, 77); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .wrap-guide, .markdown-preview-enhanced .github-syntax-theme .host .wrap-guide { color: rgb(223, 223, 223); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .indent-guide, .markdown-preview-enhanced .github-syntax-theme .host .indent-guide { color: rgb(223, 223, 223); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .invisible-character, .markdown-preview-enhanced .github-syntax-theme .host .invisible-character { color: rgb(223, 223, 223); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .search-results .marker .region, .markdown-preview-enhanced .github-syntax-theme .host .search-results .marker .region { border: rgb(0, 0, 0); background-color: transparent; }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .search-results .marker.current-result .region, .markdown-preview-enhanced .github-syntax-theme .host .search-results .marker.current-result .region { border: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .cursor, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .cursor { border-color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .selection .region, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .selection .region { background-color: rgba(178, 215, 255, 0.4); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .line-number.cursor-line-no-selection, .markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .line.cursor-line, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .line-number.cursor-line-no-selection, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .line.cursor-line { background-color: rgba(240, 240, 240, 0.498039); }
+.markdown-preview-enhanced .github-syntax-theme .comment, .markdown-preview-enhanced .github-syntax-theme .punctuation.comment { color: rgb(176, 176, 176); }
+.markdown-preview-enhanced .github-syntax-theme .string, .markdown-preview-enhanced .github-syntax-theme .string .constant.character.escape { color: rgb(34, 115, 195); }
+.markdown-preview-enhanced .github-syntax-theme .constant.numeric { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .constant.language { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .constant.character, .markdown-preview-enhanced .github-syntax-theme .constant.other.rgb-value { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .constant.numeric.line-number.find-in-files, .markdown-preview-enhanced .github-syntax-theme .constant.numeric.line-number.match.find-in-files { color: rgb(171, 176, 179); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.class { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .entity.other.inherited-class { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .meta.tag.any.html, .markdown-preview-enhanced .github-syntax-theme .meta.tag.block.any.html { color: rgb(171, 176, 179); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.tag { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.function { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name .punctuation.definition.entity.scss, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.id.css, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.id.css .punctuation.definition.entity.css, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.class.css .punctuation.definition.entity.css { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation.definition.tag.begin.html, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.tag.end.html, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.tag.html, .markdown-preview-enhanced .github-syntax-theme .meta.tag.block.any.html { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.control { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.operator { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .storage { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .storage.type { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .support.function { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .support.constant { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .support.type, .markdown-preview-enhanced .github-syntax-theme .support.class, .markdown-preview-enhanced .github-syntax-theme .meta.property-name.scss { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .support.other.variable { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .invalid, .markdown-preview-enhanced .github-syntax-theme .invalid.illegal { color: rgb(248, 248, 248); background-color: rgb(181, 42, 29); }
+.markdown-preview-enhanced .github-syntax-theme .invalid.deprecated { color: rgb(181, 42, 29); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.filename.find-in-files { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .source.css .punctuation.definition.entity, .markdown-preview-enhanced .github-syntax-theme .punctuation.terminator.rule.scss { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .source.css .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced .github-syntax-theme .source.css .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .source.css .meta.value, .markdown-preview-enhanced .github-syntax-theme .source.css .support.constant, .markdown-preview-enhanced .github-syntax-theme .source.css .support.function { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .source.scss .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced .github-syntax-theme .source.scss .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .support.constant.property-value, .markdown-preview-enhanced .github-syntax-theme .source.scss .support.function, .markdown-preview-enhanced .github-syntax-theme .meta.property-value.scss { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .variable, .markdown-preview-enhanced .github-syntax-theme .source.scss .variable, .markdown-preview-enhanced .github-syntax-theme .variable.interpolation.scss, .markdown-preview-enhanced .github-syntax-theme .source.scss .meta.set.variable { color: rgb(222, 104, 173); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.control.else.scss, .markdown-preview-enhanced .github-syntax-theme .keyword.control.if.scss, .markdown-preview-enhanced .github-syntax-theme .keyword.control.content.scss { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.other.unit { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.other.important { color: rgb(235, 69, 53); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.tag.reference.scss { color: rgb(181, 127, 0); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.type.new.js { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .variable.language.js { color: rgb(238, 106, 66); }
+.markdown-preview-enhanced .github-syntax-theme .variable.parameter.function { color: rgb(181, 127, 0); }
+.markdown-preview-enhanced .github-syntax-theme .source.js .meta.function .entity.name.function, .markdown-preview-enhanced .github-syntax-theme .source.js .entity.name.function .meta.function { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .source.php .entity.name.type.class { color: rgb(238, 106, 66); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation.definition.heading.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.italic.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.bold.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.string.begin.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.string.end.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.metadata.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.link.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.blockquote.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.raw.markdown { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation.section.function.scss { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation, .markdown-preview-enhanced .github-syntax-theme .meta.method-call, .markdown-preview-enhanced .github-syntax-theme .meta.method { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .meta.separator { color: rgb(179, 179, 179); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.raw.block { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.raw.inline { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .meta.link, .markdown-preview-enhanced .github-syntax-theme .text.html.markdown .meta.image { color: rgb(65, 131, 196); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.underline.link, .markdown-preview-enhanced .github-syntax-theme .text.html.markdown .constant.other.reference { font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.list { color: rgb(238, 106, 66); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.bold { font-weight: bold; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.italic { font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.bold .markup.italic { font-weight: bold; font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.italic .markup.bold { font-weight: bold; font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .string.quoted.double.html .invalid.illegal.bad-ampersand.html { color: rgb(34, 115, 195); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced .github-syntax-theme .bracket-matcher .region { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgba(240, 192, 0, 0.8); z-index: 100; background-color: rgba(255, 214, 51, 0.0980392); }
+.markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular { color: rgb(34, 115, 195); }
+.markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular .punctuation.definition.block.begin.angular, .markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular .punctuation.definition.block.end.angular, .markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular .meta.brace.curly.js { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.html.angular, .markdown-preview-enhanced .github-syntax-theme .meta.attribute.html.angular { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors, .markdown-preview-enhanced[data-use-github-syntax-theme] .host { color: rgb(51, 51, 51) !important; background-color: rgb(247, 247, 247) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre { color: rgb(51, 51, 51) !important; background-color: rgb(247, 247, 247) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .gutter, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .gutter { color: rgb(179, 179, 179) !important; background-color: rgb(255, 255, 255) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .gutter .line-number.cursor-line, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .gutter .line-number.cursor-line { color: rgb(77, 77, 77) !important; background-color: rgb(245, 245, 245) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .gutter .line-number.cursor-line-no-selection, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .gutter .line-number.cursor-line-no-selection { color: rgb(77, 77, 77) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .wrap-guide, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .wrap-guide { color: rgb(223, 223, 223) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .indent-guide, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .indent-guide { color: rgb(223, 223, 223) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .invisible-character, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .invisible-character { color: rgb(223, 223, 223) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .search-results .marker .region, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .search-results .marker .region { border: rgb(0, 0, 0) !important; background-color: transparent !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .search-results .marker.current-result .region, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .search-results .marker.current-result .region { border: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .cursor, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .cursor { border-color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .selection .region, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .selection .region { background-color: rgba(178, 215, 255, 0.4) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .line-number.cursor-line-no-selection, .markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .line.cursor-line, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .line-number.cursor-line-no-selection, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .line.cursor-line { background-color: rgba(240, 240, 240, 0.498039) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .comment, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.comment { color: rgb(176, 176, 176) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .string, .markdown-preview-enhanced[data-use-github-syntax-theme] .string .constant.character.escape { color: rgb(34, 115, 195) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.numeric { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.language { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.character, .markdown-preview-enhanced[data-use-github-syntax-theme] .constant.other.rgb-value { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.numeric.line-number.find-in-files, .markdown-preview-enhanced[data-use-github-syntax-theme] .constant.numeric.line-number.match.find-in-files { color: rgb(171, 176, 179) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.class { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.inherited-class { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.any.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.block.any.html { color: rgb(171, 176, 179) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.tag { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.function { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name .punctuation.definition.entity.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.id.css, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.id.css .punctuation.definition.entity.css, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.class.css .punctuation.definition.entity.css { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.tag.begin.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.tag.end.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.tag.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.block.any.html { color: rgb(51, 51, 51) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.operator { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .storage { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .storage.type { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.function { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.constant { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.type, .markdown-preview-enhanced[data-use-github-syntax-theme] .support.class, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.property-name.scss { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.other.variable { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .invalid, .markdown-preview-enhanced[data-use-github-syntax-theme] .invalid.illegal { color: rgb(248, 248, 248) !important; background-color: rgb(181, 42, 29) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .invalid.deprecated { color: rgb(181, 42, 29) !important; background-color: rgb(255, 255, 255) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.filename.find-in-files { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .punctuation.definition.entity, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.terminator.rule.scss { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .meta.value, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .support.constant, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .support.function { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.constant.property-value, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .support.function, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.property-value.scss { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .variable, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .variable, .markdown-preview-enhanced[data-use-github-syntax-theme] .variable.interpolation.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .meta.set.variable { color: rgb(222, 104, 173) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control.else.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control.if.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control.content.scss { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.other.unit { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.other.important { color: rgb(235, 69, 53) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.tag.reference.scss { color: rgb(181, 127, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.type.new.js { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .variable.language.js { color: rgb(238, 106, 66) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .variable.parameter.function { color: rgb(181, 127, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.js .meta.function .entity.name.function, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.js .entity.name.function .meta.function { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.php .entity.name.type.class { color: rgb(238, 106, 66) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.heading.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.italic.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.bold.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.string.begin.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.string.end.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.metadata.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.link.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.blockquote.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.raw.markdown { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.section.function.scss { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.method-call, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.method { color: rgb(51, 51, 51) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .meta.separator { color: rgb(179, 179, 179) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.raw.block { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.raw.inline { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .meta.link, .markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .meta.image { color: rgb(65, 131, 196) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.underline.link, .markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .constant.other.reference { font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.list { color: rgb(238, 106, 66) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.bold { font-weight: bold !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.italic { font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.bold .markup.italic { font-weight: bold !important; font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.italic .markup.bold { font-weight: bold !important; font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .string.quoted.double.html .invalid.illegal.bad-ampersand.html { color: rgb(34, 115, 195) !important; background-color: rgb(255, 255, 255) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .bracket-matcher .region { border-bottom-width: 1px !important; border-bottom-style: solid !important; border-bottom-color: rgba(240, 192, 0, 0.8) !important; z-index: 100 !important; background-color: rgba(255, 214, 51, 0.0980392) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular { color: rgb(34, 115, 195) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular .punctuation.definition.block.begin.angular, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular .punctuation.definition.block.end.angular, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular .meta.brace.curly.js { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.html.angular, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.attribute.html.angular { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-presentation-mode] { font-size: 24px; width: 100%; box-sizing: border-box; margin: 0px; padding: 0px; }
+.markdown-preview-enhanced[data-presentation-mode] h1, .markdown-preview-enhanced[data-presentation-mode] h2, .markdown-preview-enhanced[data-presentation-mode] h3, .markdown-preview-enhanced[data-presentation-mode] h4, .markdown-preview-enhanced[data-presentation-mode] h5, .markdown-preview-enhanced[data-presentation-mode] h6 { margin-top: 0px; }
+.markdown-preview-enhanced[data-presentation-mode] strong { font-weight: bold; }
+.markdown-preview-enhanced[data-presentation-mode]::-webkit-scrollbar { display: none; }
+.markdown-preview-enhanced .slides { text-align: left !important; }
+.markdown-preview-enhanced .mermaid .edgePath .path { stroke: rgb(255, 255, 255); }
+.markdown-preview-enhanced .mermaid .edgePath marker path { fill: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid line, .markdown-preview-enhanced .mermaid marker { stroke: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] .mermaid .edgePath .path { stroke: rgb(51, 51, 51); }
+.markdown-preview-enhanced[data-use-github-style] .mermaid marker path { fill: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] line, .markdown-preview-enhanced[data-use-github-style] marker { stroke: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid .edgePath .path { stroke: rgb(255, 255, 255); }
+.markdown-preview-enhanced .mermaid .edgePath marker path { fill: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid line, .markdown-preview-enhanced .mermaid marker { stroke: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] .mermaid .edgePath .path { stroke: rgb(51, 51, 51); }
+.markdown-preview-enhanced[data-use-github-style] .mermaid marker path { fill: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] line, .markdown-preview-enhanced[data-use-github-style] marker { stroke: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid .edgePath .path { stroke: rgb(255, 255, 255); }
+.markdown-preview-enhanced .mermaid .edgePath marker path { fill: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid line, .markdown-preview-enhanced .mermaid marker { stroke: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] .mermaid .edgePath .path { stroke: rgb(51, 51, 51); }
+.markdown-preview-enhanced[data-use-github-style] .mermaid marker path { fill: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] line, .markdown-preview-enhanced[data-use-github-style] marker { stroke: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+.spell-check-corrections {
+  width: 25em !important;
+}
+
+pre.editor-colors,
+.host {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line,
+.host .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible,
+.host .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor,
+.host .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region,
+.host .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region,
+.host .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character,
+.host .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide,
+.host .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide,
+.host .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .find-result .region.region.region,
+.host .find-result .region.region.region,
+pre.editor-colors .current-result .region.region.region,
+.host .current-result .region.region.region {
+  border-radius: 0px;
+  background-color: rgba(82, 139, 255, 0.24);
+  transition: border-color 0.4s;
+}
+pre.editor-colors .find-result .region.region.region,
+.host .find-result .region.region.region {
+  border: 2px solid transparent;
+}
+pre.editor-colors .current-result .region.region.region,
+.host .current-result .region.region.region {
+  border: 2px solid #528bff;
+  transition-duration: .1s;
+}
+pre.editor-colors .gutter .line-number,
+.host .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line,
+.host .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #2c313a;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection,
+.host .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right,
+.host .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+.host .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+.host .gutter .line-number:after,
+pre.editor-colors .fold-marker:after,
+.host .fold-marker:after {
+  color: #abb2bf;
+}
+.comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.comment .markup.link {
+  color: #5c6370;
+}
+.entity.name.type {
+  color: #e5c07b;
+}
+.entity.other.inherited-class {
+  color: #98c379;
+}
+.keyword {
+  color: #c678dd;
+}
+.keyword.control {
+  color: #c678dd;
+}
+.keyword.operator {
+  color: #abb2bf;
+}
+.keyword.other.special-method {
+  color: #61afef;
+}
+.keyword.other.unit {
+  color: #d19a66;
+}
+.storage {
+  color: #c678dd;
+}
+.storage.type.annotation,
+.storage.type.primitive {
+  color: #c678dd;
+}
+.storage.modifier.package,
+.storage.modifier.import {
+  color: #abb2bf;
+}
+.constant {
+  color: #d19a66;
+}
+.constant.variable {
+  color: #d19a66;
+}
+.constant.character.escape {
+  color: #56b6c2;
+}
+.constant.numeric {
+  color: #d19a66;
+}
+.constant.other.color {
+  color: #56b6c2;
+}
+.constant.other.symbol {
+  color: #56b6c2;
+}
+.variable {
+  color: #e06c75;
+}
+.variable.interpolation {
+  color: #be5046;
+}
+.variable.parameter {
+  color: #abb2bf;
+}
+.string {
+  color: #98c379;
+}
+.string.regexp {
+  color: #56b6c2;
+}
+.string.regexp .source.ruby.embedded {
+  color: #e5c07b;
+}
+.string.other.link {
+  color: #e06c75;
+}
+.punctuation.definition.comment {
+  color: #5c6370;
+}
+.punctuation.definition.method-parameters,
+.punctuation.definition.function-parameters,
+.punctuation.definition.parameters,
+.punctuation.definition.separator,
+.punctuation.definition.seperator,
+.punctuation.definition.array {
+  color: #abb2bf;
+}
+.punctuation.definition.heading,
+.punctuation.definition.identity {
+  color: #61afef;
+}
+.punctuation.definition.bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.punctuation.definition.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.punctuation.section.embedded {
+  color: #be5046;
+}
+.punctuation.section.method,
+.punctuation.section.class,
+.punctuation.section.inner-class {
+  color: #abb2bf;
+}
+.support.class {
+  color: #e5c07b;
+}
+.support.type {
+  color: #56b6c2;
+}
+.support.function {
+  color: #56b6c2;
+}
+.support.function.any-method {
+  color: #61afef;
+}
+.entity.name.function {
+  color: #61afef;
+}
+.entity.name.class,
+.entity.name.type.class {
+  color: #e5c07b;
+}
+.entity.name.section {
+  color: #61afef;
+}
+.entity.name.tag {
+  color: #e06c75;
+}
+.entity.other.attribute-name {
+  color: #d19a66;
+}
+.entity.other.attribute-name.id {
+  color: #61afef;
+}
+.meta.class {
+  color: #e5c07b;
+}
+.meta.class.body {
+  color: #abb2bf;
+}
+.meta.method-call,
+.meta.method {
+  color: #abb2bf;
+}
+.meta.definition.variable {
+  color: #e06c75;
+}
+.meta.link {
+  color: #d19a66;
+}
+.meta.require {
+  color: #61afef;
+}
+.meta.selector {
+  color: #c678dd;
+}
+.meta.separator {
+  background-color: #373b41;
+  color: #abb2bf;
+}
+.meta.tag {
+  color: #abb2bf;
+}
+.underline {
+  text-decoration: underline;
+}
+.none {
+  color: #abb2bf;
+}
+.invalid.deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.invalid.illegal {
+  color: #ffffff !important;
+  background-color: #e05252 !important;
+}
+.markup.bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.markup.changed {
+  color: #c678dd;
+}
+.markup.deleted {
+  color: #e06c75;
+}
+.markup.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.markup.heading {
+  color: #e06c75;
+}
+.markup.heading .punctuation.definition.heading {
+  color: #61afef;
+}
+.markup.link {
+  color: #c678dd;
+}
+.markup.inserted {
+  color: #98c379;
+}
+.markup.quote {
+  color: #d19a66;
+}
+.markup.raw {
+  color: #98c379;
+}
+.source.cs .keyword.operator {
+  color: #c678dd;
+}
+.source.css .property-name,
+.source.css .property-value {
+  color: #828997;
+}
+.source.css .property-name.support,
+.source.css .property-value.support {
+  color: #abb2bf;
+}
+.source.gfm .markup {
+  -webkit-font-smoothing: auto;
+}
+.source.gfm .link .entity {
+  color: #61afef;
+}
+.source.go .storage.type.string {
+  color: #c678dd;
+}
+.source.ini .keyword.other.definition.ini {
+  color: #e06c75;
+}
+.source.java .storage.modifier.import {
+  color: #e5c07b;
+}
+.source.java .storage.type {
+  color: #e5c07b;
+}
+.source.java .keyword.operator.instanceof {
+  color: #c678dd;
+}
+.source.java-properties .meta.key-pair {
+  color: #e06c75;
+}
+.source.java-properties .meta.key-pair > .punctuation {
+  color: #abb2bf;
+}
+.source.js .keyword.operator {
+  color: #56b6c2;
+}
+.source.js .keyword.operator.delete,
+.source.js .keyword.operator.in,
+.source.js .keyword.operator.of,
+.source.js .keyword.operator.instanceof,
+.source.js .keyword.operator.new,
+.source.js .keyword.operator.typeof,
+.source.js .keyword.operator.void {
+  color: #c678dd;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json > .punctuation.string {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json > .punctuation,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json > .punctuation {
+  color: #98c379;
+}
+.source.json .meta.structure.dictionary.json > .constant.language.json,
+.source.json .meta.structure.array.json > .constant.language.json {
+  color: #56b6c2;
+}
+.source.ruby .constant.other.symbol > .punctuation {
+  color: inherit;
+}
+.source.python .keyword.operator.logical.python {
+  color: #c678dd;
+}
+.source.python .variable.parameter {
+  color: #d19a66;
+}
+ /* Flowchart variables */
+/* Sequence Diagram variables */
+/* Gantt chart variables */
+.mermaid .label {
+  color: #333;
+}
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon {
+  fill: #ECECFF;
+  stroke: #CCCCFF;
+  stroke-width: 1px;
+}
+.mermaid .edgePath .path {
+  stroke: #333333;
+}
+.mermaid .edgeLabel {
+  background-color: #e8e8e8;
+}
+.mermaid .cluster rect {
+  fill: #ffffde !important;
+  rx: 4 !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important;
+}
+.mermaid .cluster text {
+  fill: #333;
+}
+.mermaid .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF;
+}
+.mermaid text.actor {
+  fill: black;
+  stroke: none;
+}
+.mermaid .actor-line {
+  stroke: grey;
+}
+.mermaid .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: "2 2";
+  marker-end: "url(#arrowhead)";
+  stroke: #333;
+}
+.mermaid .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: "2 2";
+  stroke: #333;
+}
+.mermaid #arrowhead {
+  fill: #333;
+}
+.mermaid #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important;
+}
+.mermaid .messageText {
+  fill: #333;
+  stroke: none;
+}
+.mermaid .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF;
+}
+.mermaid .labelText {
+  fill: black;
+  stroke: none;
+}
+.mermaid .loopText {
+  fill: black;
+  stroke: none;
+}
+.mermaid .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: "2 2";
+  marker-end: "url(#arrowhead)";
+  stroke: #CCCCFF;
+}
+.mermaid .note {
+  stroke: #aaaa33;
+  fill: #fff5ad;
+}
+.mermaid .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px;
+}
+/** Section styling */
+.mermaid .section {
+  stroke: none;
+  opacity: 0.2;
+}
+.mermaid .section0 {
+  fill: rgba(102, 102, 255, 0.49);
+}
+.mermaid .section2 {
+  fill: #fff400;
+}
+.mermaid .section1,
+.mermaid .section3 {
+  fill: white;
+  opacity: 0.2;
+}
+.mermaid .sectionTitle0 {
+  fill: #333;
+}
+.mermaid .sectionTitle1 {
+  fill: #333;
+}
+.mermaid .sectionTitle2 {
+  fill: #333;
+}
+.mermaid .sectionTitle3 {
+  fill: #333;
+}
+.mermaid .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px;
+}
+/* Grid and axis */
+.mermaid .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges;
+}
+.mermaid .grid path {
+  stroke-width: 0;
+}
+/* Today line */
+.mermaid .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px;
+}
+/* Task styling */
+/* Default task */
+.mermaid .task {
+  stroke-width: 2;
+}
+.mermaid .taskText {
+  text-anchor: middle;
+  font-size: 11px;
+}
+.mermaid .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px;
+}
+.mermaid .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px;
+}
+/* Specific task settings for the sections*/
+.mermaid .taskText0,
+.mermaid .taskText1,
+.mermaid .taskText2,
+.mermaid .taskText3 {
+  fill: white;
+}
+.mermaid .task0,
+.mermaid .task1,
+.mermaid .task2,
+.mermaid .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc;
+}
+.mermaid .taskTextOutside0,
+.mermaid .taskTextOutside2 {
+  fill: black;
+}
+.mermaid .taskTextOutside1,
+.mermaid .taskTextOutside3 {
+  fill: black;
+}
+/* Active task */
+.mermaid .active0,
+.mermaid .active1,
+.mermaid .active2,
+.mermaid .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc;
+}
+.mermaid .activeText0,
+.mermaid .activeText1,
+.mermaid .activeText2,
+.mermaid .activeText3 {
+  fill: black !important;
+}
+/* Completed task */
+.mermaid .done0,
+.mermaid .done1,
+.mermaid .done2,
+.mermaid .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2;
+}
+.mermaid .doneText0,
+.mermaid .doneText1,
+.mermaid .doneText2,
+.mermaid .doneText3 {
+  fill: black !important;
+}
+/* Tasks on the critical line */
+.mermaid .crit0,
+.mermaid .crit1,
+.mermaid .crit2,
+.mermaid .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2;
+}
+.mermaid .activeCrit0,
+.mermaid .activeCrit1,
+.mermaid .activeCrit2,
+.mermaid .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2;
+}
+.mermaid .doneCrit0,
+.mermaid .doneCrit1,
+.mermaid .doneCrit2,
+.mermaid .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges;
+}
+.mermaid .doneCritText0,
+.mermaid .doneCritText1,
+.mermaid .doneCritText2,
+.mermaid .doneCritText3 {
+  fill: black !important;
+}
+.mermaid .activeCritText0,
+.mermaid .activeCritText1,
+.mermaid .activeCritText2,
+.mermaid .activeCritText3 {
+  fill: black !important;
+}
+.mermaid .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black;
+}
+/*
+
+
+*/
+.mermaid .node text {
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px;
+}
+div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100;
+}
+ </style> <link rel="stylesheet" href="file:////Users/xueguoliang/.atom/packages/markdown-preview-enhanced/node_modules/katex/dist/katex.min.css">  </head> <body class="markdown-preview-enhanced " data-use-github-style data-use-github-syntax-theme > <ul>
+<li><p class="sync-line" data-line="3"><a href="#&#x7B2C;&#x4E09;&#x7AE0;-&#x6587;&#x4EF6;&#x548C;&#x76EE;&#x5F55;">第三章 文件和目录</a>
+<ul>
+<li><p class="sync-line" data-line="4"><a href="#31-&#x524D;&#x8A00;">3.1 前言</a></p></li>
+<li><p class="sync-line" data-line="5"><a href="#32-&#x6587;&#x4EF6;&#x5C5E;&#x6027;">3.2 文件属性</a></p></li>
+<li><p class="sync-line" data-line="6"><a href="#33-&#x6587;&#x4EF6;&#x7C7B;&#x578B;">3.3 文件类型</a></p></li>
+<li><p class="sync-line" data-line="7"><a href="#34-&#x7528;&#x6237;&#x548C;&#x7EC4;">3.4 用户和组</a></p></li>
+<li><p class="sync-line" data-line="8"><a href="#35-&#x6587;&#x4EF6;&#x8BBF;&#x95EE;&#x6743;&#x9650;">3.5 文件访问权限</a></p></li>
+<li><p class="sync-line" data-line="9"><a href="#36-&#x5176;&#x5B83;&#x6743;&#x9650;&#x4F4D;">3.6 其它权限位</a>
+<ul>
+<li><p class="sync-line" data-line="10"><a href="#361-suid">3.6.1 SUID</a></p></li>
+<li><p class="sync-line" data-line="11"><a href="#362-sgid">3.6.2 SGID</a></p></li>
+<li><p class="sync-line" data-line="12"><a href="#363-stickybit">3.6.3 StickyBit</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="13"><a href="#37-&#x6587;&#x4EF6;&#x957F;&#x5EA6;">3.7 文件长度</a></p></li>
+<li><p class="sync-line" data-line="14"><a href="#38-&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;">3.8 文件系统</a>
+<ul>
+<li><p class="sync-line" data-line="15"><a href="#381-&#x6587;&#x4EF6;&#x7BA1;&#x7406;">3.8.1 文件管理</a></p></li>
+<li><p class="sync-line" data-line="16"><a href="#382-inode">3.8.2 inode</a></p></li>
+<li><p class="sync-line" data-line="17"><a href="#383-&#x6570;&#x636E;&#x5757;">3.8.3 数据块</a></p></li>
+<li><p class="sync-line" data-line="18"><a href="#384-&#x6587;&#x4EF6;">3.8.4 文件</a></p></li>
+<li><p class="sync-line" data-line="19"><a href="#385-&#x76EE;&#x5F55;">3.8.5 目录</a></p></li>
+<li><p class="sync-line" data-line="20"><a href="#386-&#x8DEF;&#x5F84;&#x548C;&#x5BFB;&#x5740;">3.8.6 路径和寻址</a></p></li>
+<li><p class="sync-line" data-line="21"><a href="#&#x8865;&#x5145;&#x5206;&#x533A;">补充：分区</a>
+<ul>
+<li><p class="sync-line" data-line="22"><a href="#&#x67E5;&#x770B;&#x78C1;&#x76D8;&#x4FE1;&#x606F;">查看磁盘信息</a></p></li>
+<li><p class="sync-line" data-line="23"><a href="#&#x5206;&#x533A;&#x548C;&#x6302;&#x8F7D;">分区和挂载</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="24"><a href="#387-&#x786C;&#x94FE;&#x63A5;&#x548C;&#x8F6F;&#x94FE;&#x63A5;">3.8.7 硬链接和软链接</a></p></li>
+<li><p class="sync-line" data-line="25"><a href="#388-&#x865A;&#x62DF;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;vfs">3.8.8 虚拟文件系统VFS</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="26"><a href="#39-&#x6587;&#x4EF6;&#x5220;&#x9664;">3.9 文件删除</a></p></li>
+<li><p class="sync-line" data-line="27"><a href="#310-&#x6587;&#x4EF6;&#x65F6;&#x95F4;">3.10 文件时间</a></p></li>
+<li><p class="sync-line" data-line="28"><a href="#311-&#x76EE;&#x5F55;&#x64CD;&#x4F5C;">3.11 目录操作</a>
+<ul>
+<li><p class="sync-line" data-line="29"><a href="#3111-&#x521B;&#x5EFA;&#x548C;&#x5220;&#x9664;&#x76EE;&#x5F55;">3.11.1 创建和删除目录</a></p></li>
+<li><p class="sync-line" data-line="30"><a href="#3112-&#x904D;&#x5386;&#x76EE;&#x5F55;">3.11.2 遍历目录</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="31"><a href="#312-&#x7EC3;&#x4E60;">3.12 练习</a>
+<ul>
+<li><p class="sync-line" data-line="32"><a href="#3121-&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x4FDD;&#x7559;&#x6587;&#x4EF6;&#x5C5E;&#x6027;">3.12.1 实现文件拷贝，保留文件属性</a></p></li>
+<li><p class="sync-line" data-line="33"><a href="#3122-&#x5B9E;&#x73B0;&#x76EE;&#x5F55;&#x6253;&#x5305;&#x5230;&#x6587;&#x4EF6;&#x5C06;&#x6587;&#x4EF6;&#x89E3;&#x5305;&#x6210;&#x76EE;&#x5F55;">3.12.2 实现目录打包到文件，将文件解包成目录</a></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="34"><a href="#313-&#x51FD;&#x6570;&#x548C;&#x547D;&#x4EE4;">3.13 函数和命令</a>
+<ul>
+<li><p class="sync-line" data-line="35"><a href="#3131-&#x51FD;&#x6570;">3.13.1 函数</a></p></li>
+<li><p class="sync-line" data-line="36"><a href="#3132-&#x547D;&#x4EE4;">3.13.2 命令</a></p></li>
+</ul></p></li>
+</ul></p></li>
+</ul>
+<h1 class="sync-line" data-line="40" id="&#x7B2C;&#x4E09;&#x7AE0;-&#x6587;&#x4EF6;&#x548C;&#x76EE;&#x5F55;">第三章 文件和目录</h1>
+<h2 class="sync-line" data-line="41" id="31-&#x524D;&#x8A00;">3.1 前言</h2>
+<p class="sync-line" data-line="42">本章讨论文件属性和文件系统内容。除了上一章讨论的普通文件，Linux的文件概念还包括：目录、设备等。在Linux系统中，文件的种类包括：普通文件、目录、符号链接、块设备、字符设备、管道、套接字。</p>
+<p class="sync-line" data-line="44">本章讨论的主要内容为普通文件、目录和符号链接。它们的公共特点是，真实的保存在了硬盘中，而其它类型的文件是内核产生的文件，在硬盘中并不存在。</p>
+<h2 class="sync-line" data-line="46" id="32-&#x6587;&#x4EF6;&#x5C5E;&#x6027;">3.2 文件属性</h2>
+<p class="sync-line" data-line="47">通过stat函数或者stat命令可以获得文件属性。<br>
+<img src="assets/Snip20161007_10_9c45uukml.png" alt="Snip20161007_10"></p>
+<table>
+<thead>
+<tr><th>文件属性</th><th>解释</th></tr>
+</thead>
+<tbody>
+<tr><td>dev_t st_dev</td><td>设备号</td></tr>
+<tr><td>ino_t st_ino</td><td>inode编号</td></tr>
+<tr><td>mode_t st_mode</td><td>访问权限相关</td></tr>
+<tr><td>nlink_t st_nlink</td><td>硬链接数量</td></tr>
+<tr><td>uid_t st_uid</td><td>拥有该文件的用户</td></tr>
+<tr><td>gid_t st_gid</td><td>拥有该文件的组</td></tr>
+<tr><td>dev_t st_rdev</td><td>设备号</td></tr>
+<tr><td>off_t st_size</td><td>文件尺寸</td></tr>
+<tr><td>blksize_t st_blksize</td><td>文件系统的IO尺寸</td></tr>
+<tr><td>blkcnt_t st_blocks</td><td>占用的block数量，一个block为512字节</td></tr>
+<tr><td>time_t st_atime</td><td>最后访问时间</td></tr>
+<tr><td>time_t st_mtime</td><td>最后修改时间</td></tr>
+<tr><td>time_t st_ctime</td><td>最后文件状态修改时间</td></tr>
+</tbody>
+</table>
+<h2 class="sync-line" data-line="66" id="33-&#x6587;&#x4EF6;&#x7C7B;&#x578B;">3.3 文件类型</h2>
+<p class="sync-line" data-line="67">在前言中，提到文件类型包括七种，在stat结构题中，保存了文件的文件类型属性，它的文件类型属性保存在st_mode中。但是七种类型，只需要3位即可，而st_mode是一个整数，因此它还保存其它内容，如果需要判断一个文件属于何种类型，需要一些宏的帮助。<br>
+<img src="assets/Snip20161007_11_ih3hbqpk2.png" alt="Snip20161007_11"></p>
+<pre class="editor-colors lang-C++ sync-line" data-line="70"><div class="line"><span class="text plain null-grammar"><span>int&nbsp;main()</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;struct&nbsp;stat&nbsp;buf;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;stat(&quot;a.txt&quot;,&nbsp;&amp;stat);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;if(S_ISREG(buf.st_mode))</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;%s\n&quot;,&nbsp;&quot;这是普通文件&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div></pre>
+<p class="sync-line" data-line="82">文件类型属性是只读的属性，无法修改。</p>
+<h2 class="sync-line" data-line="84" id="34-&#x7528;&#x6237;&#x548C;&#x7EC4;">3.4 用户和组</h2>
+<p class="sync-line" data-line="85">Linux是一个多用户操作系统，因此每个文件都有属性，记录着这个文件属于哪个用户/组。<br>
+用户/组信息可以被修改，可以通过chown来修改文件所属的用户和组信息。<br>
+修改文件所属用户和组，需要root权限。<br>
+新文件所属用户和组，是创建该文件的进程所属用户和组。</p>
+<div class="mermaid"><svg id="mermaidChart148" xmlns="http://www.w3.org/2000/svg" height="100%" viewbox="0 0 412 165" style="max-width:412px;"><style type="text/css" title="mermaid-svg-internal-css">/*  */
+#mermaidChart148 .node&gt;rect { ; }
+#mermaidChart148 .node text  { fill:#000; stroke:none; font-weight:300; font-family:"Helvetica Neue",Helvetica,Arial,sans-serf; font-size:14px; }
+#mermaidChart148 .edgeLabel text  { fill:#000; stroke:none; font-weight:300; font-family:"Helvetica Neue",Helvetica,Arial,sans-serf; font-size:14px; }
+#mermaidChart148 .cluster rect  { rx:4px; fill: rgb(255, 255, 222); rx: 4px; stroke: rgb(170, 170, 51); stroke-width: 1px; }
+*, ::before, ::after { box-sizing: border-box;}
+.markdown-preview-enhanced .mermaid .edgePath .path { stroke: rgb(255, 255, 255);}
+.markdown-preview-enhanced .mermaid .edgePath marker path { fill: rgb(255, 255, 255) !important; opacity: 1 !important;}
+.markdown-preview-enhanced .mermaid line, .markdown-preview-enhanced .mermaid marker { stroke: rgb(255, 255, 255) !important; opacity: 1 !important;}
+.markdown-preview-enhanced[data-use-github-style] .mermaid .edgePath .path { stroke: rgb(51, 51, 51);}
+.markdown-preview-enhanced[data-use-github-style] .mermaid marker path { fill: rgb(51, 51, 51) !important; opacity: 1 !important;}
+.markdown-preview-enhanced[data-use-github-style] line, .markdown-preview-enhanced[data-use-github-style] marker { stroke: rgb(51, 51, 51) !important; opacity: 1 !important;}
+[data-mermaid-theme="mermaid.css"] .mermaid .label { color: rgb(51, 51, 51);}
+[data-mermaid-theme="mermaid.css"] .mermaid .node rect, [data-mermaid-theme="mermaid.css"] .mermaid .node circle, [data-mermaid-theme="mermaid.css"] .mermaid .node ellipse, [data-mermaid-theme="mermaid.css"] .mermaid .node polygon { fill: rgb(236, 236, 255); stroke: rgb(204, 204, 255); stroke-width: 1px;}
+[data-mermaid-theme="mermaid.css"] .mermaid .edgePath .path { stroke: rgb(51, 51, 51);}
+[data-mermaid-theme="mermaid.css"] .mermaid .edgeLabel { background-color: rgb(232, 232, 232);}
+* { box-sizing: border-box;}
+/*  */
+</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M104,59.78915662650603L145,42.5L186,42.5" marker-end="url(#arrowhead5636)" style="fill:none"></path><defs><marker id="arrowhead5636" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M238,42.5L279,42.5L320,63.917910447761194" marker-end="url(#arrowhead5637)" style="fill:none"></path><defs><marker id="arrowhead5637" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M320,91.08208955223881L279,112.5L212,112.5L145,112.5L104,95.21084337349397" marker-end="url(#arrowhead5638)" style="fill:none"></path><defs><marker id="arrowhead5638" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(145,42.5)" style="opacity: 1;"><g transform="translate(-16,-12.5)" class="label"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">启动</span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(279,42.5)" style="opacity: 1;"><g transform="translate(-16,-12.5)" class="label"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">创建</span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(212,112.5)" style="opacity: 1;"><g transform="translate(-16,-12.5)" class="label"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">属于</span></div></foreignobject></g></g></g><g class="nodes"><g class="node" id="&#x6709;&#x6548;&#x8D26;&#x6237;" transform="translate(62,77.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-42" y="-22.5" width="84" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.5)"><foreignobject width="64" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">有效账户</div></foreignobject></g></g></g><g class="node" id="&#x8FDB;&#x7A0B;" transform="translate(212,42.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22.5" width="52" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.5)"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">进程</div></foreignobject></g></g></g><g class="node" id="&#x6587;&#x4EF6;" transform="translate(346,77.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22.5" width="52" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.5)"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">文件</div></foreignobject></g></g></g></g></g></g></svg></div>
+<ul>
+<li><p class="sync-line" data-line="98">实际账户和有效账户</p></li>
+</ul>
+<table>
+<thead>
+<tr><th>账户</th><th>解释</th></tr>
+</thead>
+<tbody>
+<tr><td>实际账户</td><td>登陆系统时的账户</td></tr>
+<tr><td>有效账户</td><td>决定进程的访问资源的账户</td></tr>
+</tbody>
+</table>
+<h2 class="sync-line" data-line="106" id="35-&#x6587;&#x4EF6;&#x8BBF;&#x95EE;&#x6743;&#x9650;">3.5 文件访问权限</h2>
+<p class="sync-line" data-line="107">文件使用了9个位来表示访问权限，和文件类型一起，保存在st_mode中。此9位分成3组，每组3个位，分别表示读/写/执行权限，而三个组分别表示拥有该文件的账户，拥有该文件的组，其它用户组的权限。如果对应位是1，表示有权限，如果是0表示没有权限。</p>
+<table>
+<thead>
+<tr><th>1</th><th>1</th><th>1</th><th>1</th><th>0</th><th>1</th><th>1</th><th>0</th><th>1</th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p class="sync-line" data-line="110">文件访问权限经常用8进制来表示，比如上表的权限位可以表示为0755，意思是拥有它的账户对这个文件有读/写/执行权限，而拥有它的组有读/执行权限，其它账户对它有读/执行权限。</p>
+<ul>
+<li><p class="sync-line" data-line="112">Linux提供一些宏，来测试文件的权限位：<br>
+<img src="assets/Snip20161007_12_2lkny1cm6.png" alt="Snip20161007_12"></p></li>
+<li><p class="sync-line" data-line="114">可以通过access函数来测试程序是否有访问某文件的权限。</p></li>
+<li><p class="sync-line" data-line="115">创建文件时，可以指定文件的访问权限位，但是会收到umask位影响。</p></li>
+<li><p class="sync-line" data-line="116">可以通过chmod来修改文件的权限位</p></li>
+</ul>
+<h2 class="sync-line" data-line="118" id="36-&#x5176;&#x5B83;&#x6743;&#x9650;&#x4F4D;">3.6 其它权限位</h2>
+<h3 class="sync-line" data-line="119" id="361-suid">3.6.1 SUID</h3>
+<p class="sync-line" data-line="120">只能对文件设置，如果文件设置了该位，那么该文件被运行时，对应的进程的权限，不是运行该程序账户的权限，而是拥有该用户的权限。</p>
+<p class="sync-line" data-line="122">在对<code>文件</code>未设置SUID的情况下：</p>
+<div class="mermaid"><svg id="mermaidChart149" xmlns="http://www.w3.org/2000/svg" height="100%" viewbox="0 0 507 247.5" style="max-width:507px;"><style type="text/css" title="mermaid-svg-internal-css">/*  */
+#mermaidChart149 .node&gt;rect { ; }
+#mermaidChart149 .node text  { fill:#000; stroke:none; font-weight:300; font-family:"Helvetica Neue",Helvetica,Arial,sans-serf; font-size:14px; }
+#mermaidChart149 .edgeLabel text  { fill:#000; stroke:none; font-weight:300; font-family:"Helvetica Neue",Helvetica,Arial,sans-serf; font-size:14px; }
+#mermaidChart149 .cluster rect  { rx:4px; fill: rgb(255, 255, 222); rx: 4px; stroke: rgb(170, 170, 51); stroke-width: 1px; }
+*, ::before, ::after { box-sizing: border-box;}
+.markdown-preview-enhanced .mermaid .edgePath .path { stroke: rgb(255, 255, 255);}
+.markdown-preview-enhanced .mermaid .edgePath marker path { fill: rgb(255, 255, 255) !important; opacity: 1 !important;}
+.markdown-preview-enhanced .mermaid line, .markdown-preview-enhanced .mermaid marker { stroke: rgb(255, 255, 255) !important; opacity: 1 !important;}
+.markdown-preview-enhanced[data-use-github-style] .mermaid .edgePath .path { stroke: rgb(51, 51, 51);}
+.markdown-preview-enhanced[data-use-github-style] .mermaid marker path { fill: rgb(51, 51, 51) !important; opacity: 1 !important;}
+.markdown-preview-enhanced[data-use-github-style] line, .markdown-preview-enhanced[data-use-github-style] marker { stroke: rgb(51, 51, 51) !important; opacity: 1 !important;}
+[data-mermaid-theme="mermaid.css"] .mermaid .label { color: rgb(51, 51, 51);}
+[data-mermaid-theme="mermaid.css"] .mermaid .node rect, [data-mermaid-theme="mermaid.css"] .mermaid .node circle, [data-mermaid-theme="mermaid.css"] .mermaid .node ellipse, [data-mermaid-theme="mermaid.css"] .mermaid .node polygon { fill: rgb(236, 236, 255); stroke: rgb(204, 204, 255); stroke-width: 1px;}
+[data-mermaid-theme="mermaid.css"] .mermaid .edgePath .path { stroke: rgb(51, 51, 51);}
+[data-mermaid-theme="mermaid.css"] .mermaid .edgeLabel { background-color: rgb(232, 232, 232);}
+* { box-sizing: border-box;}
+/*  */
+</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M72,107.59328358208955L113,90L154,90" marker-end="url(#arrowhead5664)" style="fill:none"></path><defs><marker id="arrowhead5664" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M206,71.56716417910448L247,42.5L291.5,42.5" marker-end="url(#arrowhead5665)" style="fill:none"></path><defs><marker id="arrowhead5665" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M65.77049180327869,141.25L113,195L180,195L247,195L322,195L381,195L406,182.04954954954954" marker-end="url(#arrowhead5666)" style="fill:none"></path><defs><marker id="arrowhead5666" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M206,108.43283582089552L247,137.5L288,137.5" marker-end="url(#arrowhead5667)" style="fill:none"></path><defs><marker id="arrowhead5667" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M356,137.5L381,137.5L406,150.45045045045046" marker-end="url(#arrowhead5668)" style="fill:none"></path><defs><marker id="arrowhead5668" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(113,90)" style="opacity: 1;"><g transform="translate(-16,-12.5)" class="label"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">运行</span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(247,42.5)" style="opacity: 1;"><g transform="translate(-16,-12.5)" class="label"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">属于</span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(247,195)" style="opacity: 1;"><g transform="translate(-16,-12.5)" class="label"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">属于</span></div></foreignobject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignobject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignobject></g></g></g><g class="nodes"><g class="node" id="&#x8FDB;&#x7A0B;" transform="translate(46,118.75)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22.5" width="52" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.5)"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">进程</div></foreignobject></g></g></g><g class="node" id="&#x6587;&#x4EF6;" transform="translate(180,90)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22.5" width="52" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.5)"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">文件</div></foreignobject></g></g></g><g class="node" id="&#x7528;&#x6237;1" transform="translate(322,42.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-30.5" y="-22.5" width="61" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-20.5,-12.5)"><foreignobject width="41" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">用户1</div></foreignobject></g></g></g><g class="node" id="&#x7528;&#x6237;2" transform="translate(436.5,166.25)" style="opacity: 1;"><rect rx="0" ry="0" x="-30.5" y="-22.5" width="61" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-20.5,-12.5)"><foreignobject width="41" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">用户2</div></foreignobject></g></g></g><g class="node" id="&#x65B0;&#x8FDB;&#x7A0B;" transform="translate(322,137.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-34" y="-22.5" width="68" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12.5)"><foreignobject width="48" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">新进程</div></foreignobject></g></g></g></g></g></g></svg></div>
+<p class="sync-line" data-line="132">如果对<code>文件</code>设置了SUID，那么：</p>
+<div class="mermaid"><svg id="mermaidChart150" xmlns="http://www.w3.org/2000/svg" height="100%" viewbox="0 0 484 225" style="max-width:484px;"><style type="text/css" title="mermaid-svg-internal-css">/*  */
+#mermaidChart150 .node&gt;rect { ; }
+#mermaidChart150 .node text  { fill:#000; stroke:none; font-weight:300; font-family:"Helvetica Neue",Helvetica,Arial,sans-serf; font-size:14px; }
+#mermaidChart150 .edgeLabel text  { fill:#000; stroke:none; font-weight:300; font-family:"Helvetica Neue",Helvetica,Arial,sans-serf; font-size:14px; }
+#mermaidChart150 .cluster rect  { rx:4px; fill: rgb(255, 255, 222); rx: 4px; stroke: rgb(170, 170, 51); stroke-width: 1px; }
+*, ::before, ::after { box-sizing: border-box;}
+.markdown-preview-enhanced .mermaid .edgePath .path { stroke: rgb(255, 255, 255);}
+.markdown-preview-enhanced .mermaid .edgePath marker path { fill: rgb(255, 255, 255) !important; opacity: 1 !important;}
+.markdown-preview-enhanced .mermaid line, .markdown-preview-enhanced .mermaid marker { stroke: rgb(255, 255, 255) !important; opacity: 1 !important;}
+.markdown-preview-enhanced[data-use-github-style] .mermaid .edgePath .path { stroke: rgb(51, 51, 51);}
+.markdown-preview-enhanced[data-use-github-style] .mermaid marker path { fill: rgb(51, 51, 51) !important; opacity: 1 !important;}
+.markdown-preview-enhanced[data-use-github-style] line, .markdown-preview-enhanced[data-use-github-style] marker { stroke: rgb(51, 51, 51) !important; opacity: 1 !important;}
+[data-mermaid-theme="mermaid.css"] .mermaid .label { color: rgb(51, 51, 51);}
+[data-mermaid-theme="mermaid.css"] .mermaid .node rect, [data-mermaid-theme="mermaid.css"] .mermaid .node circle, [data-mermaid-theme="mermaid.css"] .mermaid .node ellipse, [data-mermaid-theme="mermaid.css"] .mermaid .node polygon { fill: rgb(236, 236, 255); stroke: rgb(204, 204, 255); stroke-width: 1px;}
+[data-mermaid-theme="mermaid.css"] .mermaid .edgePath .path { stroke: rgb(51, 51, 51);}
+[data-mermaid-theme="mermaid.css"] .mermaid .edgeLabel { background-color: rgb(232, 232, 232);}
+* { box-sizing: border-box;}
+/*  */
+</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M72,96.56716417910448L113,67.5L158.5,67.5" marker-end="url(#arrowhead5692)" style="fill:none"></path><defs><marker id="arrowhead5692" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M210.5,51.1036036036036L240,32.5L299,32.5L358,32.5L383,48.265765765765764" marker-end="url(#arrowhead5693)" style="fill:none"></path><defs><marker id="arrowhead5693" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M72,133.43283582089552L113,162.5L154,162.5" marker-end="url(#arrowhead5694)" style="fill:none"></path><defs><marker id="arrowhead5694" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M210.5,83.8963963963964L240,102.5L265,102.5" marker-end="url(#arrowhead5695)" style="fill:none"></path><defs><marker id="arrowhead5695" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M333,102.5L358,102.5L383,86.73423423423424" marker-end="url(#arrowhead5696)" style="fill:none"></path><defs><marker id="arrowhead5696" viewbox="0 0 10 10" refx="9" refy="5" markerunits="strokeWidth" markerwidth="8" markerheight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(113,67.5)" style="opacity: 1;"><g transform="translate(-16,-12.5)" class="label"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">运行</span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(299,32.5)" style="opacity: 1;"><g transform="translate(-16,-12.5)" class="label"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">属于</span></div></foreignobject></g></g><g class="edgeLabel" transform="translate(113,162.5)" style="opacity: 1;"><g transform="translate(-16,-12.5)" class="label"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">属于</span></div></foreignobject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignobject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignobject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignobject></g></g></g><g class="nodes"><g class="node" id="&#x8FDB;&#x7A0B;" transform="translate(46,115)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22.5" width="52" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.5)"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">进程</div></foreignobject></g></g></g><g class="node" id="&#x6587;&#x4EF6;" transform="translate(184.5,67.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22.5" width="52" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.5)"><foreignobject width="32" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">文件</div></foreignobject></g></g></g><g class="node" id="&#x7528;&#x6237;1" transform="translate(413.5,67.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-30.5" y="-22.5" width="61" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-20.5,-12.5)"><foreignobject width="41" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">用户1</div></foreignobject></g></g></g><g class="node" id="&#x7528;&#x6237;2" transform="translate(184.5,162.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-30.5" y="-22.5" width="61" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-20.5,-12.5)"><foreignobject width="41" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">用户2</div></foreignobject></g></g></g><g class="node" id="&#x65B0;&#x8FDB;&#x7A0B;" transform="translate(299,102.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-34" y="-22.5" width="68" height="45"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12.5)"><foreignobject width="48" height="25"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">新进程</div></foreignobject></g></g></g></g></g></g></svg></div>
+<p class="sync-line" data-line="141">可以通过<code>chmod u+s</code>或者<code>chmod u-s</code>来设置获取去除SUID。<br>
+设置SUID可以让一个普通账户拥有它不该有的权限，容易产生安全漏洞。</p>
+<h3 class="sync-line" data-line="144" id="362-sgid">3.6.2 SGID</h3>
+<p class="sync-line" data-line="145">可以对文件和目录设置，如果对文件设置，那么它的作用类似SUID，不过影响的是组。</p>
+<blockquote>
+<p class="sync-line" data-line="146">如果对目录设置，那么拷贝到该目录下的文件都会被置位，除非拷贝是带<code>-p</code>参数。 在Ubuntu下测试并不如此。<br>
+在Ubuntu下设置了目录的SGID之后，在那个目录下创建的文件，拥有者是有效账户，而拥有组是该目录的拥有组。</p>
+</blockquote>
+<p class="sync-line" data-line="149">命令：<br>
+<code>chmod g+s</code><br>
+<code>chmod g-s</code></p>
+<h3 class="sync-line" data-line="153" id="363-stickybit">3.6.3 StickyBit</h3>
+<p class="sync-line" data-line="154">可以对文件或者目录设置，如果对文件设置，那么当这个文件运行并退出后，系统依旧保留该文件对应的映象，这样这个程序再次运行时，就不需要加载再加载了。这个属性的作用并不大，因为它占用了内存。</p>
+<p class="sync-line" data-line="156">如果对目录设置，那么表示在该目录下，账户只能删除和修改它自己创建的文件，对于其它账户创建的文件，它不能修改和删除。这个位作用比较大，在一些公共目录，往往有这个属性，比如/tmp</p>
+<p class="sync-line" data-line="158">命令：<br>
+<code>chmod o+t</code><br>
+<code>chmod o-t</code></p>
+<p class="sync-line" data-line="162">总结:</p>
+<table>
+<thead>
+<tr><th>位</th><th>设置对象</th><th>设置方法</th><th>查看</th><th>效果</th></tr>
+</thead>
+<tbody>
+<tr><td>SUID</td><td>文件</td><td>chmod u+s</td><td>如果用户执行权限位为s或者S，则表示SUID有设置</td><td>当该文件被执行时，进程所拥有的权限是拥有该文件的账户权限</td></tr>
+<tr><td>SUID</td><td>目录</td><td>不可设置</td><td></td><td></td></tr>
+<tr><td>SGID</td><td>文件</td><td>chmod g+s</td><td>如果组执行权限位为s或者S，则表示GUID有设置</td><td>当执行该文件时，进程所属组是该拥有该文件的组</td></tr>
+<tr><td>SGID</td><td>目录</td><td>chmod g+s</td><td>同上</td><td>在该目录中创建文件时，该文件的所属组是目录的所属组</td></tr>
+<tr><td>StickyBit</td><td>文件</td><td>chmod o+t</td><td>如果其他执行权限位为t或者T，那么该文件有设置StickyBit</td><td>执行该文件并退出后，系统保留该文件占用的一些内存，以便加快下一次的加载运行</td></tr>
+<tr><td>StickyBit</td><td>目录</td><td>chmod o+t</td><td>同上</td><td>账户只能修改和删除该目录下属于该账户的文件，不能修改该目录下其他账户创建的文件</td></tr>
+</tbody>
+</table>
+<h2 class="sync-line" data-line="171" id="37-&#x6587;&#x4EF6;&#x957F;&#x5EA6;">3.7 文件长度</h2>
+<p class="sync-line" data-line="172">st_size保存文件的长度，write函数会修改该属性，也可以通过truncate修改文件大小，truncate可以扩大文件或者缩小文件，缩小文件时，文件内容会被删减。</p>
+<p class="sync-line" data-line="174">文件大小可以通过<code>ls</code>，<code>wc -c</code>，<code>stat</code>命令获取。<br>
+也可以通过<code>fseek</code>和<code>ftell</code>函数配合获取，或者直接通过<code>stat</code>函数获取文件长度。</p>
+<h2 class="sync-line" data-line="177" id="38-&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;">3.8 文件系统</h2>
+<h3 class="sync-line" data-line="178" id="381-&#x6587;&#x4EF6;&#x7BA1;&#x7406;">3.8.1 文件管理</h3>
+<p class="sync-line" data-line="179">文件系统描述文件在硬盘中的组织，保存在硬盘中的文件只有普通文件、目录、软链接。</p>
+<p class="sync-line" data-line="181">为了更加方便的管理持久性文件存储，操作系统一般对硬盘进行有规划的管理，规划包括：</p>
+<ul>
+<li><p class="sync-line" data-line="182">分区</p></li>
+<li><p class="sync-line" data-line="183">格式化</p></li>
+</ul>
+<p class="sync-line" data-line="185">文件系统指一个分区内，文件存储的组织方式。</p>
+<p class="sync-line" data-line="187"><img src="assets/Snip20161007_13.png" alt="Snip20161007_13"></p>
+<p class="sync-line" data-line="189">在Linux下，通过mount命令将分区挂载到虚拟文件系统。</p>
+<h3 class="sync-line" data-line="191" id="382-inode">3.8.2 inode</h3>
+<p class="sync-line" data-line="192">一个硬盘分区，被格式化之后，可以认为硬盘被划分成两部分：管理数据和数据。管理数据部分保存着这个分区的分区信息，以及inode表。</p>
+<p class="sync-line" data-line="194">inode保存文件的属性信息，stat命令能看到的信息，大部分都是保存在inode里的，一个inode占用128或者256字节，这个依赖具体的文件系统，每当在硬盘上创建一个文件/目录时，系统为这个文件/目录分配一个inode。值得注意的是，文件名，不存在inode中，而是存在文件所在目录的文件内容部分。</p>
+<h3 class="sync-line" data-line="196" id="383-&#x6570;&#x636E;&#x5757;">3.8.3 数据块</h3>
+<p class="sync-line" data-line="197">数据部分被简单的、按照等大尺寸的划分成n块，一般每块数据块的尺寸为1024-4096，由具体文件系统决定。</p>
+<h3 class="sync-line" data-line="199" id="384-&#x6587;&#x4EF6;">3.8.4 文件</h3>
+<p class="sync-line" data-line="200">当创建一个文件时，系统为该文件分配一个inode。如果往该文件写数据，那么系统为该文件分配数据块，inode会记录这个数据块位置，当一个数据块不够用时，系统会继续为它分配数据块。</p>
+<h3 class="sync-line" data-line="202" id="385-&#x76EE;&#x5F55;">3.8.5 目录</h3>
+<p class="sync-line" data-line="203">当创建一个目录时，系统为该目录分配一个inode，同时分配一个数据块，并且在该数据块中，记录文件<code>.</code>和<code>..</code>对应的inode。</p>
+<p class="sync-line" data-line="205">如果在该目录下创建文件<code>newfile</code>，那么参考上一节内容，会为该文件创建inode，最后将<code>newfile</code>文件名和它的inode，作为一条记录，保存在目录的数据块中。</p>
+<p class="sync-line" data-line="207"><img src="assets/Snip20161007_14.png" alt="Snip20161007_14"></p>
+<p class="sync-line" data-line="209">如果一个inode被别人引用，那么它的引用计数器会加1。</p>
+<h3 class="sync-line" data-line="211" id="386-&#x8DEF;&#x5F84;&#x548C;&#x5BFB;&#x5740;">3.8.6 路径和寻址</h3>
+<p class="sync-line" data-line="212">Linux系统采用以/划分的路径字符串来寻址文件。</p>
+<p class="sync-line" data-line="214">比如命令<code>mkdir testdir</code>，寻址和操作过程如下图：<br>
+<img src="assets/Snip20161008_17.png" alt="Snip20161008_17"></p>
+<blockquote>
+<p class="sync-line" data-line="217">思考：为什么mv命令很快，而cp命令很慢，rename如何实现的</p>
+</blockquote>
+<h3 class="sync-line" data-line="219" id="&#x8865;&#x5145;&#x5206;&#x533A;">补充：分区</h3>
+<h4 class="sync-line" data-line="220" id="&#x67E5;&#x770B;&#x78C1;&#x76D8;&#x4FE1;&#x606F;">查看磁盘信息</h4>
+<pre class="editor-colors lang-text sync-line" data-line="221"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>sudo&nbsp;fdisk&nbsp;-l</span></span></span></div></pre>
+<p class="sync-line" data-line="225">磁盘名字 sda sdb ..<br>
+分区名字 sda1 sda2 ...<br>
+分区</p>
+<pre class="editor-colors lang-text sync-line" data-line="228"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>sudo&nbsp;fdisk&nbsp;/dev/sdb</span></span></span></div></pre>
+<p class="sync-line" data-line="231">n 创建新分区<br>
+p 输出分区信息<br>
+w 保存分区信息并退出</p>
+<h4 class="sync-line" data-line="235" id="&#x5206;&#x533A;&#x548C;&#x6302;&#x8F7D;">分区和挂载</h4>
+<pre class="editor-colors lang-text sync-line" data-line="236"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>sudo&nbsp;mkfs.ext4&nbsp;/dev/sdb1</span></span></span></div></pre>
+<pre class="editor-colors lang-text sync-line" data-line="239"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>sudo&nbsp;mount&nbsp;/dev/sdb1&nbsp;xxyy</span></span></span></div></pre>
+<p class="sync-line" data-line="242">挂载成功之后，对xxyy目录的读写，其实是在/dev/sdb1文件系统中。</p>
+<p class="sync-line" data-line="244"><strong>开机自动挂载</strong><br>
+通过mount挂载的目录是临时的。如果希望开酒就挂载，那么可以将挂载命令写入到/etc/profile。或者修改/etc/fstab文件，/etc/fstab描述了开机需要挂载的文件系统信息。</p>
+<p class="sync-line" data-line="247"><strong>去除挂载</strong><br>
+通过手动umount去除挂载。</p>
+<h3 class="sync-line" data-line="250" id="387-&#x786C;&#x94FE;&#x63A5;&#x548C;&#x8F6F;&#x94FE;&#x63A5;">3.8.7 硬链接和软链接</h3>
+<p class="sync-line" data-line="251">硬链接不占用inode，只占用目录项。<br>
+软链接占用inode。</p>
+<p class="sync-line" data-line="254">创建链接命令ln，硬链接只将对应的inode在目录总增加一个名字，并且将inode的引用计数器+1。</p>
+<p class="sync-line" data-line="256">为了可以跨文件系统和对目录进行链接，创建了软链接这种方式。ln -s</p>
+<pre class="editor-colors lang-text sync-line" data-line="258"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//&nbsp;file&nbsp;--&gt;&nbsp;file2</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>int&nbsp;main()</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;get&nbsp;file2</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;stat&nbsp;buf;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;stat(&quot;file&quot;,&nbsp;&amp;buf);</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;get&nbsp;链接文件file的信息</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;stat&nbsp;buf2;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;lstat(&quot;file&quot;,&nbsp;&amp;buf2);</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;如果lstat的参数所指文件不是链接文件</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;那么它的效果和stat一样</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;stat&nbsp;buf3;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;lstat(&quot;file2&quot;,&nbsp;&amp;buf3)</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>}</span></span></span></div></pre>
+<pre class="editor-colors lang-text sync-line" data-line="277"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>读取symlink内容使用readlink命令。</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>删除软链接不会删除软链接指向的文件。</span></span></span></div></pre>
+<blockquote>
+<p class="sync-line" data-line="282">思考：为什么硬链接不能跨文件系统，而且不能对目录进行硬链接</p>
+</blockquote>
+<h3 class="sync-line" data-line="284" id="388-&#x865A;&#x62DF;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;vfs">3.8.8 虚拟文件系统VFS</h3>
+<p class="sync-line" data-line="285">内存无法加载硬盘所有内容，因为一般内存比硬盘小，但是在Linux内核中，维护了一个虚拟文件系统，将硬盘的目录结构映射到内存中。这个映射一般只包含已经被打开的文件。<br>
+<img src="assets/Snip20161008_18.png" alt="Snip20161008_18"></p>
+<p class="sync-line" data-line="288"><img src="assets/Snip20161019_1.png" alt="Snip20161019_1"></p>
+<h2 class="sync-line" data-line="291" id="39-&#x6587;&#x4EF6;&#x5220;&#x9664;">3.9 文件删除</h2>
+<p class="sync-line" data-line="292">使用unlink命令和函数可以删除一个文件。<br>
+如果此时文件已经打开，那么该文件也可以被unlink，但是删除操作不会立即执行，而会被保留到文件关闭时执行。</p>
+<pre class="editor-colors lang-text sync-line" data-line="295"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>unlink&nbsp;删除文件，如果是链接，就删除链接，如果不是链接就删除文件。</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>rmdir&nbsp;只能删除空目录</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>rm&nbsp;会判断参数类型，如果是文件那么调用unlink，如果是目录调用rmdir</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>如果要删除非空目录，要使用rm&nbsp;-r，-r选项先删除目录中的文件，再调用rmdir。</span></span></span></div></pre>
+<pre class="editor-colors lang-text sync-line" data-line="302"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>int&nbsp;rm(const&nbsp;char*&nbsp;path);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;怎么遍历目录</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>}</span></span></span></div></pre>
+<h2 class="sync-line" data-line="309" id="310-&#x6587;&#x4EF6;&#x65F6;&#x95F4;">3.10 文件时间</h2>
+<p class="sync-line" data-line="310">对文件的访问，会导致文件时间发生变化。系统会自动记录用户对文件的操作的时间戳，以便将来可以查询文件修改时间。</p>
+<p class="sync-line" data-line="312">如果需要故意修改，那么可以通过utime函数，修改文件的访问时间和修改时间。</p>
+<p class="sync-line" data-line="314"><code>touch</code>命令也可以将文件的时间修改为当前时间。<code>touch</code>命令的副作用是，如果参数所指文件不存在，那么创建一个空文件。</p>
+<p class="sync-line" data-line="316">当用户进行大规模拷贝时，<code>cp</code>操作会修改文件的访问时间，如果想提高效率，可以使用<code>-p</code>选项，避免文件属性的修改，同时加快速度。</p>
+<pre class="editor-colors lang-C++ sync-line" data-line="318"><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&lt;sys/types.h&gt;</span></span></div><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&lt;utime.h&gt;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;utime(const&nbsp;char&nbsp;*filename,&nbsp;const&nbsp;struct&nbsp;utimbuf&nbsp;*times);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&lt;sys/time.h&gt;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;utimes(const&nbsp;char&nbsp;*filename,&nbsp;const&nbsp;struct&nbsp;timeval&nbsp;times[2]);</span></span></div></pre>
+<p class="sync-line" data-line="329"><strong>利用utime来修改文件的访问时间和修改时间</strong></p>
+<pre class="editor-colors lang-C++ sync-line" data-line="330"><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&quot;../h.h&quot;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;main()</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;utimbuf&nbsp;buf;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;buf.actime&nbsp;=&nbsp;0;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;buf.modtime&nbsp;=&nbsp;0;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;utime(&quot;testfile&quot;,&nbsp;&amp;buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;timeval&nbsp;tv[2];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;tv[0].tv_sec&nbsp;=&nbsp;100000;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;tv[0].tv_usec&nbsp;=&nbsp;10000;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;tv[1].tv_sec&nbsp;=&nbsp;100000;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;tv[1].tv_usec&nbsp;=&nbsp;10000;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;utimes(&quot;testfile&quot;,&nbsp;tv);</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div></pre>
+<h2 class="sync-line" data-line="349" id="311-&#x76EE;&#x5F55;&#x64CD;&#x4F5C;">3.11 目录操作</h2>
+<h3 class="sync-line" data-line="350" id="3111-&#x521B;&#x5EFA;&#x548C;&#x5220;&#x9664;&#x76EE;&#x5F55;">3.11.1 创建和删除目录</h3>
+<p class="sync-line" data-line="351"><code>mkdir</code>和<code>rmdir</code></p>
+<h3 class="sync-line" data-line="352" id="3112-&#x904D;&#x5386;&#x76EE;&#x5F55;">3.11.2 遍历目录</h3>
+<p class="sync-line" data-line="353"><code>opendir</code>，<code>closedir</code>，<code>readdir</code>，<code>rewinddir</code>，<code>telldir</code>，<code>seekdir</code></p>
+<p class="sync-line" data-line="355"><strong>遍历目录</strong></p>
+<pre class="editor-colors lang-C++ sync-line" data-line="356"><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&quot;../h.h&quot;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;rm(const&nbsp;char*&nbsp;path)</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;判断path是个文件还是目录</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;如果是文件，直接unlink然后返回</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;stat&nbsp;stat_buf;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;ret&nbsp;=&nbsp;stat(path,&nbsp;&amp;stat_buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(ret&nbsp;&lt;&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;perror(&quot;stat&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-1;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(!S_ISDIR(stat_buf.st_mode))</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unlink(path);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;如果path是目录，遍历目录中的所有目录项</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;buf[1024];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;DIR*&nbsp;dir&nbsp;=&nbsp;opendir(path);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(dir&nbsp;==&nbsp;NULL)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-1;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;dirent*&nbsp;entry&nbsp;=&nbsp;readdir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;while(entry)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;通过entry得到文件信息</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf(buf,&nbsp;&quot;%s/%s&quot;,&nbsp;path,&nbsp;entry-&gt;d_name);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(entry-&gt;d_type&nbsp;==&nbsp;DT_REG&nbsp;||&nbsp;entry-&gt;d_type&nbsp;==&nbsp;DT_LNK)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unlink(buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(entry-&gt;d_type&nbsp;==&nbsp;DT_DIR)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;忽略.和..目录</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(strcmp(entry-&gt;d_name,&nbsp;&quot;.&quot;)&nbsp;==&nbsp;0</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||strcmp(&nbsp;entry-&gt;d_name,&nbsp;&quot;..&quot;)&nbsp;==&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry&nbsp;=&nbsp;readdir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rm(buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry&nbsp;=&nbsp;readdir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;closedir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;rmdir(path);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;main(int&nbsp;argc,&nbsp;char*&nbsp;argv[])</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(argc&nbsp;==&nbsp;1)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;usage:&nbsp;%s&nbsp;[pathname]\n&quot;,&nbsp;argv[0]);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;rm(argv[1]);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;&nbsp;&nbsp;&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div></pre>
+<p class="sync-line" data-line="422"><strong>seekdir和telldir</strong></p>
+<pre class="editor-colors lang-C++ sync-line" data-line="423"><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&quot;../h.h&quot;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;main()</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;loc;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;DIR*&nbsp;dir&nbsp;=&nbsp;opendir(&quot;testdir&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;no</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;seekdir(dir,&nbsp;2);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;dirent*&nbsp;entry;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;while(1)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loc&nbsp;=&nbsp;telldir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry&nbsp;=&nbsp;readdir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(entry&nbsp;==&nbsp;NULL)&nbsp;break;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(strcmp(entry-&gt;d_name,&nbsp;&quot;a&quot;)&nbsp;==&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;记录文件a的位置</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;seekdir(dir,&nbsp;loc);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;while(1)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry&nbsp;=&nbsp;readdir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(entry&nbsp;==&nbsp;NULL)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;loc&nbsp;is&nbsp;%d,&nbsp;entry-&gt;d_name=%s\n&quot;,&nbsp;(int)telldir(dir),&nbsp;entry-&gt;d_name);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;将文件指针回到a的位置</span></span></div><div class="line"><span class="text plain null-grammar"><span>//&nbsp;&nbsp;&nbsp;&nbsp;seekdir(dir,&nbsp;loc);</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div></pre>
+<h2 class="sync-line" data-line="464" id="312-&#x7EC3;&#x4E60;">3.12 练习</h2>
+<h3 class="sync-line" data-line="465" id="3121-&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x4FDD;&#x7559;&#x6587;&#x4EF6;&#x5C5E;&#x6027;">3.12.1 实现文件拷贝，保留文件属性</h3>
+<pre class="editor-colors lang-C++ sync-line" data-line="467"><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&quot;../h.h&quot;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;main(int&nbsp;argc,&nbsp;char*&nbsp;argv[])</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(argc&nbsp;!=&nbsp;3)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;usage:&nbsp;%s&nbsp;[srcfile]&nbsp;[dstfile]\n&quot;,&nbsp;argv[0]);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-1;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;char*&nbsp;filesrc&nbsp;=&nbsp;argv[1];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;char*&nbsp;filedst&nbsp;=&nbsp;argv[2];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;FILE*&nbsp;fp_src&nbsp;=&nbsp;fopen(filesrc,&nbsp;&quot;r&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;FILE*&nbsp;fp_dst&nbsp;=&nbsp;fopen(filedst,&nbsp;&quot;w&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;buf[4096];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;while(1)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;ret&nbsp;=&nbsp;fread(buf,&nbsp;1,&nbsp;sizeof(buf),&nbsp;fp_src);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ret&nbsp;&lt;=&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fwrite(buf,&nbsp;ret,&nbsp;1,&nbsp;fp_dst);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;fclose(fp_src);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;fclose(fp_dst);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;获取源文件属性</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;stat&nbsp;src_stat;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;stat(filesrc,&nbsp;&amp;src_stat);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;修改目标文件时间</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;utimbuf&nbsp;timbuf;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;timbuf.actime&nbsp;=&nbsp;src_stat.st_atime;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;timbuf.modtime&nbsp;=&nbsp;src_stat.st_mtime;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;utime(filedst,&nbsp;&amp;timbuf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;修改权限</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;chmod(filedst,&nbsp;src_stat.st_mode);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;修改所有者</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;ret&nbsp;=&nbsp;chown(filedst,&nbsp;src_stat.st_uid,&nbsp;src_stat.st_gid);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(ret&nbsp;&lt;&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;perror(&quot;chown&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div></pre>
+<h3 class="sync-line" data-line="520" id="3122-&#x5B9E;&#x73B0;&#x76EE;&#x5F55;&#x6253;&#x5305;&#x5230;&#x6587;&#x4EF6;&#x5C06;&#x6587;&#x4EF6;&#x89E3;&#x5305;&#x6210;&#x76EE;&#x5F55;">3.12.2 实现目录打包到文件，将文件解包成目录</h3>
+<pre class="editor-colors lang-C++ sync-line" data-line="522"><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&quot;../h.h&quot;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&lt;map&gt;</span></span></div><div class="line"><span class="text plain null-grammar"><span>#include&nbsp;&lt;string&gt;</span></span></div><div class="line"><span class="text plain null-grammar"><span>using&nbsp;namespace&nbsp;std;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>map&lt;ino_t,&nbsp;std::string&gt;&nbsp;savedfiles;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>void&nbsp;tarfile(const&nbsp;char*&nbsp;filename,&nbsp;FILE*&nbsp;fpOut)</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;stat&nbsp;stat_buf;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;stat(filename,&nbsp;&amp;stat_buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;检查这个文件是否已经保存过，是否是其他文件的硬链接</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;std::string&nbsp;filesaved&nbsp;=&nbsp;savedfiles[stat_buf.st_ino];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(filesaved.size()&nbsp;!=&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;此ino之前已经存过了</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fprintf(fpOut,&nbsp;&quot;h\n%s\n%s\n&quot;,&nbsp;filename,&nbsp;filesaved.c_str());</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;fprintf(fpOut,&nbsp;&quot;f\n%s\n%lld\n&quot;,&nbsp;filename,&nbsp;(long&nbsp;long&nbsp;int)stat_buf.st_size);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;FILE*&nbsp;fpIn&nbsp;=&nbsp;fopen(filename,&nbsp;&quot;r&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;buf[4096];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;while(1)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;ret&nbsp;=&nbsp;fread(buf,&nbsp;1,&nbsp;sizeof(buf),&nbsp;fpIn);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ret&nbsp;&lt;=&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fwrite(buf,&nbsp;ret,&nbsp;1,&nbsp;fpOut);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;fclose(fpIn);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;//&nbsp;&nbsp;&nbsp;savedfiles.insert(std::pair&lt;ino_t,&nbsp;std::string&gt;(stat_buf.st_ino,&nbsp;std::string(filename)));</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;如果该文件不是别人的硬链接，那么将文件拷贝之后，在全局map中记录ino</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;savedfiles[stat_buf.st_ino]&nbsp;=&nbsp;std::string(filename);</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;tardir(const&nbsp;char*&nbsp;dirname,&nbsp;FILE*&nbsp;fpOut)</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;filepath[1024];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;写目录</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;fprintf(fpOut,&nbsp;&quot;d\n&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;fprintf(fpOut,&nbsp;&quot;%s\n&quot;,&nbsp;dirname);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;DIR*&nbsp;dir&nbsp;=&nbsp;opendir(dirname);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;dirent*&nbsp;entry&nbsp;=&nbsp;readdir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;while(entry)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf(filepath,&nbsp;&quot;%s/%s&quot;,&nbsp;dirname,&nbsp;entry-&gt;d_name);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;handle</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(entry-&gt;d_type&nbsp;==&nbsp;DT_REG)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;write&nbsp;file</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tarfile(filepath,&nbsp;fpOut);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(entry-&gt;d_type&nbsp;==&nbsp;DT_DIR)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(strcmp(entry-&gt;d_name,&nbsp;&quot;.&quot;)&nbsp;==&nbsp;0&nbsp;||</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strcmp(entry-&gt;d_name,&nbsp;&quot;..&quot;)&nbsp;==&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry&nbsp;=&nbsp;readdir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tardir(filepath,&nbsp;fpOut);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry&nbsp;=&nbsp;readdir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;closedir(dir);</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;tar(const&nbsp;char*&nbsp;dirname,&nbsp;const&nbsp;char*&nbsp;outfile)</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;FILE*&nbsp;fpOut&nbsp;=&nbsp;fopen(outfile,&nbsp;&quot;w&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;fprintf(fpOut,&nbsp;&quot;xgltar\n&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;fprintf(fpOut,&nbsp;&quot;1.0\n&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;ret&nbsp;=&nbsp;tardir(dirname,&nbsp;fpOut);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;fclose(fpOut);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;ret;</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>#define&nbsp;line_buf_size&nbsp;1024</span></span></div><div class="line"><span class="text plain null-grammar"><span>char&nbsp;line_buf[line_buf_size];</span></span></div><div class="line"><span class="text plain null-grammar"><span>#define&nbsp;get_line()&nbsp;fgets(buf,&nbsp;line_buf_size,&nbsp;fin)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;untar1(FILE*&nbsp;fin)</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;char*&nbsp;buf&nbsp;=&nbsp;line_buf;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(get_line()&nbsp;==&nbsp;NULL)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-1;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;now&nbsp;utar&nbsp;type=%s&quot;,&nbsp;buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(strcmp(buf,&nbsp;&quot;d\n&quot;)&nbsp;==&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_line();</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buf[strlen(buf)-1]&nbsp;=&nbsp;0;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(buf,&nbsp;0777);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;mkdir&nbsp;%s\n&quot;,&nbsp;buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(strcmp(buf,&nbsp;&quot;f\n&quot;)&nbsp;==&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_line();</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buf[strlen(buf)-1]&nbsp;=&nbsp;0;&nbsp;//&nbsp;filename</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE*&nbsp;out&nbsp;=&nbsp;fopen(buf,&nbsp;&quot;w&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;create&nbsp;file&nbsp;%s\n&quot;,&nbsp;buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_line();</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;long&nbsp;int&nbsp;len&nbsp;=&nbsp;atoll(buf);&nbsp;//&nbsp;1987\n</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;filelen&nbsp;%s\n&quot;,&nbsp;buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while(len&nbsp;&gt;&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;避免粘包问题</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;readlen&nbsp;=&nbsp;len&nbsp;&lt;&nbsp;line_buf_size&nbsp;?&nbsp;len&nbsp;:&nbsp;line_buf_size;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;ret&nbsp;=&nbsp;fread(buf,&nbsp;1,&nbsp;readlen,&nbsp;fin);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fwrite(buf,&nbsp;1,&nbsp;ret,&nbsp;out);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;len&nbsp;-=&nbsp;ret;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fclose(out);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(strcmp(buf,&nbsp;&quot;h\n&quot;)&nbsp;==&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_line();</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buf[strlen(buf)-1]&nbsp;=&nbsp;0;&nbsp;//&nbsp;filename&nbsp;new</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::string&nbsp;new_path(buf);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_line();</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buf[strlen(buf)-1]&nbsp;=&nbsp;0;&nbsp;//&nbsp;hardline&nbsp;filename&nbsp;old</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link(buf,&nbsp;new_path.c_str());</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;untar(const&nbsp;char*&nbsp;tarfile)</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;char*&nbsp;buf&nbsp;=&nbsp;line_buf;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;FILE*&nbsp;fin&nbsp;=&nbsp;fopen(tarfile,&nbsp;&quot;r&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;//fgets(buf,&nbsp;line_buf_size,&nbsp;fin);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;get_line();</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(strcmp(buf,&nbsp;&quot;xgltar\n&quot;)&nbsp;!=&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;unknown&nbsp;file&nbsp;format\n&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-1;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;get_line();</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(strcmp(buf,&nbsp;&quot;1.0\n&quot;)&nbsp;==&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while(1)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;ret&nbsp;=&nbsp;untar1(fin);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ret&nbsp;!=&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;else</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;unknown&nbsp;version\n&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-1;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>//&nbsp;./mytar&nbsp;-c&nbsp;dir&nbsp;tarfile.xgl</span></span></div><div class="line"><span class="text plain null-grammar"><span>//&nbsp;./mytar&nbsp;-u&nbsp;tarfile.xgl</span></span></div><div class="line"><span class="text plain null-grammar"><span>int&nbsp;main(int&nbsp;argc,&nbsp;char*&nbsp;argv[])</span></span></div><div class="line"><span class="text plain null-grammar"><span>{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(argc&nbsp;==&nbsp;1)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;usage:&nbsp;\n\t%s&nbsp;-c&nbsp;[dir]&nbsp;[tarfile]\n\t%s&nbsp;-u&nbsp;[tarfile]\n&quot;,&nbsp;argv[0],&nbsp;argv[0]);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-1;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;char*&nbsp;option&nbsp;=&nbsp;argv[1];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;if(strcmp(option,&nbsp;&quot;-c&quot;)&nbsp;==&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;char*&nbsp;dirname&nbsp;=&nbsp;argv[2];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;char*&nbsp;outfile&nbsp;=&nbsp;argv[3];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;tar(dirname,&nbsp;outfile);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(strcmp(option,&nbsp;&quot;-u&quot;)&nbsp;==&nbsp;0)</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;{</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;char*&nbsp;tarfile&nbsp;=&nbsp;argv[2];</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;untar(tarfile);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;option&nbsp;error\n&quot;);</span></span></div><div class="line"><span class="text plain null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-1;</span></span></div><div class="line"><span class="text plain null-grammar"><span>}</span></span></div></pre>
+<h2 class="sync-line" data-line="730" id="313-&#x51FD;&#x6570;&#x548C;&#x547D;&#x4EE4;">3.13 函数和命令</h2>
+<h3 class="sync-line" data-line="731" id="3131-&#x51FD;&#x6570;">3.13.1 函数</h3>
+<p class="sync-line" data-line="732">stat/lstat：查看文件属性<br>
+chmod：修改文件权限<br>
+chown：修改文件的所有者<br>
+utime：修改文件时间<br>
+unlink：删除文件<br>
+link：创建硬链接<br>
+symlink：创建软链接<br>
+rmdir：删除空目录<br>
+mkdir：创建空目录<br>
+opendir：打开目录<br>
+closedir：关闭目录<br>
+readdir：读取一个目录项，并且将目录项指针移到下一项<br>
+seekdir：修改目录项指针<br>
+rewainddir：重置目录项指针<br>
+telldir：获得当前目录向指针<br>
+判断权限位宏 S_IRUSR(stat.st_mode)<br>
+判断文件类型宏S_ISDIR(stat.st_mode)</p>
+<h3 class="sync-line" data-line="750" id="3132-&#x547D;&#x4EE4;">3.13.2 命令</h3>
+<p class="sync-line" data-line="751">stat：查看文件属性<br>
+chmod：修改文件权限<br>
+chown<br>
+unlink：删除文件（不会跟随）<br>
+ln：创建链接<br>
+mkdir<br>
+rmdir<br>
+rm<br>
+cp<br>
+dd：拷贝数据（可以拷贝文件，也拷贝块设备）<br>
+wc：计算文件内容的行数、单词数、字节数<br>
+which：查找非内置的命令位置<br>
+fdisk：查看磁盘信息、分区<br>
+mkfs：在分区中创建文件系统（ext2,ext3,ext4, fat32, ntfs, xfs,nfs)<br>
+mount：挂载<br>
+umount：取消挂载</p>
+ </body>  </html>

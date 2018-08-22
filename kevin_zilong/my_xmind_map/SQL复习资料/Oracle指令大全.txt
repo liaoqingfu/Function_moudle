@@ -1,0 +1,3037 @@
+-------------------------------------------------------- 
+--sql structured query language 
+
+--DML--Data Manipulation Language--数据操作语言 
+
+query information (SELECT), 
+add new rows (INSERT), 
+modify existing rows (UPDATE), 
+delete existing rows (DELETE), 
+perform a conditional update or insert operation (MERGE), 
+see an execution plan of SQL (EXPLAIN PLAN), 
+and lock a table to restrict access (LOCK TABLE). 
+
+--DDL--Data Definition Language--数据定义语言 
+create, modify,drop, or rename objects (CREATE,ALTER,DROP,RENAME), 
+remove all rows from a database object without dropping the structure (TRUNCATE), 
+manage access privileges (GRANT,REVOKE), 
+audit database use (AUDIT,NOAUDIT) 
+and add a description about an object to the dictionary (COMMENT). 
+
+--Transaction Control事务控制语句 
+save the changes(COMMIT) 
+or discard the changes (ROLLBACK) made by DML statements. 
+Also included in the transaction-control statements are statements to set a point or marker in the transaction for possible rollback (SAVEPOINT) 
+and to define the properties for the transaction (SET TRANSACTION). 
+Used to manage the properties of the database. 
+There isonly one statement in this category (ALTER SYSTEM). 
+
+--DCL--Data Control Language--与开发关系不是很密切,用于权限的分配与回收 
+grant,revoke,data control 
+
+--Session Control 
+control the session properties (ALTER SESSION) 
+and to enable/disable roles (SET ROLE). 
+
+--System Control 
+
+
+-------------------------------------------------------- 
+select的用法 
+
+--每个员工的所有信息 
+select * from emp 
+--每个人的部门编号，姓名，薪水 
+select deptno,ename,sal from emp; 
+--每个人的年薪 
+select ename,sal*12 from emp; 
+--计算2*3的值 
+select 2*3 from emp; 
+--计算2*3的值(dual) 
+select 2*3 from dual; 
+select * from dual; 
+--得到当前时间 
+select sysdate from dual 
+--可以给列起别名,比如求每个人的年薪 
+select ename,sal*12  salperyear from emp; 
+--如果别名中有空格，需要用双引号 
+select ename,sal*12  "sal per year" from emp; 
+--如果没有内容，则为空 
+select comm from emp; 
+--当空字段参与计算，则结果是null 
+--例如：计算每个人的全年的收入包括月薪和年终奖 
+select ename,sal*12+comm from emp; 
+--可以将多个字符串拼在一起。比如：求每个人的薪水，格式为smith-sal-123 
+select ename||'-sal-'||sal from emp; 
+--如果字符串中有单引号，需要用另外一个单引号转义，比如：这样一个字符串： he's friend 
+select ename||'''s sal is'||sal from emp; 
+
+
+-------------------------------------------------------- 
+--distinct 关键词的用法 
+--求有哪些个部门 
+select distinct deptno from emp 
+--可以用来修饰多个字段。比如：求有哪些个部门和job的组合 
+select distinct deptno,job from emp 
+
+-------------------------------------------------------- 
+where关键词的用法 
+--可以是数值类型的等值判断。比如：求10这个部门的所有员工 
+select * from emp where deptno=20 
+--可以是字符串类型的等值判断。比如：求叫KING的这个人的信息 
+select * from emp where ename = 'KING' 
+--也可以是不等值判断。比如：求薪水小于2000的员工信息 
+select * from emp where sal<2000; 
+--字符串也可以做不等值判断，比如：求所有ename大于'CBA'的员工信息。 
+select * from emp where ename>'CBA'; 
+--求部门不是10的员工 
+select * from emp where deptno <> 10; 
+--求薪水在800和1500之间的员工信息 
+select * from emp where sal >=800 and sal <=1500; 
+--也可以写成 
+select * from emp where sal between 800 and 1500 
+--这样写则不可以 
+-----------------------------select * from emp where 800<=sal<=1500 
+--where...in..的用法。比如：求薪水是800或者1500或正2000的员工信息 
+select * from emp where sal=800 or sal=1500 or sal=2000 
+--相当于写成这样 
+select * from emp where sal in(1500,800,2000,1500,1500,1500,1500); 
+--再比如求姓名是KING,SMITH,AA的员工信息 
+select * from emp where ename in ('KING','SMITH','AA') 
+--求入职时间在20-2月-81之后的员工信息 
+select * from emp where hiredate < '23-5月 -87'; 
+
+-------------------------------------------------------- 
+--and or not的用法 
+--求薪水大于1000或者部门在20这个部门的员工信息 
+select * from emp where sal>1000 and deptno=20 
+--求薪水不是800或者不是1500或者不是3000的员工信息 
+select * from emp where sal not in (800,1500,3000) 
+--也可以这样来写 
+select * from emp where sal <>800 and sal <> 1500 and sal<>3000 
+
+-------------------------------------------------------- 
+--like的用法 
+--求名字中包含ALL这三个字符的员工信息 
+select * from emp where ename like '%E%'; 
+--求名字中的第二个字母是A的员工 
+select * from emp where ename like '_A%'; 
+--特殊字符需要转义。比如：求员工中包含特殊字符%的员工信息 
+select * from emp where ename like '%\%%' escape '\' 
+
+-------------------------------------------------------- 
+--null的用法 
+--求没有年终奖的员工 
+select * from emp where comm is null 
+--求有年终奖的员工 
+select * from emp where comm is not null 
+
+
+-------------------------------------------------------- 
+--order by的用法 
+--员工信息按照姓名正序排列 
+select * from emp order by ename asc; 
+--员工信息按照倒叙排列 
+select * from emp order by ename desc; 
+--也可以是多个字段组合排列。例如：员工信息按照部门正序排列，并且按照姓名倒叙排列 
+select * from emp order by deptno asc,ename desc 
+
+-------------------------------------------------------- 
+--function的用法 
+--把所有姓名变成小写 
+select lower(ename) from emp; 
+--把所有姓名变成大写 
+select upper(ename) from emp; 
+--求所有人名中包含'a'的员工信息不区分大小写 
+select * from emp where lower(ename) like '%a%' 
+--截取子字符串，比如求Hello的一部分 
+select substr('hello',2,2) from dual; 
+select substr(ename,2,2) from emp; 
+--求Hello的一部分，并指明长度 
+
+--求ascii码对应的字符 
+select chr(65) from dual 
+--求字符对应的ascii码 
+select ascii('中')from dual 
+--四舍五入 
+select round(12.456,2) from dual 
+select round(12.456,-1) from dual 
+--四舍五入小数点后面多少位 
+
+--四舍五入小数点前面多少位 
+
+
+-------------------------------------------------------- 
+--important!日期转换函数 
+-------------------------------------------------------- 
+--将当前日期转换成1981-03-12 12:00:00这种形式的字符串 
+select to_char(sysdate,'YYYY-MM-DD HH24:MI:SS') from dual; 
+
+--将1981-03-12 12:00:00字符串转换成日期 
+select to_date('1981-03-12 12:00:00','YYYY-MM-DD HH24:MI:SS') from dual; 
+
+--将每个人的薪水转换成固定格式的字符串 
+select to_char(sal,'$999,999,999.99') from emp; 
+--将固定格式的字符串转换成数值 
+select to_number('$8,000.00','$999,999,999.99') from dual; 
+
+--当null参与计算时候，可以用nvl这个函数。比如求每个人一年总共的收入 
+select ename,sal*12+comm from emp 
+
+-------------------------------------------------------- 
+--group function组函数 
+--求所有人的薪水的总和，平均值，最大值，最小值 
+select sum(sal),avg(sal),max(sal) ,min(sal) from emp; 
+--求总的行数 
+select count(*) from emp; 
+--求总的行树，（可以指定具体的字段）但如果字段有null值的时候需要小心使用 
+select count(comm) from emp; 
+
+--也可以过滤掉重复的行之后统计行数 
+
+select count(distinct deptno) from emp 
+--可以指明按照哪个字段进行分组.比如；分部门统计最高薪水 
+select deptno,max(sal) from emp where deptno is not null group by deptno 
+--也可以按照多个字段来分组统计，比如：分部门和岗位，统计最高薪水和行数 
+select deptno,job,max(sal),count(*) from emp group by deptno,job 
+
+-------------------------------------------------------- 
+--重要：出现在select列表中的字段，如果没有在组函数中，那么必须出现在group by 子句中。 
+-------------------------------------------------------- 
+select ename,deptno,job,max(sal),count(*) from emp group by deptno,job 
+
+--求薪水最高的员工姓名 
+select * from emp where sal=(select max(sal) from emp); 
+delete from emp where ename='TEST2' 
+update emp set deptno=10 where deptno=99 
+select * from dept 
+insert into dept (deptno,dname,loc) values('10','ACCOUNTING','NEW YORK'); 
+--having从句的用法 
+--求平均薪水是2000以上的部门 
+select deptno,avg(sal) as avg_sal from emp group by deptno 
+having avg(sal) >2000 
+-------------------------------------------------------- 
+--总结一下select语法 
+select 
+from 
+where 
+group by 
+having 
+order by 
+-------------------------------------------------------- 
+-- 执行顺序very important! 
+-- 首先执行where语句将原有记录过滤； 
+-- 第二执行group by 进行分组； 
+-- 第三执行having过滤分组； 
+-- 然后将select 中的字段值选出来； 
+-- 最后执行order by 进行排序； 
+
+-------------------------------------------------------- 
+/* 
+按照部门分组统计，求最高薪水，平均薪水 
+只有薪水是1200以上的才参与统计 
+并且分组结果中只包括平均薪水在1500以上的部门 
+而且按照平均薪水倒叙排列 
+*/ 
+select max(sal),avg(sal) from emp 
+where sal>1200 
+group by deptno 
+having avg(sal) >1500 
+order by avg(sal) desc 
+
+-------------------------------------------------------- 
+/* 
+把雇员按部门分组， 
+求最高薪水， 部门号， 
+过滤掉名字中第二个字母是'A'的， 
+要求分组后的平均薪水>1500， 
+按照部门编号倒序排列 
+*/ 
+select max(sal) ,deptno from emp where ename not like '_A%'group by deptno 
+having avg(sal) >1500 
+order by deptno desc 
+
+/* very very important! */ 
+select ename, deptno from emp; 
+select deptno, dname from dept; 
+-------------------------------------------------------------------------------------- 
+--老语法：---------------------------------------------------------------------------- 
+-------------------------------------------------------------------------------------- 
+--等值连接：求员工姓名以及员工所在部门的名字同时显示出来 
+select ename,emp.deptno,dname,dept.deptno from emp,dept 
+where emp.deptno = dept.deptno 
+
+select ename,e.deptno,dname,d.deptno from emp e,dept d 
+where e.deptno = d.deptno 
+
+--非等值连接：要求每位雇员的薪水等级 
+select * from salgrade 
+select ename,sal,grade,losal,hisal from emp,salgrade 
+where sal >=losal and sal <=hisal 
+--跨3个表：求工作职位是’PRESIDENT’的雇员姓名，部门名称和薪水等级时 
+select ename,dname,grade from emp,dept,salgrade 
+where emp.deptno = dept.deptno 
+and sal >=losal and sal <=hisal 
+and job ='PRESIDENT' 
+
+
+--也可以同一个表做跨表连接：求每位员工的姓名，及其上级经理的姓名 
+
+select e1.ename,e2.ename from emp e1,emp e2 
+where e1.mgr = e2.empno 
+
+-------------------------------------------------------------------------------------- 
+--新语法------------------------------------------------------------------------------ 
+--在SQL1992的语法规则中，语句过滤的条件和表连接的条件都被放在了where子句中，当条件过多时，容易造成混淆， 
+--SQL1999修正了这个缺点，将连接条件和数据过滤条件区分开来， 
+-------------------------------------------------------------------------------------- 
+
+--交叉连接 
+--结果会产生这两张表的笛卡尔乘积 
+
+select * from emp cross join dept 
+--要用deptno作为等值连接条件，我们可以这样写 
+select * from emp join dept using (deptno) 
+select ename, dname from emp join dept using(deptno); 
+--相当于 
+select ename, dname from emp join dept on emp.deptno = dept.deptno 
+--也可以写成这样 
+
+
+--也可以用于非等值连接 
+--求每位雇员的薪水等级 
+select * from emp join salgrade on (sal >=losal and sal<= hisal) 
+
+
+--多个join,where组合使用 
+--(求工作职位是’PRESIDENT’的雇员姓名，部门名称和薪水等级时) 
+
+select * from emp join dept on emp.deptno = dept.deptno 
+join salgrade on (sal >=losal and sal<= hisal) 
+where job = 'PRESIDENT' 
+
+
+--外连接--取出表中连接不到一起的多余的数据 
+--没有全内连接，没有右内连接 
+
+--其中outer也可以省略，简写为left join , right join , full join 
+--left inner join可以缩写成inner join 也可以缩写成join，意思是左内。 
+--update emp set deptno=20 where ename='SMITH'; 
+--commit; 
+select * from emp; 
+select * from dept; 
+delete from dept where deptno=99; 
+--左内,从左往右找，匹配不上的记录不显示 
+select ename,emp.deptno from emp  join dept on emp.deptno = dept.deptno; 
+select ename,emp.deptno from emp  inner join dept on emp.deptno = dept.deptno; 
+--没有这种语法：select ename,emp.deptno from emp  left inner join dept on emp.deptno = dept.deptno; 
+--左外连接,从左往右找，匹配不上的记录也显示一行 
+select ename,dept.deptno from emp left /*outer*/ join dept on emp.deptno = dept.deptno; 
+
+--右外连接，从右往左找，匹配不上的记录，也显示一行 
+select ename,dept.deptno from emp right /*outer*/ join dept on emp.deptno = dept.deptno; 
+--没有右内连接：select ename,dept.deptno from emp right inner join dept on emp.deptno = dept.deptno; 
+
+--全外连接 
+select ename,dept.deptno from emp full /*outer*/ join dept on emp.deptno = dept.deptno; 
+
+--左外,右外的区别 
+
+
+
+
+
+
+--什么时候用外连接呢?比如领导向你要所有学生的列表,顺便把所属的班级也列出来,就需要外连接 
+
+--在Where语句中使用子查询 
+----------------------------------------------------------------- 
+--雇员中最高薪水的人员名称 
+--1,先求出最高薪水 
+--2,再求雇员中最高薪水的人员名称 
+select ename from emp where sal=(select max(sal) from emp) 
+
+
+
+--有哪些人的薪水是在整个雇员的平均薪水之上的 
+select ename,sal from emp where sal >(select avg(sal) from emp) 
+
+----------------------------------------------------------------- 
+--雇员中哪些人是经理人 
+--1,首先查询mgr中有哪些号码 
+--2,再看有哪些人员的号码在此出现 
+select distinct mgr from emp where mgr is not null order by mgr 
+
+select ename 
+  from emp 
+where empno in (select distinct mgr from emp where mgr is not null ) 
+--where in 中不让写orderby 
+select ename 
+  from emp 
+where empno in (select distinct mgr from emp where mgr is not null order by mgr) 
+
+----------------------------------------------------------------- 
+--在From子句中使用子查询 
+------------------------------------------------------------------ 
+
+--部门平均薪水的等级 
+--1,首先将每个部门的平均薪水求出来 
+--2,然后把结果当成一张表，再用这张结果表和salgrade表做连接，以此求得薪水等级 
+select deptno,avg(sal) from emp group by deptno 
+select * from (select deptno,avg(sal) avg_sal from emp group by deptno) t join salgrade 
+on avg_sal between losal and hisal; 
+
+
+----------------------------------------------------------------- 
+--每个部门最高薪水的人员名称 
+--1,首先将每个部门的最高薪水求出来 
+--2,然后把结果当成一张表，再用emp和这张结果表做连接，以此求得每个部门最高薪水的人员名称 
+
+select deptno,max(sal) from emp where deptno is not null group by deptno 
+
+select ename from emp e join 
+(select deptno,max(sal) max_sal from emp where deptno is not null group by deptno ) t 
+on sal = max_sal and e.deptno = t.deptno 
+
+----------------------------------------------------------------- 
+--哪些人的薪水在部门的平均薪水之上 
+--1,首先将每个部门的平均薪水求出来 
+--2,然后把结果当成一张表，再用emp和这张结果表做连接，以此求得哪些人的薪水在部门的平均薪水之上 
+select deptno,avg(sal) avg_sal from emp group by deptno 
+
+select * from emp join (select deptno,avg(sal) avg_sal from emp group by deptno)t 
+on (sal>avg_sal and emp.deptno=t.deptno) 
+----------------------------------------------------------------- 
+--求部门中(所有人的)平均的薪水等级,形式如： 
+--  deptno  avg_grade 
+--  10      3.67 
+--  20      2.8 
+--  30      2.5 
+--1,先求每个人的薪水等级 
+--2,再按照部门分组,求平均数 
+select deptno,sal,grade from emp join salgrade on sal between losal and hisal 
+select deptno,avg(grade) from (select deptno,sal,grade from emp join salgrade on sal between losal and hisal)t group by deptno 
+
+
+
+
+------------------------------------------------------------------------------------------ 
+--使用伪字段:rownum，---------------------- 
+------------------------------------------------------------------------------------------ 
+--用来标识每条记录的行号，行号从1开始，每次递增1 
+select rownum,emp.* from emp; 
+--oracle下rownum只能使用 < <=， 不能使用 = > >= 等比较操作符， 
+select rownum,emp.* from emp where rownum<5; 
+--当rownum和order by 一起使用时，会首先选出符合rownum条件的记录，然后再排序 
+--(错误的写法)例如，当我们要求薪水最高的前5个人时，最直接的想法可以这样写： 
+select * from emp where rownum<5 order by sal desc 
+--(正确的写法)可以这样写 
+
+select * from 
+(select * from emp order by sal desc) t 
+where rownum<=5 
+
+
+
+
+-------------------------------------------------------- 
+--不准用组函数(即MAX()),求薪水的最高值(面试题) 
+--第一种解决办法: 
+--1,先把所有薪水按照倒序排列 
+--2,再取第一行 
+select * from 
+(select sal from emp order by sal desc) t 
+where rownum=1 
+
+
+
+--第二种解决办法: 
+--1,先跨表查询自己,先求出的结果中,e1.sal不可能出现最大数 
+--2,然后再not in 
+select e2.sal from emp e1,emp e2 where e1.sal>e2.sal 
+select sal from emp where sal not in(select e2.sal from emp e1,emp e2 where e1.sal>e2.sal) 
+
+
+----------------------------------------------------------------- 
+--求平均薪水最高的部门的部门编号 
+--第一种解决办法: 
+--1,先求出每个部门的平均薪水, 
+select deptno,avg(sal) avg_sal from emp group by deptno 
+--2,再求每个部门的平均薪水的最高值, 
+select max(avg_sal) from (1111111111111111111111111) 
+--3,最后再求第一步结果中avg_sal = 最高薪水的记录. 
+
+select deptno from (111111111111) where avg_sal = (22222222) 
+
+
+select deptno 
+  from (select deptno,avg(sal) avg_sal from emp group by deptno) 
+where avg_sal = 
+       (select max(avg_sal) 
+          from (select deptno,avg(sal) avg_sal from emp group by deptno)) 
+
+
+--没法考虑并列第一的情况 
+select deptno from 
+(select deptno,avg(sal) avg_sal from emp group by deptno order by avg(sal) desc) 
+where rownum<=1 
+
+
+--第二种解决办法: 
+--1,将上面的第一步第二步合并,先求最高平均薪水,用max(avg(sal))的办法 
+--不能写成select deptno,max(avg(sal)) from emp group by deptno 
+select max(avg(sal)) from emp group by deptno 
+--2,求出每个部门的平均薪水 
+select deptno,avg(sal) avg_sal from emp group by deptno 
+--3,最后再求第二步结果中(即每个部门的平均薪水),avg_sal = (第一步结果)的记录.即avg_sal =最高薪水的记录. 
+select deptno from (select deptno,avg(sal) avg_sal from emp group by deptno) 
+where avg_sal =(select max(avg(sal)) from emp group by deptno) 
+
+
+--第三种解决办法: 
+--1,先求出每个部门的平均薪水, 
+select avg(sal) avg_sal from emp group by deptno 
+--2,求最高平均薪水,用max(avg(sal))的办法 
+select max(avg(sal)) from emp group by deptno 
+--3,再使用having语句, avg(sal) = 第二步的结果 
+注意：为组函数起的别名在having中不能用 
+
+select deptno from emp group by deptno 
+having avg(sal) = (select max(avg(sal)) from emp group by deptno) 
+
+
+
+----------------------------------------------------------------- 
+--求平均薪水最高的部门的部门名称 
+--1,部门平均最高薪水 
+--2,得到部门编号列表,注意用group by deptno 
+--3,再应用having子句, having avg(sal) = (第一步的结果) 
+--4,得到平均最高薪水的那个部门的编号 
+--5,再得到部门名称 
+
+
+
+select dname from dept where deptno in 
+
+( 
+select deptno 
+  from (select deptno,avg(sal) avg_sal from emp group by deptno) 
+where avg_sal = 
+       (select max(avg_sal) 
+          from (select deptno,avg(sal) avg_sal from emp group by deptno)) 
+
+) 
+
+----------------------------------------------------------------- 
+--求平均薪水的等级最低的部门的部门名称 
+--第一步：部门平均薪水的等级,分成两个小步骤,第一小步是求部门平均薪水 
+
+select * from 
+(select deptno,avg(sal) avg_sal from emp group by deptno) t 
+join salgrade on avg_sal between losal and hisal 
+
+--第二步：最低的等级值 
+
+select min(grade) from (1111111111111111111111111) 
+
+--第三步：等于最低值的部门编号 
+------------有错误,应该是grade= 
+select deptno from (111111111111) where grade = (22222222222222) 
+--第四步：求名称 
+select dname from dept where deptno in(33333333333) 
+
+
+
+
+select dname 
+  from dept 
+where deptno in 
+       ( 
+        
+        select deptno 
+          from (select * 
+                   from (select deptno, avg(sal) avg_sal 
+                           from emp 
+                          group by deptno) t 
+                   join salgrade on avg_sal between losal and hisal) 
+         where grade = 
+               (select min(grade) 
+                  from (select * 
+                          from (select deptno, avg(sal) avg_sal 
+                                  from emp 
+                                 group by deptno) t 
+                          join salgrade on avg_sal between losal and hisal))) 
+
+
+
+
+
+
+
+
+
+--也可以用视图的方式来解决 
+--conn sys/bjsxt as sysdba 
+--grant create table, create view, create sequence to scott 
+--根据第一步的结果,建立一个view 
+
+create or replace view v1 as 
+--必须明确定义列 
+select deptno, avg_sal, grade from 
+(select deptno,avg(sal) avg_sal from emp group by deptno) t 
+join salgrade on avg_sal between losal and hisal 
+
+
+--查看一下 
+select * from v1 
+--查询一下 
+
+--带入view 
+
+select dname from dept where deptno in 
+(select deptno from (v1) where grade = (select min(grade) from v1)) 
+
+
+
+
+
+
+
+
+------------------------------------------------------------- 
+--为什么in的后面不能order by ？ 
+
+
+
+
+
+
+
+--------------------------------------------------------------- 
+--求部门经理人中平均薪水最低的部门名称 (思考题) 
+第一步,求部门经理的雇员编号 
+select distinct mgr from emp where mgr is not null 
+第二步，按部门统计，求部门经理的平均薪水 
+select deptno,avg(sal) avg_sal from emp where empno in (select distinct mgr from emp where mgr is not null)group by deptno 
+第三步，求最低值 
+select min(avg(sal)) from emp where empno in (select distinct mgr from emp where mgr is not null)group by deptno 
+第四步，求部门经理人中平均薪水最低的部门名称 
+select deptno from (2222222222222) where avg_sal =(333333333333333333333333) 
+
+
+select dname from dept where deptno in (select deptno from (select deptno,avg(sal) avg_sal from emp where empno in (select distinct mgr from emp where mgr is not null)group by deptno) where avg_sal =(select min(avg(sal)) from emp where empno in (select distinct mgr from emp where mgr is not null)group by deptno)) 
+---------------------------------------------------------------------------- 
+--求比普通员工的最高薪水还要高的经理人名称 
+--1,求所有经理的编号 
+create or replace view v1 as 
+select distinct mgr from emp where mgr is not null 
+select * from v1 
+--2,普通员工的最高薪水 
+select max(sal) from emp where empno not in (select distinct mgr from emp where mgr is not null) 
+--3, 
+
+select ename from emp where empno in (select * from v1) 
+and sal > (select max(sal) from emp where empno not in (select distinct mgr from emp where mgr is not null)) 
+
+--即: 
+
+
+select ename from emp where empno in (select distinct mgr from emp where mgr is not null) 
+and sal > (select max(sal) from emp where empno not in (select distinct mgr from emp where mgr is not null)) 
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------ 
+--求薪水最高的前5名雇员 
+--1,先观察一下 
+
+--2,看看rownum的作用 
+
+--3,不是我们想要的结果 
+select ename,sal  from emp where rownum<=5 order by sal desc 
+--4,先order by,再rownum 
+select * from 
+(select ename,sal  from emp  order by sal desc ) t 
+where rownum<=5 
+
+-------------------------------------------------------------------------------- 
+--求薪水最高的第6到第10名雇员(重点掌握) 
+--这种没法实现,oracle下rownum只能使用 < <=， 不能使用 = > >= 等比较操作符 
+--注意里面的rownum和外面的rownum的区别，外面要想访问里面的rownum，必须取得一个别名。 
+
+select * from 
+(select ename,sal  from emp  order by sal desc ) t 
+where rownum>=5 
+and rownum<=10 
+
+--所以再套一层select 
+select * from 
+(select t.*,rownum r from 
+(select ename,sal  from emp  order by sal desc ) t 
+) 
+where r>=5 
+and r<=10 
+
+--还有一种排序方式 
+select * from 
+(select * from emp  order by sal desc)where rownum<=10 
+minus 
+select * from 
+(select * from emp  order by sal desc)where rownum<=5 
+-------------------------------------------------------------------- 
+--练习: 求最后入职的5名员工 
+--1,每个人的入职时间 
+
+--2,取前5行 
+
+
+
+
+
+----------------------------------------------------------------- 
+--求每个部门中薪水最高的前两名雇员 
+
+--1,每个员工的姓名，部门，工资,按部门和工资(倒序)排列 
+select ename,deptno,sal from emp order by deptno,sal desc 
+--2,套一层,加上个r 
+select ename,deptno,sal,rownum r from 
+(select ename,deptno,sal from emp order by deptno,sal desc) t 
+--3,创建试图 
+create or replace view v1 
+as 
+select ename,deptno,sal,rownum r from 
+(select ename,deptno,sal from emp order by deptno,sal desc) t 
+--观察一下 
+select * from v1 
+
+--每个部门中,薪水最高的第一行,并创建试图 
+create or replace view v2 as 
+select deptno,min(r) min_r from v1 group by deptno 
+
+--两个view跨表连接,大于薪水最高的行数,小于最高的行数+1,并且部门编号要匹配 
+select ename from v1 join v2 
+on ( v1.deptno = v2.deptno and v1.r >=v2.min_r and v1.r<=v2.min_r+1) 
+
+
+------------------------------------------------------------------------------- 
+--面试题: 比较效率 
+  select * from emp where deptno = 10 and ename like '%A%'; 
+  select * from emp where ename like '%A%' and deptno = 10; 
+  
+--------------------------------------------------------- 
+--使用union、minus 
+
+--使用union、minus可以用来实现结果集的合并和去除（可以理解为加和减），例如： 
+select * from emp where deptno=10 
+union 
+select * from emp where deptno=20; 
+
+--相当于 
+select * from emp where deptno=10 or deptno=20 
+
+--而下面的语句 
+select * from emp where deptno in (10,20) 
+minus 
+select * from emp where sal < 1500; 
+--相当于 
+select * from emp where deptno in(10,20) and sal>=1500 
+
+--求分段显示薪水的个数 
+
+
+
+如： 
+scale      total 
+<800    0 
+801-1000 2 
+1001-2000 3 
+2001-5000 6 
+>5000    8 
+
+select '<800' as scale ,count(*) as total from emp where sal<800 
+union 
+select '<801-1000' as scale ,count(*) as total from emp where sal<=1000 and sal>=801 
+
+
+
+--或者显示成为 
+--注意：使用between .. and .. 的时候，包含了最大和最小值。 
+800-1000 1001-2000 2001-5000 
+2       3       6 
+select * from 
+(select count(*) as "800-1000" from emp where sal >=800 and sal <= 1000), 
+(select count(*) as "1001-2000" from emp where sal >=1001 and sal <= 2000), 
+(select count(*) as "2001-5000" from emp where sal >=2001 and sal <= 5000) 
+
+
+
+--或显示成为 
+DEPTNO   800-2000  2001-5000 
+------ ---------- ---------- 
+    30          5          1 
+    20          2          3 
+    10          1          2 
+select t.deptno,"800-2000","2001-5000" from 
+(select deptno,count(*) as "800-2000" from emp where sal between 800 and 2000 group by deptno) t 
+join 
+(select deptno,count(*) as "2001-5000" from emp where sal between 2001 and 5000 group by deptno) t1 
+on t.deptno = t1.deptno
+
+
+一、选择行 
+1. 简单的SELECT 语句 
+SELECT 字段名1 [AS] '字段名1 解释' FROM table; 
+2. 处理NULL 
+NVL函数可把NULL转换成其它类型的符号 
+编程技巧: NVL函数在多条件模糊查询的时候比较有用 
+NVL函数可返回多种数据类型: 
+返回日期 NVL(start_date,'2002-02-01') 
+返回字符串 NVL(title,'no title') 
+返回数字 NVL(salary,1000) 
+3. 使用SQL*PLUS（1） 
+SQL> desc table; 显示表结构 
+SQL> select * from tab; 查看用户下所有的表 
+SQL> set pause on; 可以使大量结果集在用户按“Enter”(回车)后翻页 
+SQL> set pagesize 100; 设定SQL语句返回结果集一页的行数100, 默认值是14 
+SQL> set linesize 100; 设定SQL语句返回结果集一行的宽度100, 默认值是80 
+4. SQL*PLUS里规定字段的显示格式 
+规定数字的显示格式 
+SQL>column 字段名 format 99999999999; 
+SQL>column 字段名 format 999,999,999,999; 
+SQL>column 字段名 format a数字 [word_wrapped]; 
+规定long字符的显示宽度 
+SQL>set long 200; 
+规定字段名的显示内容 
+SQL> column 字段名 heading '字段名显示内容'; 
+SQL> set heading off; 查询时不显示字段名称 
+规定字段的对齐方向 
+SQL> column 字段名 justify [left | right | center]; 
+清除字段的格式 
+SQL> column 字段名 clear; 
+5. SQL*PLUS里规定字段的显示格式例子 
+SQL> column last_name heading 'Employee|Name' format a15; 
+SQL> column salary justify right format $99,999.99; 
+SQL> column start_date format a10 null 'Not Hired'; 
+说明：如果start_date为null, 显示字符串'Not Hired' 
+6. 判断题(T/F) 
+(1). SQL command are always held in sql buffer. [T] 
+(2). SQL*PLUS command assit with query data. [T] 
+5 
+
+J2EE @ zxw 
+SQL*PLUS命令只控制SELECT结果集的显示格式及控制文件.只有SQL命令能访问数据库. 
+二、限制选择行 
+1. 按指定的规则排序 
+SELECT expr FROM table [ORDER BY {column, expr} [ASC | DESC] ]; 
+默认的排序是ASC升序(由小到大) 
+还可以ORDER BY 字段名的位置[1]| [2] ASC| DESC; 
+2. 用WHERE限制选择行(1) 
+比较操作符 = > < >= <= != <> ^= 与NULL比较不能用上面的比较操作符 ANY SOME 
+ALL 
+SQL操作符 BETWEEN … AND… IN LIKE IS NULL 
+NOT BETWEEN … AND… NOT IN NOT LIKE IS NOT NULL 
+逻辑操作符 AND OR NOT 
+3. 用WHERE限制选择行(2) 
+比较顺序(可以用括号改变它们的顺序) 
+(1). = < > >= <= in like is null between 
+(2). and 
+(3). Or 
+4. LIKE操作 
+% 零到任意多个字符 _ 一个字符 
+例如: 字段名 like 'M%' 字段名 like '%m%' 字段名 like 'job_' 
+如果要找含下划线的字符, 要加反斜线 例如:字段名 like '%X/_Y%' escape '/' 
+5. 日期字段的比较 
+举例: 
+日期字段 between to_date('2001-12-12','YYYY-MM-DD') and to_date('2002-02-01','YYYY-MM-DD') 
+日期字段> to_date('2001-12-12','YYYY-MM-DD') and日期字段<= 
+to_date('2002-02-01','YYYY-MM-DD'); 
+6. 不能用到索引的比较操作符 
+     IS NULL 
+IS NOT NULL 
+LIKE '%m%' 
+三、单行函数 
+1. 数字函数 
+ABS 取绝对值 POWER 乘方 LN 10为底数取0 
+SQRT 平方根 EXP e的n次乘方 LOG(m,n) m为底数n取0 
+数学运算函数:ACOS ATAN ATAN2 COS COSH SIGN SIN SINH TAN TANH 
+CEIL 大于或等于取整数 
+FLOOR 小于或等于取整数 
+MOD 取余数 
+ROUND(n,m) 按m的位数取四舍五入值如果round(日期): 中午12以后将是明天的日期.     
+round(sysdate,'Y')是年的第一天 
+TRUNC(n,m) 按m的位数取小数点后的数值如果trunc(日期), 确省的是去掉时间 
+6 
+
+J2EE @ zxw 
+2. 字符函数 
+CHR 按数据库的字符集由数字返回字符 
+CONCAT(c1,c2) 把两个字符c1,c2组合成一个字符, 和 || 相同 
+REPLACE(c,s,r) 把字符c里出现s的字符替换成r, 返回新字符 
+SUBSTR(c,m,n) m大于0,字符c从前面m处开始取n位字符,m等于0和1一样, 
+m小与0,字符c从后面m处开始取n位字符 
+TRANSLATE(c,f1,t1) 字符c按f1到t1的规则转换成新的字符串 
+INITCAP 字符首字母大写,其它字符小写 
+LOWER 字符全部小写 
+UPPER 字符全部大写 
+LTRIM(c1,c2) 去掉字符c1左边出现的字符c2 
+RTRIM(c1,c2) 
+TRIM(c1,c2) 去掉字符c1左右两边的字符c2 
+LPAD(c1,n,c2) 字符c1按制定的位数n显示不足的位数用c2字符串替换左边的空位 
+RPAD(c1,n,c2) 
+3. 日期函数 
+ADD_MONTHS(d,n) 日期值加n月 
+LAST_DAY  返回当月的最后一天的日期 
+MONTHS_BETWEEN(d1,d2) 两个日期值间的月份,d1<d2 返回负数 
+NEXT_DAY  返回日期值下一天的日期 
+SYSDATE 当前的系统时间 
+DUAL是SYS用户下一个空表，它只有一个字段dummy 
+4. 转换函数(1) 
+TO_CHAR(date,'日期显示格式') 
+TO_CHAR(number) 用于显示或报表的格式对齐 
+TO_DATE(char,'日期显示格式') 
+TO_LOB 把long字段转换成lob字段 
+TO_NUMBER(char) 用于计算或者比较大小 
+4. 转换函数(2) 
+to_date里日期显示格式 
+YYYY 年 YEAR YYY YY Y 
+Q 季度 
+MM 月 MONTH MON 
+W 星期 (week of month) WW, IW (week of year) 
+(说明：周计是按ISO标准,从1月1日的星期数到后面七天为一周,不一定是从周一到周日) 
+DD 日 DAY DY 
+HH24 小时 HH12 HH 
+MI 分钟 
+SS 秒 
+如果想固定日期的显示格式可以在数据库的参数文件initorasid.ora里新写一行参数      
+NLS_DATE_FORMAT=yyyy-mm-dd 
+hh24:mi:ss可以在UNIX环境变量或者NT的注册表里的设置 NLS_DATE_FORMAT=yyyy-mm-dd      
+7 
+
+J2EE @ zxw 
+hh24:mi:ss 
+4. 转换函数(3) 
+如果想固定日期的显示格式可以用alter session命令改变 
+SQL> alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'; 
+它的作用顺序如下: 
+initialization parameter 
+Environment variable 
+ALTER SESSION command 
+4. 转换函数 (4) 
+to_char(number)里数字显示格式 
+9 数字位 
+0 数字前面补0 to_char(-1200,'00000.00') 
+. 小数点的位置 
+, 标记位置的逗号 用在数字显示格式的左边 
+L 根据数据库字符集加货币符号 to_char(-1200,'L9999.99') 
+B 把数字0显示为空格,用在数字显示格式的右边 
+MI 右边的负数标记 to_char(-1200,'9999.99MI') 
+PR 括起来的负数 to_char(-1200,'9999.99PR') 
+EEEE 用指数方式表示 to_char(-1200,'9999.99EEEE') 
+5. 输入字符,返回数字的函数 
+instr(c1,c2) 字符c2出现在c1的位置, 不出现, 返回0, 常用于模糊查询 
+length  按数据库的字符集,算出字符c的长度,跟数据库的字符集有关, 一个汉字长度为1 
+6. 有逻辑比较的函数NVL(EXPR1, EXPR2)函数 
+解释: IF EXPR1=NULL RETURN EXPR2 
+ELSE RETURN EXPR1 
+DECODE(AA0V10R10V20R2....)函数 
+解释: IF AA=V1 THEN RETURN R1 
+IF AA=V2 THEN RETURN R2 
+..… 
+ELSE 
+RETURN NULL 
+举例: decode(id,1,'dept sale',2,'dept tech') 
+四、从多个表里选取数据记录 
+1. 数据表间的连接 
+简单的连接语法: 
+SELECT 字段名1, 字段名2, …… FROM 表名1, [表名2, ……] 
+WHERE 表名1.字段名 = 表名2. 字段名 [ AND ……] ; 
+SELECT 字段名1, 字段名2, …… FROM 表名1, [表名2, ……] 
+WHERE 表名1.字段名 = 表名2. 字段名(+) [ AND ……] ; 
+有(+)号的字段位置自动补空值 
+连接的分类: 
+等于的连接 = 
+不等于的连接 != BETWEEN … AND … IN 注意IN和OR不能一起用 
+8 
+
+J2EE @ zxw 
+外连接 有一个字段名(+) , 没有满足的条件补空值 
+自连接 同一个表自己跟自己连接 例如找重复记录 
+2. 数据表间的连接例子 
+删除table_name表里字段名email重复的记录: 
+SQL>delete from table_name t1 
+where t1.rowid > 
+(select min(rowid) from table_name t2 
+where t1.email = t2.email 
+group by email 
+having count(email) > 1); 
+找到手机用户的服务区域: 
+SQL> select a.handphoneno,nvl(c.name,'null'),a.totalscore 
+from topscore a,chargeoperator cc,chargeoperatorinfo c 
+where substr(a.handphoneno,1,7)=cc.hpnohead(+) 
+and cc.chargetype=c.chargetype(+) 
+order by a.totalscore desc; 
+3. 数据表间的连接技巧 
+连接N个表, 需要N-1个连接操作 
+被连接的表最好建一个单字符的别名, 字段名前加上这个单字符的别名 
+BETWEEN .. AND.. 比用 >= AND <= 要好 
+连接操作的字段名上最好要有索引 
+连接操作的字段最好用整数数字类型 
+有外连接时, 不能用OR或IN的比较操作 
+4. 如何分析和执行SQL语句 
+写多表连接SQL语句时要知道它的分析执行计划的情况. 
+Sys用户下运行@/ORACLE_HOME/sqlplus/admin/plustrce.sql 产生plustrace角色 
+Sys用户下把此角色赋予一般用户 SQL> grant plustrace to &username; 
+一般用户下运行@/ORACLE_HOME/rdbms/admin/utlxplan.sql 
+产生plan_table 
+SQL> set time on; 说明：打开时间显示 
+SQL> set autotrace on; 说明：打开自动分析统计，并显示SQL语句的运行结果 
+SQL> set autotrace traceonly; 说明：打开自动分析统计，不显示SQL语句的运行结果 
+接下来你就运行测试SQL语句，看到其分析统计结果了。 
+一般来讲，我们的SQL语句应该避免大表的全表扫描。 
+SQL> set autotrace off; 说明：关闭自动分析统计 
+五、集合函数 
+经常和group by一起使用 
+1. 集合函数列表 
+AVG (DISTINCT | ALL | N) 取平均值 
+COUNT (DISTINCT | ALL | N | expr | * ) 统计数量 
+MAX (DISTINCT | ALL | N) 取最大值 
+MIN (DISTINCT | ALL | N) 取最小值 
+SUM (DISTINCT | ALL | N) 取合计值 
+9 
+
+J2EE @ zxw 
+STDDEV (DISTINCT | ALL | N) 取偏差值,如果组里选择的内容都相同,结果为0 
+VARIANCE (DISTINCT | ALL | N) 取平方偏差值 
+2. 使用集合函数的语法 
+SELECT column, group_function FROM table 
+WHERE condition GROUP BY group_by_expression 
+HAVING group_condition ORDER BY column; 
+3. 使用count时的注意事项 
+SELECT COUNT(*)  FROM table; 
+SELECT COUNT(常量) FROM table; 
+都是统计表中记录数量,如果没有PK后者要好一些 
+SELECT COUNT(all 字段名) FROM table; 
+SELECT COUNT(字段名) FROM table; 
+不会统计为NULL的字段的数量 
+SUM,AVG时都会忽略为NULL的字段 
+4. 用group by时的限制条件 
+SELECT字段名不能随意, 要包含在GROUP BY的字段里 
+GROUP BY后ORDER BY时不能用位置符号和别名 
+限制GROUP BY的显示结果, 用HAVING条件 
+5. 例子 
+SQL> select title,sum(salary) payroll from s_emp 
+where title like 'VP%' group by title 
+having sum(salary)>5000 order by sum(salary) desc; 
+找出某表里字段重复的记录数, 并显示 
+SQL> select (duplicate field names) from table_name 
+group by (list out fields) having count(*)>1; 
+6. 判断题(T/F) 
+(1) Group functions include nulls in calculations [F] 
+(2) Using the having clause to exclude rows from a group calculation [F] 
+解释: 
+Group function 都是忽略NULL值的 如果您要计算NULL值, 用NVL函数 
+Where语句在Group By前把结果集排除在外Having语句在Group By后把结果集排除在外 
+六、子查询 
+1. 查询语句可以嵌套 
+例如: SELECT …… FROM (SELECT …… FROM表名1, [表名2, ……] WHERE 条件) WHERE 条件2; 
+2. 何处可用子查询? 
+当查询条件是不确定的条件时 
+DML(insert, update,delete)语句里也可用子查询 
+HAVING里也可用子查询 
+3. 两个查询语句的结果可以做集合操作 
+例如: 
+并集UNION(去掉重复记录) 
+并集UNION ALL(不去掉重复记录) 
+10 
+
+J2EE @ zxw 
+差集MINUS, 
+交集INTERSECT 
+4. 子查询的注意事项 
+先执行括号里面的SQL语句，一层层到外面 
+内部查询只执行一次 
+如果里层的结果集返回多个，不能用= > < >= <=等比较符要用IN. 
+5. 子查询的例子(1) 
+SQL> select title,avg(salary) from s_emp 
+group by title Having avg(salary) = 
+(select min(avg(salary)) from s_emp 
+group by title); 
+找到最低平均工资的职位名称和工资 
+5. 子查询的例子(2) 
+子查询可以用父查询里的表名 
+这条SQL语句是对的: 
+SQL>select cty_name from city where st_code in 
+(select st_code from state where st_name='TENNESSEE' and 
+city.cnt_code=state.cnt_code); 
+说明：父查询调用子查询只执行一次． 
+6.取出结果集的80 到100的SQL语句 
+ORACLE处理每个结果集只有一个ROWNUM字段标明它的逻辑位置, 
+并且只能 用ROWNUM<100, 不能用ROWNUM>80。 
+以下是经过分析后较好的两种ORACLE取得结果集80到100间的SQL语句 
+( ID是唯一关键字的字段名 ) 
+语句写法： 
+SQL>select * from ( 
+( select rownum as numrow, c.* from ( 
+select [field_name,...] from table_name where 条件1 order by 条件2) c) 
+where numrow > 80 and numrow <= 100 ) 
+order by 条件3; 
+七、在执行SQL语句时绑定变量 
+1. 接收和定义变量的SQL*PLUS命令 
+ACCEPT 
+DEFINE UNDEFINE 
+& 
+2. 绑定变量SQL语句的例子(1) 
+SQL> select id, last_name, salary from s_emp where dept_id = &department_number; 
+Enter value for department_number: 10 
+old 1: select id, last_name, salary from s_emp where dept_id=&department_number; 
+new 1: select id, last_name, salary from s_emp where dept_id= 10 
+SQL> SET VERIFY OFF | ON;可以关闭和打开提示确认信息old 1和new 1的显示. 
+3. 绑定变量SQL语句的例子(2) 
+SQL> select id, last_name, salary 
+from s_emp 
+where title = '&job_title'; 
+Enter value for job_title: Stock Clerk 
+11 
+
+J2EE @ zxw 
+SQL> select id, last_name, salary 
+from s_emp 
+where hiredate >to_date( '&start_hire_date','YYYY-MM-DD'); 
+Enter value for start_hire_date : 2001-01-01 
+把绑定字符串和日期类型变量时，变量外面要加单引号 
+也可绑定变量来查询不同的字段名 
+输入变量值的时候不要加;等其它符号 
+4. ACCEPT的语法和例子 
+SQL> ACCEPT variable [datatype] [FORMAT] [PROMPT text] [HIDE] 
+说明： variable 指变量名 datatype 指变量类型，如number,char等 format 指变量显示格 
+式 prompt text 可自定义弹出提示符的内容text hide 隐藏用户的输入符号 
+使用ACCEPT的例子： 
+ACCEPT p_dname PROMPT 'Provide the department name: ' 
+ACCEPT p_salary NUMBER PROMPT 'Salary amount: ' 
+ACCEPT pswd CHAR PROMPT 'Password: ' HIDE 
+ACCEPT low_date date format 'YYYY-MM-DD' PROMPT“Enter the low date range('YYYY-MM-DD'):” 
+4. DEFINE的语法和例子 
+SQL> DEFINE variable = value 
+说明： variable 指变量名 value 指变量值 
+定义好了变良值后, 执行绑定变量的SQL语句时不再提示输入变量 
+使用DEFINE的例子： 
+SQL> DEFINE dname = sales 
+SQL> DEFINE dname 
+DEFINE dname = “sales” (CHAR) 
+SQL> select name from dept where lower(name)='&dname'; 
+NAME 
+------------------------- 
+sales 
+sales 
+SQL> UNDEFINE dname 
+SQL> DEFINE dname 
+Symbol dname is UNDEFINED 
+5. SQL*PLUS里传递参数到保存好的*.sql文件里 
+SQL> @ /路径名/文件名 参数名1[,参数名2, ….] 
+SQL> start /路径名/文件名 参数名1[,参数名2, ….] 
+注意事项: 
+一次最多只能获取9个&变量, 变量名称只能是从&1,&2到&9 
+变量名后不要加特殊的结束符号 
+如果在SQL*PLUS里要把&符号保存在ORACLE数据库里,要修改sql*plus环境变量define 
+SQL> set define off; 
+八、概述数据模型和数据库设计 
+1. 系统开发的阶段: 
+Strategy and Analysis 
+Design 
+Build and Document 
+Transition 
+Production 
+12 
+
+J2EE @ zxw 
+2. 数据模型 
+Model of system in client's mind 
+Entity model of client's model 
+Table model of entity model 
+Tables on disk 
+3. 实体关系模型 (ERM)概念 
+ERM ( entity relationship modeling) 
+实体 存有特定信息的目标和事件 例如: 客户,订单等 
+属性 描述实体的属性 例如: 姓名,电话号码等 
+关系 两个实体间的关系 例如:订单和产品等 
+实体关系模型图表里的约定 
+Dashed line (虚线) 可选参数 “may be” 
+Solid line (实线) 必选参数 “must be” 
+Crow's foot (多线) 程度参数 “one or more” 
+Single line (单线) 程度参数 “one and only one” 
+4. 实体关系模型例子 
+每个订单都必须有一个或几个客户 
+每个客户可能是一个或几个订单的申请者 
+5. 实体关系的类型 
+1:1 一对一 例如: 的士和司机 
+M:1 多对一 例如: 乘客和飞机 
+1:M 一对多 例如: 员工和技能 
+6. 校正实体关系的原则 
+属性是单一值的, 不会有重复 
+属性必须依存于实体, 要有唯一标记 
+没有非唯一属性依赖于另一个非唯一的属性 
+7. 定义结构时的注意事项 
+减少数据冗余 
+减少完整性约束产生的问题 
+确认省略的实体,关系和属性 
+8. 完整性约束的要求 
+Primary key 主关键字 唯一非NULL 
+Foreign key 外键 依赖于另一个Primary key,可能为NULL 
+Column 字段名 符合定义的类型和长度 
+Constraint 约束条件 用户自定义的约束条件,要符合工作流要求 
+例如: 一个销售人员的提成不能超过它的基本工资 
+Candidate key 候选主关键字 多个字段名可组成候选主关键字, 其组合是唯一和非NULL的 
+9. 把实体关系图映射到关系数据库对象的方法 
+把简单实体映射到数据库里的表 
+把属性映射到数据库里的表的字段, 标明类型和注释 
+把唯一标记映射到数据库里的唯一关键字 
+把实体间的关系映射到数据库里的外键 
+13 
+
+J2EE @ zxw 
+其它的考虑: 
+设计索引,使查询更快 
+建立视图,使信息有不同的呈现面, 减少复杂的SQL语句 
+计划存储空间的分配 
+重新定义完整性约束条件 
+10. 实体关系图里符号的含义 
+PK 唯一关键字的字段 
+FK 外键的字段 
+FK1,FK2 同一个表的两个不同的外键 
+FK1,FK1 两个字段共同组成一个外键 
+NN 非null字段 
+U 唯一字段 
+U1,U1 两个字段共同组成一个唯一字段 
+九、创建表 
+1. ORACLE常用的字段类型 
+ORACLE常用的字段类型有 
+VARCHAR2 (size) 可变长度的字符串, 必须规定长度 
+CHAR(size) 固定长度的字符串, 不规定长度默认值为１ 
+NUMBER(p,s) 数字型p是位数总长度, s是小数的长度, 可存负数 
+最长38位. 不够位时会四舍五入. 
+DATE 日期和时间类型 
+LOB 超长字符, 最大可达4G 
+CLOB 超长文本字符串 
+BLOB 超长二进制字符串 
+BFILE 超长二进制字符串, 保存在数据库外的文件里是只读的. 
+数字字段类型位数及其四舍五入的结果 
+原始数值1234567.89 
+数字字段类型位数 存储的值 
+Number 1234567.89 
+Number 12345678 
+Number  错 
+Number(9,1) 1234567.9 
+Number(9,3) 错 
+Number(7,2) 错 
+Number(5,-2) 1234600 
+Number(5,-4) 1230000 
+Number(*,1) 1234567.9 
+2. 创建表时给字段加默认值 和约束条件 
+创建表时可以给字段加上默认值 
+例如 : 日期字段 DEFAULT SYSDATE 
+这样每次插入和修改时, 不用程序操作这个字段都能得到动作的时间 
+14 
+
+J2EE @ zxw 
+创建表时可以给字段加上约束条件 
+例如: 非空 NOT NULL 
+不允许重复 UNIQUE 
+关键字 PRIMARY KEY 
+按条件检查 CHECK (条件) 
+外键 REFERENCES 表名(字段名) 
+3. 创建表的例子 
+CREATE TABLE DEPT( 
+EPTNO NUMBER(2) CONSTRAINT PK_DEPT PRIMARY KEY, 
+DNAME VARCHAR2(14), 
+LOC VARCHAR2(13)) ; 
+CREATE TABLE region( 
+ID number(2) NOT NULL PRIMARY KEY, 
+postcode number default '0' NOT NULL, 
+areaname varchar2(30) default ' ' NOT NULL); 
+4. 创建表时的命名规则和注意事项 
+表名和字段名的命名规则：必须以字母开头，可以含符号A-Z,a-z,0-9,_,$,# 
+大小写不区分 
+不用SQL里的保留字, 一定要用时可用双引号把字符串括起来． 
+用和实体或属性相关的英文符号长度有一定的限制 
+注意事项: 
+建表时可以用中文的字段名, 但最好还是用英文的字段名 
+创建表时要把较小的不为空的字段放在前面, 可能为空的字段放在后面 
+建表时如果有唯一关键字或者唯一的约束条件，建表时自动建了索引 
+一个表的最多字段个数也是有限制的，254个. 
+5. 约束名的命名规则和语法 
+约束名的命名规则约束名如果在建表的时候没有指明，系统命名规则是SYS_Cn(n是数字) 
+约束名字符串的命名规则同于表和字段名的命名规则 
+6. 使用约束时的注意事项 
+约束里不能用系统函数,如SYSDATE和别的表的字段比较 
+可以用本表内字段的比较 
+想在事务处理后, 做约束的检查 
+SQL> alter session set constraints deferred. 
+7. 由实体关系图到创建表的例子 s_dept 
+前提条件:已有region表且含唯一关键字的字段id 
+SQL> CREATE TABLE s_dept 
+(id NUMBER(7) 
+CONSTRAINT s_dept_id_pk PRIMARY KEY, 
+name VARCHAR2(25) 
+CONSTRAINT s_dept_name_nn NOT NULL, 
+region_id NUMBER(7) 
+CONSTRAINT s_dept_region_id_fk REFERENCES region (id), 
+CONSTRAINT s_dept_name_region_id_uk UNIQUE(name, region_id)); 
+8. 较复杂的创建表例子 
+15 
+
+J2EE @ zxw 
+SQL> CREATE TABLE s_emp ( 
+id NUMBER(7)   CONSTRAINT s_emp_id_pk PRIMARY KEY, 
+last_name VARCHAR2(25)  CONSTRAINT s_emp_last_name_nn NOT NULL, 
+first_name VARCHAR2(25), 
+userid VARCHAR2 CONSTRAINT s_emp_userid_nn NOT NULL 
+CONSTRAINT s_emp_userid_uk UNIQUE, 
+start_date DATE DEFAULT SYSDATE, 
+comments VARCHAR2(25), 
+manager_id NUMBER(7), 
+title VARCHAR2(25), 
+dept_id NUMBER(7)   CONSTRAINT s_emp_dept_id_fk REFERENCES s_dept(id), 
+salary NUMBER(11,2), 
+commission_pct NUMBER(4,2)  CONSTRAINT s_emp_commission_pct_ck CHECK 
+(commission_pct IN(10,12.5,15,17.5,20)) 
+); 
+9. 通过子查询建表 
+通过子查询建表的例子 
+SQL>CREATE TABLE emp_41 AS SELECT id, last_name, userid, start_date 
+FROM s_emp WHERE dept_id = 41; 
+SQL> CREATE TABLE A as select * from B where 1=2; 
+只要表的结构. 
+10. 用子查询建表的注意事项 
+可以关连多个表及用集合函数生成新表,注意选择出来的字段必须有合法的字段名称,且不能重复。 
+用子查询方式建立的表，只有非空NOT NULL的约束条件能继承过来, 
+其它的约束条件和默认值都没有继承过来. 
+根据需要，可以用alter table add constraint ……再建立其它的约束条件，如primary key等. 
+11. Foreign Key的可选参数ON DELETE CASCADE 
+在创建Foreign Key时可以加可选参数: 
+ON DELETE CASCADE它的含义是如果删除外键主表里的内容，子表里相关的内容将一起被删除. 
+如果没有ON DELETE CASCADE参数，子表里有内容，父表里的主关键字记录不能被删除掉. 
+12. 如果数据库表里有不满足的记录存在，建立约束条件将不会成功. 
+13. 给表创建和删除同义词的例子 
+SQL> CREATE SYNONYM d_sum 
+2 FOR dept_sum_vu; 
+SQL> CREATE PUBLIC SYNONYM s_dept 
+2 FOR alice.s_dept; 
+SQL> DROP SYNONYM s_dept; 
+十、ORACLE里的数据字典 
+1. 什么是数据字典?ORACLE的数据字典是数据库的重要组成部分之一，它随着数据库 
+的产生而产生, 随着数据库的变化而变化, 体现为sys用户下所有的一些表和视图. 
+2. 数据字典里存了以下内容： 
+用户信息 
+用户的权限信息 
+所有数据对象信息表的约束条件统计分析数据库的视图等 
+不能手工修改数据字典里的信息. 
+16 
+
+J2EE @ zxw 
+3. 常用的数据字典 
+Dictionary 存放所有数据表，视图，同义词名称和解释 
+Dict_columns 数据字典里字段名称的和解释 
+Dba_users 用户 Dba_tablespaces 表空间 
+Dba_data_files 数据库的文件 Dba_free_space 空闲表空间 
+Dba_rollback_segs 回滚段 
+User_objects 数据对象 User_constraints 约束条件 
+User_sequences 序列号 User_views 视图 
+User_indexes 索引 User_synonyms 同义词 
+Session_roles 用户的角色 User_role_privs 用户的角色权限 
+User_sys_privs 用户的系统权限 User_tab_privs 用户的表级权限 
+V$session 实时用户情况 V$sysstat 实时系统统计 
+V$sesstat 实时用户统计 V$sgastat 实时SGA使用 
+V$locked_object 实时锁 V$controlfile 控制文件 
+V$logfile 日志文件 V$parameter 参数文件 
+4. 数据字典的分类 
+数据字典四大类别 
+User_ 用户下所有数据库对象 
+All_ 用户权限范围内所有的数据库对象 
+Dba_ 所有的数据库对象 
+V$Content$nbsp; 统计分析数据库的视图 赋于oem_monitor权限非DBA用户也可查询V$*视图 
+5. 查询数据字典 
+SQL> select * from dictionary where instr(comments,'index')>0; 
+SQL> select constraint_name, constraint_type, 
+2 search_condition, r_constraint_name 
+3 from user_constraints 
+4 where table_name = ‘&table_name'; 
+十一. 控制数据 
+1 、INSERT(往数据表里插入记录的语句) 
+SQL> insert into 表名(字段名1, 字段名2, ……) values ( 值1, 值2, ……); 
+SQL> insert into 表名(字段名1, 字段名2, ……) select (字段名1, 字段名2, ……) 
+from 另外的表名 where 条件; 
+可以用&标记变量的方法多次输入记录 
+快速插入数据的方法, 一般用于大于128M的数据转移 
+SQL> insert /*+ append */ into 表名 
+select * from 另外的用户名 .另外的表名 WHERE 条件; 
+SQL> commit; 
+注意事项： 
+用INSERT /*+ APPEND */ 的方法会对target_tablename产生级别为6的独占锁， 
+如果运行此命令时还有对target_tablename的DML操作会排队在它后面, 
+对OLTP系统在用的表操作是不合适的。 
+17 
+
+J2EE @ zxw 
+2. 插入字符串类型的字段的注意事项: 
+字符串类型的字段值必须用单引号括起来, 例如: ’GOOD DAY’ 
+如果字段值里包含单引号’ 需要进行字符串转换, 我们把它替换成两个 单引号’ ’ 
+字符串类型的字段值超过定义的长度会出错, 最好在插入前进行长度校验 
+‘’ 标记是NULL, user 标明当前用户 
+日期字段的字段值可以用当前数据库的系统时间SYSDATE, 精确到秒 
+用字符串转换成日期型函数TO_DATE(‘2001-08-01’,’YYYY-MM-DD’) 
+TO_DATE( )还有很多种日期格式, 可以参看ORACLE DOC. 
+年-月-日 小时:分钟:秒 的格式YYYY-MM-DD HH24:MI:SS 
+NSERT时最大可操作的字符串长度小于等于4000个单字节, 
+如果要插入更长的字符串, 请考虑字段用CLOB类型, 
+方法借用ORACLE里自带的DBMS_LOB程序包. 
+3、UPDATE (修改数据表里记录的语句) 
+SQL> UPDATE 表名 SET 字段名1=值1, 字段名2=值2, …… WHERE 条件; 
+如果修改的值N没有赋值或定义时, 将把原来的记录内容清为NULL, 
+最好在修改前进行非空校验; 
+值N超过定义的长度会出错, 最好在插入前进行长度校验. 
+新功能，可以修改子查询后的结果集 
+例子：SQL> update (select * from s_dept) set id=50 where id=60; 
+4、DELETE (删除数据表里记录的语句) 
+SQL> DELETE FROM 表名 WHERE 条件; 
+注意：删除记录并不能释放ORACLE里被占用的数据块表空间. 
+它只把那些 被删除的数据块标成unused. 
+如果确实要删除一个大表里的全部记录, 可以用 TRUNCATE 命令, 它可以释放占用的数据块表空间 
+SQL> TRUNCATE TABLE 表名; 
+此操作不可回退. 
+5、 SQL语句的分类 
+数据定义语言(DDL)：create、alter、drop（创建、修改结构、删除）（其他：rename） 
+数据操纵语言(DML)：insert、delete、select、update（增、删、查、改）（其他：truncate） 
+数据控制语言(DCL)：grant、revoke（授权、回收）、set role 
+事务控制：commit、rollback、savepoint（其他：lock table、set constraint、set transaction） 
+审计控制：audit、noaudit 
+系统控制：alter system 会话控制：alter session 
+其他语句：comment（添加注释）、explain plan、analyze、validate、call 
+6、ORACLE里事务控制 
+Commit 提交事务 
+Rollback 回退事务 
+Savepoint 设置断点, 在事务中标记位置, 事务结束, 断点释放 
+事务结束的情况遇到commit或者rollback遇到DDL和DCL语句发现错误，如死锁用户退出 
+SQL*PLUS系统重启或崩溃 
+7. DML操作的注意事项 
+18 
+
+J2EE @ zxw 
+以上SQL语句对表都加上了行级锁, 确认完成后, 
+必须加上事物处理结束的命令COMMIT 才能正式生效, 
+否则改变不一定写入数据库里.行级锁也未能得到释放. 
+如果想撤回这些操作, 可以用命令 ROLLBACK 复原. 
+在运行INSERT, DELETE 和 UPDATE 语句前最好估算一下可能操作的记录范围, 
+应该把它限定在较小 (一万条记录) 范围内,. 否则ORACLE处理这个事物用到很大的回退段. 
+程序响应慢甚至失去响应. 如果记录数上十万以上这些操作, 
+可以把这些SQL语句分段分次完成, 其间加上COMMIT 确认事物处理. 
+太过频繁的commit不好 
+十二、改变表和约束条件 
+1. 改变表的几种情况(1) 运行时会加表级锁 
+改变表的名称 
+SQL> RENAME 表名1 TO 表名2; SQL> ALTER TABLE 表名1 RENAME TO 表名2; 
+在表的后面增加一个字段 
+SQL> ALTER TABLE 表名 ADD 字段名 字段名描述 
+[ DEFAULT expr ][ NOT NULL ][ ,字段名2 ……]; 
+修改表里字段的定义描述 
+SQL> ALTER TABLE 表名 MODIFY 字段名1 字段名1描述 [ DEFAULT expr ][ NOT NULL ] 
+[ ,字段名2 ……]; 记录为空时，可以减少字段长度， 
+改变字段类型修改DEFAULT值只作用于修改后的INSERT和UPDATE的记录修改NOT NULL 
+约束只对现存含非空记录的字段起作用 
+1. 改变表的几种情况(2) 运行时会加表级锁 
+删除表里的某个字段 
+SQL> ALTER TABLE 表名 DROP 字段名; 
+给表里的字段加上/禁止/启用约束条件 
+SQL> ALTER TABLE 表名 ADD | DISABLE | ENABLE CONSTRAINT 约束名 
+PRIMARY KEY (字段名1[,字段名2 ……]); 
+SQL> ALTER TABLE 表名 ADD | DISABLE | ENABLE CONSTRAINT 约束名 
+UNIQUE (字段名1[,字段名2 ……]); 
+加唯一关键字或者唯一约束条件时自动建立索引 
+说明：禁止唯一关键字和唯一约束时索引仍然存在，可以被使用. 
+1. 改变表的几种情况(3) 运行时会加表级锁 
+删除表里的约束条件 
+SQL> ALTER TABLE 表名 DROP CONSTRAINTS 约束名 [CASCADE]; 
+会把约束相关的索引一起删除. CASCADE能同时删去外键的约束条件. 
+把表放在或取出数据库的内存区 
+SQL> ALTER TABLE 表名 CACHE; 
+SQL> ALTER TABLE 表名 NOCACHE; 
+改变表存储的表空间 
+SQL> ALTER TABLE 表名 MOVE TABLESPACE 表空间名 ; 
+19 
+
+J2EE @ zxw 
+注意: 如果被转移表空间的表含有索引, 表转移后索引变得不可用. 
+我们要删除旧索引,建立新索引 
+2. 删除表及表里的数据 
+删除表 
+SQL> DROP TABLE 表名 [CASCADE CONSTRAINTS]; 
+清空表里的记录 
+SQL> TRUNCATE TABLE 表名; 
+按时间清空日志表里的记录，使用重新命名的方法 
+(应用程序可能有短暂出错, 可以选择在不繁忙的时间执行) 
+按原来表A的建表语句创建新表A1,把表A重命名为A2（如果表A上有较频繁的DML操作, 
+会对表加上行级锁，重命名过程用递归的方式循环做，直到DML操作结束，命名成功). 
+把创建新表A1重命名为A 
+历史记录表A2备份或删除 
+3. 删除表后应该注意的问题 
+删除表后把表里的索引一起删去. 
+删除表后会结束基于它的悬而未决的事物 
+删除表后根据表创建的views,synonym,stored procedure,stored function依然存在， 
+但views,synonym变成非法的. 需要手工找出它们并删除 
+如果用了CASCADE CONSTRAINTS会把与它相关的约束一起删除 
+此操作不可回退 
+4. 给表加注释 
+加注释的语法 
+SQL> COMMENT ON TABLE 表名 | COLUMN表名.字段名 IS ‘text‘ 
+加注释的例子 
+SQL> comment on table s_emp is ‘Enployee information‘; 
+SQL> comment on column s_emp.last_name is ‘‘; 
+十三、创建序列号 
+1. 创建序列号里各参数的解释 
+SQL> CREATE SEQUENCE name [INCREMENT BY n] 
+[START WITH n] [{MAXVALUE n | NOMAXVALUE}] 
+[{MINVALUE n | NOMINVALUE}] [{CYCLE | NOCYCLE}] 
+[{CACHE n | NOCACHE}] 
+INCREMENT BY n 一次增长n 个数字 
+NOMAXVALUE 缺省值10E+27 
+NOMINVALUE 缺省值1 
+NOCYCLE 不循环, 常用于唯一关键字 
+CACHE n 在内存里缓存n个序列,出错回退时会丢失 
+oracle8i里默认的n是20 
+序列号的名称一般可以采用“表名_字段名”的命名规则 
+2. 插入自动增长序列号字段的方法 
+INSERT时如果要用到从1开始自动增长的数字做唯一关键字, 应该先建立一个序列号. 
+20 
+
+J2EE @ zxw 
+CREATE SEQUENCE 序列号的名称 (最好是表名+序列号标记) INCREMENT BY 1 START WITH 1 
+MAXVALUE 99999 NOCYCLE NOCACHE; 
+其中最大的值按字段的长度来定,比如定义的自动增长的序列NUMBER , 最大值为999999 
+INSERT 语句插入这个字段值为: 序列号的名称.NEXTVAL 
+例子: SQL> insert into s_dept(id, name, region_id) values (s_dept_id.nextval, 'finance', 2); 
+1 row created. 
+只有运行了序列号的名称. nextval后序列号的名称. currval 才有效才有值. 
+3. 查询序列号的情况 
+SQL> select sequence_name, min_value, max_value, increment_by, last_number from user_sequences; 
+其中last_number指的是序列号的下一个值. 
+4. 改变序列号 
+SQL> ALTER SEQUENCE sequence [INCREMENT BY n] [{MAXVALUE n | NOMAXVALUE}] 
+[{MINVALUE n | NOMINVALUE}] 
+[{CYCLE | NOCYCLE}] [{CACHE n | NOCACHE}]; 
+注意: 不能改变它的起始值 
+如果要改变序列的起始值, 先把序列号删除掉, 再新建一个. 
+5. 删除序列号 
+SQL>DROP SEQUENCE sequence; 
+6. 不能用序列号的nextval和currval的地方 
+视图的查询 
+有distinct的查询 
+有group by,having,order by的查询 
+有子查询的查询 
+表里的缺省值 
+十四、创建视图 
+1. 视图的概念和优点 
+视图是基于一个或多个表及视图的一些查询语句, 它象显示数据的视窗, 它本身是不存储数据的. 
+视图可以限制数据库的访问, 更好的控制权限 
+使用户使用简单的查询语句 
+数据的非依赖性 
+同一数据的不同表现形式 
+2. 创建视图的语法 
+SQL> CREATE [OR REPLACE] [FORCE|NOFORCE] VIEW view[(alias[, alias]...)] 
+AS subquery 
+[WITH CHECK OPTION [CONSTRAINT constraint]] 
+[WITH READ ONLY] 
+参数解释: 
+FORCE 表不存在时,视图仍然可以创建成功 
+WITH CHECK OPTION 只有符合视图定义的记录才能被插入或修改 
+WITH READ ONLY 不允许DML操作 
+Oracle8i以后创建视图可以用order by 
+21 
+
+J2EE @ zxw 
+3. 创建修改视图的例子 
+SQL> CREATE OR REPLACE VIEW salvu41 AS SELECT id, first_name FIRST, 
+last_name LAST, salary MONTHLY_SALARY 
+FROM s_emp WHERE dept_id = 41; 
+SQL> CREATE VIEW dept_sum_vu (name, minsal, maxsal, avgsal) AS SELECT d.name, MIN(e.salary), 
+MAX(e.salary), 
+AVG(e.salary) FROM s_emp e, s_dept d WHERE e.dept_id = d.id GROUP BY d.name; 
+注意: 如果用select * from table_name创建的视图 
+table_name的结构改变后 view要重建或compile后才能显示新的字段内容 
+4. 查询视图的数据字典 
+SQL> set long 1600; 
+SQL> select view_name,text from user_views; 
+说明: 可以根据视图text_length来设置set long 数字; 
+User_updatable_columns视图能查询视图里能被修改的字段 
+5. 简单和复杂的视图对比 
+特 性 简单视图 复杂视图 
+表的数量 一个 多个 
+有函数吗? 没有 有 
+有分组操作吗? 没有 有 
+有基于视图的DML操作吗? 有 没有 
+6. 在视图上可以用DML命令吗? 
+可以, 但有一定的限制条件 
+没有下面的情况, 可以删除view里的记录. group function, group by, distinct 
+没有上面和下面的情况, 可以修改view里的记录. 字段表达式, 
+例如: salary*12 含rownum的view 
+没有上面两种情况, 且view里含基表里所有非空字段的情况, 可以往view里插入记录. 
+7. 在视图里使用 WITH CHECK OPTION约束条件 
+SQL> create or replace view empvu41 
+as select * from s_emp where dept_id = 41 
+with check option constraint empvu41_ck; 
+如果运行下面命令会出错ora-01402 
+SQL> update empvu41 set dept_id=42 where id=16; 
+原因: 视图empvu41里规定只能看部门号为41的记录 修改后会把记录排除在视图empvu41以外 
+与它的约束条件冲突 
+8. 删除视图 
+SQL> DROP VIEW view_name; 
+十五、创建索引 
+1.索引的概念 
+索引是数据库里的一种数据对象 
+它利用B*树, hash, bitmap结构直接快速地访问数据 
+它和表是分开存放的两个实体 
+索引创建好了后, 由系统自动调用和管理 
+2. 什么时候创建索引? 
+22 
+
+J2EE @ zxw 
+自动创建的索引:唯一关键字, 唯一的约束条件 
+手工需要创建的索引:大表查询时, sql语句where后经常用到的字段或字段组合 
+字段内容差别很大有大量NULL值表很大, 返回记录数较少 
+3. B*树索引的结构 每个索引由字段值和指针或ROWID组成 
+4.创建索引的语法 
+CREATE INDEX 索引名 ON 表名 ( 字段1, [字段2, ……] ) TABLESPACE 表空间名; 
+5.创建索引的注意事项 
+创建索引时会加行级独占锁 
+一个表的索引最好不要超过三个 (特殊的大表除外) 
+最好用单字段索引 
+索引最好和表分不同的表空间存放 
+结合SQL语句的分析执行情况, 也可以建立多字段的组合索引和基于函数的索引 
+大表的索引会占用很大的存储空间 
+不要建唯一的索引, 而应该加唯一的约束条件 
+6.查询索引的方法 
+查询数据字典user_indexes和user_ind_columns 
+例子: 
+SQL> SELECT ic.index_name, ic.column_name, 
+2 ic.column_position col_pos,ix.uniqueness 
+3 FROM user_indexes ix, user_ind_columns ic 
+4 WHERE ic.index_name = ix.index_name 
+5 AND ic.table_name = 'S_EMP'; 
+注意: 数据字典里存放的字符都是大写的. 
+7. 不用索引的地方 
+表很小 
+where后不经常使用的比较字段 
+表被频繁修改 
+返回记录数很多 
+where后含IS NULL /IS NOT NULL/ like ‘%输入符%’等条件 
+8. 重建索引的语法 
+ALTER INDEX 索引名 REBUILD TABLESPACE 原来表空间名 NOLOGGING; 
+定期重建索引可以减少索引的碎片, 更有效地使用表空间. 
+9. 删除索引 
+SQL> drop index 索引名; 
+SQL> alter table 表名 drop constraint 约束名; 
+十六、控制用户访问 
+1.权限的类别 
+系统级权限: 针对整个系统操作的权限 
+如: 用户名/密码, 使用表空间的限额等 
+对象级权限: 针对某个具体object操作的权限 
+如: 针对某个表, 视图, 表的某个字段的select, update, delete权限 
+23 
+
+J2EE @ zxw 
+2. 查看当前数据库的用户信息 
+SQL>select username,default_tablespace,temporary_tablespace from dba_users; 
+查看在线用户信息 
+SQL>select count “number”,username “current username” from v$session group by username; 
+用户查看自己的缺省表空间SQL>select username,default_tablespace from user_users; 
+3. 创建新用户 
+SQL> create user username identified by password 
+default tablespace tablespace_name temporary tablespace temp 
+quota unlimited on tablespace_name 
+quota 1k on system 
+[quota 1k on other_tablespace_name ……] ; 
+给用户赋权限 
+SQL> grant connect, resource to username; 
+查看当前用户的权限角色 
+SQL> select * from user_role_privs; 
+查看当前用户的系统权限和表级权限 
+SQL> select * from user_sys_privs;SQL> select * from user_tab_privs; 
+4 、常用的角色及其权限 
+CONNECT 8 privs 连上Oracle,做最基本操作 
+RESOURCE 8 privs 具有程序开发最的权限 
+DBA 114 privs 数据库管理员所有权限 
+EXP_FULL_DATABASE 5 privs 数据库整个备份输出的权限 
+IMP_FULL_DATABASE 64 privs 数据库整个备份输入的权限 
+查看角色明细的系统权限 
+SQL> select * from role_sys_privs; 
+5、改变老用户 可以改变老用户的密码, 缺省表空间, 临时表空间, 空间限额. 
+SQL> alter user username identified by password 
+default tablespace tablespace_name 
+temporary tablespace temp 
+quota unlimited on tablespace_name 
+quota 1k on system 
+[quota 1k on other_tablespace_name ……] ; 
+撤销用户的角色或权限 
+SQL> revoke role_name or priv_name from username; 
+注意事项 
+撤消用户的角色dba时, 同时撤消了用户unlimited tablespace的系统权限, 
+切记要再次赋予resource角色给此用户 
+SQL> grant resource to username; 
+6、删除用户 
+如果用户下没有任何数据对象 
+SQL> drop user username; 
+如果用户下有数据对象 
+SQL> drop user username cascade; 
+注意事项 
+如果用户下有含clob,blob字段的表, 应该先删除这些表后,才能用cascade选项完全删除. 
+7、角色的概念和管理 
+24 
+
+J2EE @ zxw 
+角色是命名多个相关权限的组合. 能把它赋于其它的用户或角色我们能创建角色, 
+使权限管理更容易一些. 
+8、赋于系统的权限语法和例子 
+语法: 
+SQL> GRANT sys_priv TO {user|role|PUBLIC} [WITH ADMIN OPTION]; 
+例子: 
+SQL> GRANT create session TO sue, rich; 
+SQL> GRANT create table To scott, manager; 
+注意: 
+如果用WITH ADMIN OPTION通过中间用户赋于的系统权限中间用户删除后, 系统权限仍然存在. 
+9、赋于数据对象级的权限语法和例子 
+语法: 
+SQL> GRANT object_priv [(columns)] ON object TO {user|role|PUBLIC} [WITH GRANT OPTION]; 
+例子: 
+SQL> GRANT select ON s_emp TO sue, rich; 
+SQL> GRANT update (name, region_id) 
+ON s_dept TO scott, manager; 
+注意: 如果用WITH GRANT OPTION通过中间用户赋于的对象权限 
+中间用户删除后,对象权限就不存在了. 
+----------------------------------------------------------------------------------------------------------------------------------------- 
+-----------------------------------------------------------完--------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------- 
+补充： 
+rownum表中的行号，自动生成的，只能用<,<=操作符 
+rowid用来唯一表示数据库表中的一行 
+(1) 
+在oralce上的分页需要用到伪列,只所以这么做，是因为oralce不支持rownum比较 
+比如说找出第三行纪录，那就是 
+select last_name, salary 
+from (select rownum a, b.* 
+from s_emp b) 
+where a=3 
+如果找出第１０行到第２０行的数据的话，那就必须用到 
+select last_name, salary 
+from (select rownum a, b.* 
+from s_emp b) 
+where a > 10 and a < 2; 
+这是sql级别的分页，优点是速度快，缺点是可移植性差； 
+(2) 
+COURSEID COURSENAME SCORE 
+---------- ---------- ---------- 
+1  java  70 
+2  oracle  90 
+3  xml  40 
+4  jsp 30 
+5  servlet  80 
+25 
+
+J2EE @ zxw 
+SQL> select courseid, coursename ,score ,decode(sign(score-61),-1,'fail','pass') as mark from course_v; 
+COURSEID  COURSENAME  SCORE  MARK 
+----------  ----------  ----------  ---- 
+1   java  70  pass 
+2  oracle   90  pass 
+3  xml  40   fail 
+4  jsp   30   fail 
+5   servlet    80  pass 
+(3) 
+已经知道原表 
+           year       salary 
+------------------   --------------------- 
+        2000           1000 
+        2001           2000 
+        2002           3000 
+        2003           4000 
+显示查询结果 
+           year       salary 
+------------------   --------------------- 
+        2000           1000 
+        2001           3000 
+        2002           6000 
+        2003           10000 
+即salary为以前年的工资的和； 
+解答过程如下： 
+  select b.year,sum(a.salary) 
+  from test a,test b 
+  where a.year<=b.year 
+  group by b.year 
+  order by year 
+
+/*============================================================================
+ *Author: MartriWang@gmail.com
+ *Date:  09/05/2007
+ *Description:ORACLE Summary
+ *==========================================================================*/
+汇总：
+set autotrace on
+set autotrace traceonly explain
+set timing on
+或通过SQL*PLUS trace，然后查看user_dump_dest下的跟踪文件，使用tkprof工具格式化后阅览。
+alter session set events '10046 trace name context forever,level 12';
+alter session set events '10046 trace name context off';
+SELECT p.spid,s.username FROM v$session s,v$process p WHERE s.audsid=USERENV('sessionid') AND s.paddr = p.addr;
+使用方法示例：
+DBserver% sqlplus perf/perf
+SQL*Plus: Release 9.2.0.6.0 - Production on Mon Oct 17 14:32:29 2005
+Copyright (c) 1982, 2002, Oracle Corporation. All rights reserved.
+Connected to:
+Oracle9i Enterprise Edition Release 9.2.0.6.0 - 64bit Production
+With the Partitioning, OLAP and Oracle Data Mining options
+JServer Release 9.2.0.6.0 - Production
+SQL> set timing on
+SQL> set autotrace on
+SQL> select count(*) from perf_sdcch_nn where start_time = (select max(start_time) from perf_sdcch_nn);
+COUNT(*)
+----------
+638
+Elapsed: 00:00:00.80
+Execution Plan
+----------------------------------------------------------
+0 SELECT STATEMENT Optimizer=CHOOSE (Cost=1 Card=1 Bytes=8)
+1 0 SORT (AGGREGATE)
+2 1 INDEX (RANGE SCAN) OF 'IDX02_PERF_SDCCH_NN' (NON-UNIQUE)
+(Cost=2 Card=1495 Bytes=11960)
+3 2 SORT (AGGREGATE)
+4 3 INDEX (FULL SCAN (MIN/MAX)) OF 'IDX02_PERF_SDCCH_NN'
+(NON-UNIQUE) (Cost=1 Card=3852090 Bytes=30816720)
+Statistics
+----------------------------------------------------------
+0 recursive calls
+0 db block gets
+15 consistent gets
+0 physical reads
+0 redo size
+492 bytes sent via SQL*Net to client
+656 bytes received via SQL*Net from client
+2 SQL*Net roundtrips to/from client
+0 sorts (memory)
+0 sorts (disk)
+1 rows processed
+SQL>
+从上面的示例我们可以看到，该SQL语句执行花了0.8秒，select语句和inline view，都使用了名为'IDX02_PERF_SDCCH_NN'的索引
+物理读为0，redo log size为0，没有生成REDO日志。
+
+一、ORACLE的启动和关闭
+1、在单机环境下
+要想启动或关闭ORACLE系统必须首先切换到ORACLE用户，如下
+su - oracle
+a、启动ORACLE系统
+oracle>svrmgrl
+SVRMGR>connect internal
+SVRMGR>startup
+SVRMGR>quit
+b、关闭ORACLE系统
+oracle>svrmgrl
+SVRMGR>connect internal
+SVRMGR>shutdown
+SVRMGR>quit
+启动oracle9i数据库命令：
+$ sqlplus /nolog
+SQL*Plus: Release 9.2.0.1.0 - Production on Fri Oct 31 13:53:53 2003
+Copyright (c) 1982, 2002, Oracle Corporation.  All rights reserved.
+SQL> connect / as sysdba  
+Connected to an idle instance.
+SQL> startup^C
+SQL> startup
+ORACLE instance started.
+--MartriWang@gmail.com  10/05/2007--
+create pfile='/u01/oracle/dbs/init.ora'
+ from spfile='u01/oracle/dbs/Spfile.ora';
+create Spfile='Spfile_name'
+  FROM PFILE='pfile_name';
+ 
+orapwd file=<filename></filename> password= <password></password> entries=<max_users></max_users>
+2、在双机环境下
+要想启动或关闭ORACLE系统必须首先切换到root用户，如下
+su － root
+a、启动ORACLE系统
+hareg －y oracle
+b、关闭ORACLE系统
+hareg －n oracle
+--MartriWang@gmail.com 22/05/2007--
+--查找、删除重复记录:
+　　法一: 用Group by语句 此查找很快的
+　　
+　　select count(num), max(name) from student --查找表中num列重复的，列出重复的记录数，并列出他的name属性
+　　group by num
+　　having count(num) >;1 --按num分组后找出表中num列重复，即出现次数大于一次
+　　delete from student(上面Select的)
+　　这样的话就把所有重复的都删除了。-----慎重
+　　
+　　法二:当表比较大(例如10万条以上)时,这个方法的效率之差令人无法忍受,需要另想办法:
+　　
+　　---- 执行下面SQL语句后就可以显示所有DRAWING和DSNO相同且重复的记录
+　　
+　　SELECT * FROM EM5_PIPE_PREFAB
+　　WHERE ROWID!=(SELECT MAX(ROWID) FROM EM5_PIPE_PREFAB D --D相当于First,Second
+　　WHERE EM5_PIPE_PREFAB.DRAWING=D.DRAWING AND
+　　EM5_PIPE_PREFAB.DSNO=D.DSNO);
+　　---- 执行下面SQL语句后就可以刪除所有DRAWING和DSNO相同且重复的记录
+　　
+　　DELETE FROM EM5_PIPE_PREFAB
+　　WHERE ROWID!=(SELECT MAX(ROWID) FROM EM5_PIPE_PREFAB D
+　　WHERE EM5_PIPE_PREFAB.DRAWING=D.DRAWING AND
+　　EM5_PIPE_PREFAB.DSNO=D.DSNO);
+Oracle数据库有哪几种启动方式
+
+说明：
+有以下几种启动方式：
+1、startup nomount
+非安装启动，这种方式启动下可执行：
+重建控制文件、重建数据库
+读取init.ora文件，启动instance，即启动SGA和后台进程，这种启动只需要init.ora文件。
+2、startup mount dbname
+安装启动，这种方式启动下可执行：
+数据库日志归档、
+数据库介质恢复、
+使数据文件联机或脱机，
+重新定位数据文件、重做日志文件。
+执行“nomount”，然后打开控制文件，确认数据文件和联机日志文件的位置，
+但此时不对数据文件和日志文件进行校验检查。
+
+3、startup open dbname
+先执行“nomount”，然后执行“mount”，再打开包括Redo log文件在内的所有数据库文件，
+这种方式下可访问数据库中的数据。
+
+4、startup，等于以下三个命令
+startup nomount
+alter database mount
+alter database open
+5、startup restrict
+约束方式启动
+这种方式能够启动数据库，但只允许具有一定特权的用户访问
+非特权用户访问时，会出现以下提示：
+ERROR：
+ORA-01035: ORACLE 只允许具有 RESTRICTED SESSION 权限的用户使用
+6、startup force
+强制启动方式
+当不能关闭数据库时，可以用startup force来完成数据库的关闭
+先关闭数据库，再执行正常启动数据库命令
+7、startup pfile=参数文件名
+带初始化参数文件的启动方式
+先读取参数文件，再按参数文件中的设置启动数据库
+例：startup pfile=E:Oracleadminoradbpfileinit.ora
+8、startup EXCLUSIVE
+--
+二、用户如何有效地利用数据字典
+  　ORACLE的数据字典是数据库的重要组成部分之一，它随着数据库的产生而产生, 随着数据库的变化而变化,
+体现为sys用户下的一些表和视图。数据字典名称是大写的英文字符。
+    数据字典里存有用户信息、用户的权限信息、所有数据对象信息、表的约束条件、统计分析数据库的视图等。
+我们不能手工修改数据字典里的信息。
+　　很多时候，一般的ORACLE用户不知道如何有效地利用它。
+　　dictionary　　　全部数据字典表的名称和解释，它有一个同义词dict
+    dict_column　　 全部数据字典表里字段名称和解释
+    如果我们想查询跟索引有关的数据字典时，可以用下面这条SQL语句:
+    SQL>select * from dictionary where instr(comments,'index')>0;
+    如果我们想知道user_indexes表各字段名称的详细含义，可以用下面这条SQL语句:
+    SQL>select column_name,comments from dict_columns where table_name='USER_INDEXES';
+    依此类推，就可以轻松知道数据字典的详细名称和解释，不用查看ORACLE的其它文档资料了。
+    下面按类别列出一些ORACLE用户常用数据字典的查询使用方法。
+    1、用户
+            查看当前用户的缺省表空间
+            SQL>select username,default_tablespace from user_users;
+        查看当前用户的角色
+        SQL>select * from user_role_privs;
+        查看当前用户的系统权限和表级权限
+        SQL>select * from user_sys_privs;
+        SQL>select * from user_tab_privs;
+    2、表
+            查看用户下所有的表
+            SQL>select * from user_tables;
+            查看名称包含log字符的表
+            SQL>select object_name,object_id from user_objects
+                where instr(object_name,'LOG')>0;
+            查看某表的创建时间
+            SQL>select object_name,created from user_objects where object_name=upper('&table_name');
+            查看某表的大小
+            SQL>select sum(bytes)/(1024*1024) as "size(M)" from user_segments
+                where segment_name=upper('&table_name');
+            查看放在ORACLE的内存区里的表
+            SQL>select table_name,cache from user_tables where instr(cache,'Y')>0;
+    3、索引
+            查看索引个数和类别
+            SQL>select index_name,index_type,table_name from user_indexes order by table_name;
+            查看索引被索引的字段
+            SQL>select * from user_ind_columns where index_name=upper('&index_name');
+            查看索引的大小
+            SQL>select sum(bytes)/(1024*1024) as "size(M)" from user_segments
+                where segment_name=upper('&index_name');
+    4、序列号
+            查看序列号，last_number是当前值
+            SQL>select * from user_sequences;
+    5、视图
+            查看视图的名称
+            SQL>select view_name from user_views;
+            查看创建视图的select语句
+            SQL>set view_name,text_length from user_views;
+            SQL>set long 2000;                说明：可以根据视图的text_length值设定set long 的大小
+            SQL>select text from user_views where view_name=upper('&view_name');
+    6、同义词
+            查看同义词的名称
+            SQL>select * from user_synonyms;
+    7、约束条件
+            查看某表的约束条件
+            SQL>select constraint_name, constraint_type,search_condition, r_constraint_name
+                from user_constraints where table_name = upper('&table_name');
+        SQL>select c.constraint_name,c.constraint_type,cc.column_name
+            from user_constraints c,user_cons_columns cc
+            where c.owner = upper('&table_owner') and c.table_name = upper('&table_name')
+            and c.owner = cc.owner and c.constraint_name = cc.constraint_name
+            order by cc.position;
+    8、存储函数和过程
+            查看函数和过程的状态
+            SQL>select object_name,status from user_objects where object_type='FUNCTION';
+            SQL>select object_name,status from user_objects where object_type='PROCEDURE';
+            查看函数和过程的源代码
+            SQL>select text from all_source where owner=user and name=upper('&plsql_name');
+
+三、查看数据库的SQL
+1、查看表空间的名称及大小
+    select t.tablespace_name, round(sum(bytes/(1024*1024)),0) ts_size
+    from dba_tablespaces t, dba_data_files d
+    where t.tablespace_name = d.tablespace_name
+    group by t.tablespace_name;
+2、查看表空间物理文件的名称及大小
+    select tablespace_name, file_id, file_name,
+    round(bytes/(1024*1024),0) total_space
+    from dba_data_files
+    order by tablespace_name;
+3、查看回滚段名称及大小
+    select segment_name, tablespace_name, r.status,
+    (initial_extent/1024) InitialExtent,(next_extent/1024) NextExtent,
+    max_extents, v.curext CurExtent
+    From dba_rollback_segs r, v$rollstat v
+    Where r.segment_id = v.usn(+)
+    order by segment_name ;
+4、查看控制文件
+    select name from v$controlfile;
+5、查看日志文件
+    select member from v$logfile;
+6、查看表空间的使用情况
+    select sum(bytes)/(1024*1024) as free_space,tablespace_name
+    from dba_free_space
+    group by tablespace_name;
+    SELECT A.TABLESPACE_NAME,A.BYTES TOTAL,B.BYTES USED, C.BYTES FREE,
+    (B.BYTES*100)/A.BYTES "% USED",(C.BYTES*100)/A.BYTES "% FREE"
+    FROM SYS.SM$TS_AVAIL A,SYS.SM$TS_USED B,SYS.SM$TS_FREE C
+    WHERE A.TABLESPACE_NAME=B.TABLESPACE_NAME AND A.TABLESPACE_NAME=C.TABLESPACE_NAME;
+7、查看数据库库对象
+    select owner, object_type, status, count(*) count# from all_objects group by owner, object_type, status;
+8、查看数据库的版本
+    Select version FROM Product_component_version
+    Where SUBSTR(PRODUCT,1,6)='Oracle';
+9、查看数据库的创建日期和归档方式
+    Select Created, Log_Mode, Log_Mode From V$Database;
+四、ORACLE用户连接的管理
+用系统管理员，查看当前数据库有几个用户连接：
+SQL> select username,sid,serial# from v$session;
+如果要停某个连接用
+SQL> alter system kill session 'sid,serial#';
+如果这命令不行,找它UNIX的进程数
+SQL> select pro.spid from v$session ses,v$process pro where ses.sid=21 and ses.paddr=pro.addr;
+说明：21是某个连接的sid数
+然后用 kill 命令杀此进程号。
+
+五、SQL*PLUS使用
+a、近入SQL*Plus
+$sqlplus 用户名/密码
+   退出SQL*Plus
+SQL>exit
+b、在sqlplus下得到帮助信息
+列出全部SQL命令和SQL*Plus命令
+SQL>help
+列出某个特定的命令的信息
+SQL>help 命令名
+c、显示表结构命令DESCRIBE
+SQL>DESC 表名
+d、SQL*Plus中的编辑命令
+显示SQL缓冲区命令
+SQL>L
+修改SQL命令
+首先要将待改正行变为当前行
+SQL>n
+用CHANGE命令修改内容
+SQL>c/旧/新
+重新确认是否已正确
+SQL>L
+使用INPUT命令可以在SQL缓冲区中增加一行或多行
+SQL>i
+SQL>输入内容
+e、调用外部系统编辑器
+SQL>edit 文件名
+可以使用DEFINE命令设置系统变量EDITOR来改变文本编辑器的类型，在login.sql文件中定义如下一行
+DEFINE_EDITOR=vi
+f、运行命令文件
+SQL>START test
+SQL>@test
+常用SQL*Plus语句
+a、表的创建、修改、删除
+创建表的命令格式如下：
+create table 表名 （列说明列表）；
+为基表增加新列命令如下：
+ALTER TABLE 表名 ADD （列说明列表）
+例：为test表增加一列Age，用来存放年龄
+    sql>alter table test
+        add （Age number(3)）；
+修改基表列定义命令如下：
+ALTER TABLE 表名
+MODIFY （列名 数据类型）
+例：将test表中的Count列宽度加长为10个字符
+    sql>alter atble test
+        modify （County char(10)）；
+b、将一张表删除语句的格式如下：
+DORP TABLE 表名；
+例：表删除将同时删除表的数据和表的定义
+sql>drop table test
+c、表空间的创建、删除
+--MartriWang@gmail.com 15/06/2007--
+d. 删除表列
+ALTER TABLE table_name DROP COLUMN 字段名            --del 表中字段
+1:  create table t2 as select <specific columns=""></specific>from t1;　　--以第一个表中的某列建立第二个新表
+2:  drop table t1;　　　　　　　　　　　　　　　　　　　　　 --删除表1
+3:  rename t2 to t1;　　　　　　　　　　　　　　　　　　　　 --把表2改名为表1
+Oracle 8i及以上版本中，可以使用以下语句
+ alter table 表1 drop column 列1;
+六、ORACLE逻辑备份的SH文件
+完全备份的SH文件：exp_comp.sh
+rq=` date +"%m%d" `
+su - oracle -c "exp system/manager full=y inctype=complete file=/oracle/export/db_comp$rq.dmp"
+累计备份的SH文件：exp_cumu.sh
+rq=` date +"%m%d" `
+su - oracle -c "exp system/manager full=y inctype=cumulative file=/oracle/export/db_cumu$rq.dmp"
+增量备份的SH文件: exp_incr.sh
+rq=` date +"%m%d" `
+su - oracle -c "exp system/manager full=y inctype=incremental file=/oracle/export/db_incr$rq.dmp"
+root用户crontab文件
+/var/spool/cron/crontabs/root增加以下内容
+0 2 1 * * /oracle/exp_comp.sh
+30 2 * * 0-5 /oracle/exp_incr.sh
+45 2 * * 6 /oracle/exp_cumu.sh
+当然这个时间表可以根据不同的需求来改变的，这只是一个例子。
+
+七、ORACLE 常用的SQL语法和数据对象
+一.数据控制语句 (DML) 部分
+1.INSERT  (往数据表里插入记录的语句)
+INSERT INTO 表名(字段名1, 字段名2, ……) VALUES ( 值1, 值2, ……);
+INSERT INTO 表名(字段名1, 字段名2, ……)  SELECT (字段名1, 字段名2, ……) FROM 另外的表名;
+字符串类型的字段值必须用单引号括起来, 例如: ’GOOD DAY’
+如果字段值里包含单引号’ 需要进行字符串转换, 我们把它替换成两个单引号''.
+字符串类型的字段值超过定义的长度会出错, 最好在插入前进行长度校验.
+日期字段的字段值可以用当前数据库的系统时间SYSDATE, 精确到秒
+或者用字符串转换成日期型函数TO_DATE(‘2001-08-01’,’YYYY-MM-DD’)
+TO_DATE()还有很多种日期格式, 可以参看ORACLE DOC.
+年-月-日 小时:分钟:秒 的格式YYYY-MM-DD HH24:MI:SS
+INSERT时最大可操作的字符串长度小于等于4000个单字节, 如果要插入更长的字符串, 请考虑字段用CLOB类型,
+方法借用ORACLE里自带的DBMS_LOB程序包.
+INSERT时如果要用到从1开始自动增长的序列号, 应该先建立一个序列号
+CREATE SEQUENCE 序列号的名称 (最好是表名+序列号标记) INCREMENT BY 1  START  WITH  1
+MAXVALUE  99999  CYCLE  NOCACHE;
+其中最大的值按字段的长度来定, 如果定义的自动增长的序列号 NUMBER(6) , 最大值为999999
+INSERT 语句插入这个字段值为: 序列号的名称.NEXTVAL
+2.DELETE  (删除数据表里记录的语句)
+DELETE FROM表名 WHERE 条件;
+注意：删除记录并不能释放ORACLE里被占用的数据块表空间. 它只把那些被删除的数据块标成unused.
+如果确实要删除一个大表里的全部记录, 可以用 TRUNCATE 命令, 它可以释放占用的数据块表空间
+TRUNCATE TABLE 表名;
+此操作不可回退.
+3.UPDATE  (修改数据表里记录的语句)
+UPDATE表名 SET 字段名1=值1, 字段名2=值2, …… WHERE 条件;
+如果修改的值N没有赋值或定义时, 将把原来的记录内容清为NULL, 最好在修改前进行非空校验;
+值N超过定义的长度会出错, 最好在插入前进行长度校验..
+注意事项:
+A.        以上SQL语句对表都加上了行级锁,
+        确认完成后, 必须加上事物处理结束的命令 COMMIT 才能正式生效,
+        否则改变不一定写入数据库里.
+        如果想撤回这些操作, 可以用命令 ROLLBACK 复原.
+B.        在运行INSERT, DELETE 和 UPDATE 语句前最好估算一下可能操作的记录范围,
+        应该把它限定在较小 (一万条记录) 范围内,. 否则ORACLE处理这个事物用到很大的回退段.
+        程序响应慢甚至失去响应. 如果记录数上十万以上这些操作, 可以把这些SQL语句分段分次完成,
+        其间加上COMMIT 确认事物处理.
+二.数据定义 (DDL) 部分
+1.CREATE (创建表, 索引, 视图, 同义词, 过程, 函数, 数据库链接等)
+ORACLE常用的字段类型有
+CHAR                        固定长度的字符串
+VARCHAR2                可变长度的字符串
+NUMBER(M,N)                数字型M是位数总长度, N是小数的长度
+DATE                        日期类型
+创建表时要把较小的不为空的字段放在前面, 可能为空的字段放在后面
+创建表时可以用中文的字段名, 但最好还是用英文的字段名
+创建表时可以给字段加上默认值, 例如 DEFAULT SYSDATE
+这样每次插入和修改时, 不用程序操作这个字段都能得到动作的时间
+创建表时可以给字段加上约束条件
+例如 不允许重复 UNIQUE, 关键字 PRIMARY KEY
+2.ALTER        (改变表, 索引, 视图等)
+改变表的名称
+ALTER TABLE 表名1  TO 表名2;
+在表的后面增加一个字段
+ALTER TABLE表名 ADD 字段名 字段名描述;
+修改表里字段的定义描述
+ALTER TABLE表名 MODIFY字段名 字段名描述;
+给表里的字段加上约束条件
+ALTER TABLE 表名 ADD CONSTRAINT 约束名 PRIMARY KEY (字段名);
+ALTER TABLE 表名 ADD CONSTRAINT 约束名 UNIQUE (字段名);
+把表放在或取出数据库的内存区
+ALTER TABLE 表名 CACHE;
+ALTER TABLE 表名 NOCACHE;
+3.DROP        (删除表, 索引, 视图, 同义词, 过程, 函数, 数据库链接等)
+删除表和它所有的约束条件
+DROP TABLE 表名 CASCADE CONSTRAINTS;
+4.TRUNCATE (清空表里的所有记录, 保留表的结构)
+TRUNCATE 表名;
+三.查询语句 (SELECT) 部分
+SELECT字段名1, 字段名2, …… FROM 表名1, [表名2, ……] WHERE 条件;
+字段名可以带入函数
+  例如:  COUNT(*), MIN(字段名),  MAX(字段名),  AVG(字段名), DISTINCT(字段名),
+           TO_CHAR(DATE字段名,'YYYY-MM-DD HH24:MI:SS')
+NVL(EXPR1, EXPR2)函数
+解释:
+IF EXPR1=NULL
+                RETURN EXPR2
+ELSE
+                       RETURN EXPR1
+DECODE(AA﹐V1﹐R1﹐V2﹐R2....)函数
+解释:
+IF AA=V1 THEN RETURN R1
+IF AA=V2 THEN RETURN R2
+..…
+ELSE
+RETURN NULL
+LPAD(char1,n,char2)函数
+解释:
+字符char1按制定的位数n显示，不足的位数用char2字符串替换左边的空位
+字段名之间可以进行算术运算
+例如:  (字段名1*字段名1)/3
+查询语句可以嵌套
+例如: SELECT …… FROM
+(SELECT …… FROM表名1, [表名2, ……] WHERE 条件) WHERE 条件2;
+两个查询语句的结果可以做集合操作
+例如: 并集UNION(去掉重复记录), 并集UNION ALL(不去掉重复记录), 差集MINUS,  交集INTERSECT
+分组查询
+SELECT字段名1, 字段名2, …… FROM 表名1, [表名2, ……] GROUP BY字段名1
+[HAVING 条件] ;
+两个以上表之间的连接查询
+SELECT字段名1, 字段名2, …… FROM 表名1, [表名2, ……] WHERE
+                表名1.字段名 = 表名2. 字段名 [ AND ……] ;
+SELECT字段名1, 字段名2, …… FROM 表名1, [表名2, ……] WHERE
+                表名1.字段名 = 表名2. 字段名(+) [ AND ……] ;
+有(+)号的字段位置自动补空值
+查询结果集的排序操作, 默认的排序是升序ASC, 降序是DESC
+SELECT字段名1, 字段名2, …… FROM 表名1, [表名2, ……]
+ORDER BY字段名1, 字段名2 DESC;
+字符串模糊比较的方法
+INSTR(字段名, ‘字符串’)>0
+字段名 LIKE  ‘字符串%’  [‘%字符串%’]
+每个表都有一个隐含的字段ROWID, 它标记着记录的唯一性.
+四.ORACLE里常用的数据对象 (SCHEMA)
+1.索引 (INDEX)
+CREATE INDEX 索引名ON 表名 ( 字段1, [字段2, ……] );
+ALTER INDEX 索引名 REBUILD;
+一个表的索引最好不要超过三个 (特殊的大表除外), 最好用单字段索引, 结合SQL语句的分析执行情况,
+也可以建立多字段的组合索引和基于函数的索引
+ORACLE8.1.7字符串可以索引的最大长度为1578 单字节
+ORACLE8.0.6字符串可以索引的最大长度为758 单字节
+--MartriWang@gmail.com  10/05/2007--
+（1）*Tree索引。
+Create index indexname on tablename(columnname[columnname...])
+（2）反向索引。
+Create index indexname on tablename(columnname[columnname...]) reverse
+（3）降序索引。
+Create index indexname on tablename(columnname DESC[columnname...])
+（4）位图索引。
+Create BITMAP index indexname on tablename(columnname[columnname...])
+（5）函数索引。
+Create index indexname on tablename(functionname(columnname))
+注意：创建索引后分析要索引才能起作用。
+analyze index indexname compute statistics;
+
+2.视图 (VIEW)
+CREATE VIEW 视图名AS SELECT …. FROM …..;
+ALTER VIEW视图名 COMPILE;
+视图仅是一个SQL查询语句, 它可以把表之间复杂的关系简洁化.
+3.同义词 (SYNONMY)
+CREATE SYNONYM同义词名FOR 表名;
+CREATE SYNONYM同义词名FOR 表名@数据库链接名;
+4.数据库链接 (DATABASE LINK)
+CREATE DATABASE LINK数据库链接名CONNECT TO 用户名 IDENTIFIED BY 密码 USING ‘数据库连接字符串’;
+--MartriWang@gmail.com  10/05/2007--
+create database mynewdb
+ user sys IDENTIFIED BY sys_id
+ user system IDENTIFIED BY system_id
+ LOGFILE GROUP 1 ('/u01/oracle/oradata/mynewdb/redo01.log') SIZE 100M,
+   GROUP 2 ('/u01/oracle/oradata/mynewdb/redo02.log') SIZE 100M,
+   GROUP 3 ('/u01/oracle/oradata/mynewdb/redo03.log') SIZE 100M
+ MAXLOGFILES 5
+ MAXLOGMEMBERS 5
+ MAXLOGHISTORY 1
+ MAXINSTANCES 100
+ MAXINSTANCES 1
+ CHARACTER SET US7ASCII
+ NATIONAL CHARACTER SET AL16UTF16
+ DATAFILE '/u01/oracle/oradata/mynewdb/system01.dbf' SIZE 325M REUSE
+ EXTENT MANAGEMENT LOCAL
+ SYSAUT DATAFILE '/u01/oracle/oradata/mynewdb/sysaux01.dbf' SIZE 325M REUSE
+ DEFAULT TABLESPACE tbs_1
+ DEFAULT TEMPORARY TABLESPACE tempts1 
+ TEMPFILE '/u01/oracle/oradata/mynewdb/temp01.dbf' SIZE 20M REUSE
+ UNDO TABLESPACE undotbs
+ DATAFILE '/u01/oracle/oradata/mynewdb/undotbs01.dbf'
+  SIZE 20M REUSE AUTOEXTEND ON MAXSIZE UNLIMITED
+--MartriWang@gmail.com  10/05/2007--
+emctl start dbconsole
+emctl stop dbconsole
+--http://servername:port/em
+--path:$ORACLE_HOME/install/portlist.ini
+isqlplusctl start
+isqlplusctl stop
+--http://servername:port/isqlplus
+数据库连接字符串可以用NET8 EASY CONFIG或者直接修改TNSNAMES.ORA里定义.
+数据库参数global_name=true时要求数据库链接名称跟远端数据库名称一样
+数据库全局名称可以用以下命令查出
+SELECT * FROM GLOBAL_NAME;
+查询远端数据库里的表
+SELECT …… FROM 表名@数据库链接名;
+五.权限管理 (DCL) 语句
+1.GRANT        赋于权限
+常用的系统权限集合有以下三个:
+CONNECT(基本的连接), RESOURCE(程序开发), DBA(数据库管理)
+常用的数据对象权限有以下五个:
+ALL         ON 数据对象名,         SELECT ON 数据对象名,         UPDATE ON 数据对象名,
+DELETE         ON 数据对象名,  INSERT ON 数据对象名,   ALTER  ON 数据对象名
+GRANT CONNECT, RESOURCE TO 用户名;
+GRANT SELECT ON 表名 TO 用户名;
+GRANT SELECT, INSERT, DELETE ON表名 TO 用户名1, 用户名2;
+2.REVOKE 回收权限
+REVOKE CONNECT, RESOURCE FROM 用户名;
+REVOKE SELECT ON 表名 FROM 用户名;
+REVOKE SELECT, INSERT, DELETE ON表名 FROM 用户名1, 用户名2;
+
+查询数据库中第63号错误：
+select orgaddr,destaddr from sm_histable0116 where error_code='63';
+查询数据库中开户用户最大提交和最大下发数： select MSISDN,TCOS,OCOS from ms_usertable；
+
+查询数据库中各种错误代码的总和：
+select error_code,count(*) from sm_histable0513 group by error_code order
+by error_code;
+查询报表数据库中话单统计种类查询。
+select sum(Successcount) from tbl_MiddleMt0411 where ServiceType2=111
+select sum(successcount),servicetype from tbl_middlemt0411 group by servicetype
+
+原文地址：http://www.cnoug.org/viewthread.php?tid=60293
+//创建一个控制文件命令到跟踪文件 
+alter database backup controlfile to trace; 
+//增加一个新的日志文件组的语句 
+connect internal as sysdba 
+alter database 
+add logfile group 4 
+(’/db01/oracle/CC1/log_1c.dbf’, 
+ ’/db02/oracle/CC1/log_2c.dbf’) size 5M; 
+alter database 
+add logfile member ’/db03/oracle/CC1/log_3c.dbf’ 
+to group 4; 
+//在Server Manager上MOUNT并打开一个数据库: 
+connect internal as sysdba 
+startup mount ORA1 exclusive; 
+alter database open; 
+//生成数据字典 
+@catalog 
+@catproc 
+//在init.ora 中备份数据库的位置 
+log_archive_dest_1 = ’/db00/arch’ 
+log_archive_dest_state_1 = enable 
+log_archive_dest_2 = "service=stby.world mandatory reopen=60" 
+log_archive_dest_state_2 = enable 
+//对用户的表空间的指定和管理相关的语句 
+create user USERNAME identified by PASSWORD 
+default tablespace TABLESPACE_NAME; 
+alter user USERNAME default tablespace TABLESPACE_NAME; 
+alter user SYSTEM quota 0 on SYSTEM; 
+alter user SYSTEM quota 50M on TOOLS; 
+create user USERNAME identified by PASSWORD 
+default tablespace DATA 
+temporary tablespace TEMP; 
+alter user USERNAME temporary tablespace TEMP; 
+//重新指定一个数据文件的大小 : 
+alter database 
+datafile ’/db05/oracle/CC1/data01.dbf’ resize 200M; 
+//创建一个自动扩展的数据文件: 
+create tablespace DATA 
+datafile ’/db05/oracle/CC1/data01.dbf’ size 200M 
+autoextend ON 
+next 10M 
+maxsize 250M; 
+//在表空间上增加一个自动扩展的数据文件: 
+alter tablespace DATA 
+add datafile ’/db05/oracle/CC1/data02.dbf’ 
+size 50M 
+autoextend ON 
+maxsize 300M; 
+//修改参数: 
+alter database 
+datafile ’/db05/oracle/CC1/data01.dbf’ 
+autoextend ON 
+maxsize 300M; 
+//在数据文件移动期间重新命名: 
+alter database rename file 
+ ’/db01/oracle/CC1/data01.dbf’ to 
+ ’/db02/oracle/CC1/data01.dbf’; 
+alter tablespace DATA rename datafile 
+ ’/db01/oracle/CC1/data01.dbf’ to 
+ ’/db02/oracle/CC1/data01.dbf’; 
+alter database rename file  
+ ’/db05/oracle/CC1/redo01CC1.dbf’ to 
+ ’/db02/oracle/CC1/redo01CC1.dbf’; 
+alter database datafile ’/db05/oracle/CC1/data01.dbf’  
+resize 80M; 
+//创建和使用角色: 
+create role APPLICATION_USER; 
+grant CREATE SESSION to APPLICATION_USER; 
+grant APPLICATION_USER to username; 
+ //回滚段的管理 
+create rollback segment SEGMENT_NAME 
+tablespace RBS; 
+alter rollback segment SEGMENT_NAME offline; 
+drop rollback segment SEGMENT_NAME; 
+alter rollback segment SEGMENT_NAME online; 
+//回滚段上指定事务 
+commit; 
+set transaction use rollback segment ROLL_BATCH; 
+insert into TABLE_NAME 
+select * from DATA_LOAD_TABLE; 
+commit; 
+//查询回滚段的 大小和优化参数 
+select * from DBA_SEGMENTS 
+ where Segment_Type = ’ROLLBACK’; 
+select N.Name,         /* rollback segment name */ 
+       S.OptSize       /* rollback segment OPTIMAL size */ 
+from V$ROLLNAME N, V$ROLLSTAT S 
+where N.USN=S.USN; 
+//回收回滚段 
+alter rollback segment R1 shrink to 15M; 
+alter rollback segment R1 shrink; 
+//例子 
+set transaction use rollback segment SEGMENT_NAME 
+alter tablespace RBS 
+default storage 
+(initial 125K next 125K minextents 18 maxextents 249) 
+create rollback segment R4 tablespace RBS 
+   storage (optimal 2250K); 
+alter rollback segment R4 online; 
+select Sessions_Highwater from V$LICENSE; 
+grant select on EMPLOYEE to PUBLIC; 
+//用户和角色  
+create role ACCOUNT_CREATOR; 
+grant CREATE SESSION, CREATE USER, ALTER USER  
+   to ACCOUNT_CREATOR; 
+alter user THUMPER default role NONE; 
+alter user THUMPER default role CONNECT; 
+alter user THUMPER default role all except ACCOUNT_CREATOR; 
+alter profile DEFAULT 
+limit idle_time 60; 
+create profile LIMITED_PROFILE limit 
+FAILED_LOGIN_ATTEMPTS 5; 
+create user JANE identified by EYRE 
+profile LIMITED_PROFILE; 
+grant CREATE SESSION to JANE; 
+alter user JANE account unlock; 
+alter user JANE account lock; 
+alter profile LIMITED_PROFILE limit 
+PASSWORD_LIFE_TIME 30; 
+alter user jane password expire; 
+//创建操作系统用户 
+REM  Creating OPS$ accounts 
+create user OPS$FARMER 
+identified by SOME_PASSWORD 
+default tablespace USERS 
+temporary tablespace TEMP; 
+REM  Using identified externally 
+create user OPS$FARMER 
+identified externally 
+default tablespace USERS 
+temporary tablespace TEMP; 
+//执行ORAPWD 
+ORAPWD FILE=filename PASSWORD=password ENTRIES=max_users 
+create role APPLICATION_USER; 
+grant CREATE SESSION to APPLICATION_USER; 
+create role DATA_ENTRY_CLERK; 
+grant select, insert on THUMPER.EMPLOYEE to DATA_ENTRY_CLERK; 
+grant select, insert on THUMPER.TIME_CARDS to DATA_ENTRY_CLERK; 
+grant select, insert on THUMPER.DEPARTMENT to DATA_ENTRY_CLERK; 
+grant APPLICATION_USER to DATA_ENTRY_CLERK; 
+grant DATA_ENTRY_CLERK to MCGREGOR; 
+grant DATA_ENTRY_CLERK to BPOTTER with admin option; 
+//设置角色 
+set role DATA_ENTRY_CLERK; 
+set role NONE; 
+//回收权利: 
+revoke delete on EMPLOYEE from PETER; 
+revoke all on EMPLOYEE from MCGREGOR; 
+//回收角色: 
+revoke ACCOUNT_CREATOR from HELPDESK; 
+drop user USERNAME cascade; 
+grant SELECT on EMPLOYEE to MCGREGOR with grant option; 
+grant SELECT on THUMPER.EMPLOYEE to BPOTTER with grant option; 
+revoke SELECT on EMPLOYEE from MCGREGOR; 
+create user MCGREGOR identified by VALUES ’1A2DD3CCEE354DFA’; 
+alter user OPS$FARMER identified by VALUES ’no way’; 
+//备份与恢复 
+使用 export 程序 
+exp system/manager file=expdat.dmp compress=Y owner=(HR,THUMPER) 
+exp system/manager file=hr.dmp owner=HR indexes=Y compress=Y 
+imp system/manager file=hr.dmp full=Y buffer=64000 commit=Y
+--MartriWang@gmail.com 14/05/2007--
+ 1 将数据库TEST完全导出,用户名system 密码manager 导出到D:\daochu.dmp中
+   exp system/manager@TEST file=d:\daochu.dmp full=y
+ 2 将数据库中system用户与sys用户的表导出
+   exp system/manager@TEST file=d:\daochu.dmp owner=(system,sys)
+ 3 将数据库中的表table1 、table2导出
+   exp system/manager@TEST file=d:\daochu.dmp tables=(table1,table2) 
+ 4 将数据库中的表table1中的字段filed1以"00"打头的数据导出
+   exp system/manager@TEST file=d:\daochu.dmp tables=(table1) query=\" where filed1 like '00%'\"
+--MartriWang@gmail.com 14/05/2007--
+ 1 将数据库TEST完全导出,用户名system 密码manager 导出到D:\daochu.dmp中
+   exp system/manager@TEST file=d:\daochu.dmp full=y
+ 2 将数据库中system用户与sys用户的表导出
+   exp system/manager@TEST file=d:\daochu.dmp owner=(system,sys)
+ 3 将数据库中的表table1 、table2导出
+   exp system/manager@TEST file=d:\daochu.dmp tables=(table1,table2) 
+ 4 将数据库中的表table1中的字段filed1以"00"打头的数据导出
+   exp system/manager@TEST file=d:\daochu.dmp tables=(table1) query=\" where filed1 like '00%'\"
+   
+//备份表 
+exp system/manager FILE=expdat.dmp TABLES=(Thumper.SALES) 
+//备份分区 
+exp system/manager FILE=expdat.dmp TABLES=(Thumper.SALES:Part1) 
+//输入例子 
+imp system/manager file=expdat.dmp 
+imp system/manager file=expdat.dmp buffer=64000 commit=Y 
+exp system/manager file=thumper.dat owner=thumper grants=N 
+  indexes=Y compress=Y rows=Y 
+imp system/manager file=thumper.dat FROMUSER=thumper TOUSER=flower 
+      rows=Y indexes=Y 
+imp system/manager file=expdat.dmp full=Y commit=Y buffer=64000 
+imp system/manager file=expdat.dmp ignore=N rows=N commit=Y buffer=64000 
+//使用操作系统备份命令 
+REM  TAR examples 
+tar -cvf /dev/rmt/0hc /db0[1-9]/oracle/CC1 
+tar -rvf /dev/rmt/0hc /orasw/app/oracle/CC1/pfile/initcc1.ora 
+tar -rvf /dev/rmt/0hc /db0[1-9]/oracle/CC1 /orasw/app/oracle/CC1/pfile/initcc1.ora 
+//离线备份的shell脚本 
+ORACLE_SID=cc1; export ORACLE_SID 
+ORAENV_ASK=NO; export ORAENV_ASK 
+. oraenv 
+svrmgrl <<eof1></eof1> connect internal as sysdba 
+shutdown immediate; 
+exit 
+EOF1 
+insert backup commands like the "tar" commands here 
+svrmgrl <<eof2></eof2> connect internal as sysdba 
+startup 
+EOF2 
+//在Server Manager上设置为archivelog mode: 
+connect internal as sysdba 
+startup mount cc1; 
+alter database archivelog; 
+archive log start; 
+alter database open; 
+archive log list
+alter system set LOG_ARCHIVE_DEST_1='LOCATION=/oracle/oradata/szdb/archive';   
+alter system set log_archive_format='%t_%s.dbf' scope=spfile; 
+alter system set log_archive_start=true scope=spfile; 
+
+//在Server Manager上设置为archivelog mode: 
+connect internal as sysdba 
+startup mount cc1; 
+alter database noarchivelog; 
+alter database open; 
+archive log list
+select Name, 
+       Value 
+  from V$PARAMETER 
+ where Name like ’log_archive%’; 
+//联机备份的脚本 
+# 
+# Sample Hot Backup Script for a UNIX File System database 
+# 
+# Set up environment variables: 
+ORACLE_SID=cc1; export ORACLE_SID 
+ORAENV_ASK=NO; export ORAENV_ASK 
+. oraenv 
+svrmgrl <<eofarch1></eofarch1> connect internal as sysdba 
+REM 
+REM   备份 SYSTEM tablespace 
+REM 
+alter tablespace SYSTEM begin backup; 
+!tar -cvf /dev/rmt/0hc /db01/oracle/CC1/sys01.dbf 
+alter tablespace SYSTEM end backup; 
+REM 
+REM  The SYSTEM tablespace has now been written to a 
+REM   tar saveset on the tape device /dev/rmt/0hc.  The 
+REM   rest of the tars must use the "-rvf" clause to append 
+REM   to that saveset. 
+REM 
+REM   备份  RBS tablespace 
+REM 
+alter tablespace RBS begin backup; 
+!tar -rvf /dev/rmt/0hc /db02/oracle/CC1/rbs01.dbf 
+alter tablespace RBS end backup; 
+REM 
+REM   备份  DATA tablespace 
+REM   For the purposes of this example, this tablespace 
+REM   will contain two files, data01.dbf and data02.dbf. 
+REM   The * wildcard will be used in the filename. 
+REM 
+alter tablespace DATA begin backup; 
+!tar -rvf /dev/rmt/0hc /db03/oracle/CC1/data0*.dbf 
+alter tablespace DATA end backup; 
+REM 
+REM   备份 INDEXES tablespace 
+REM 
+alter tablespace INDEXES begin backup; 
+!tar -rvf /dev/rmt/0hc /db04/oracle/CC1/indexes01.dbf 
+alter tablespace INDEXES end backup; 
+REM 
+REM   备份  TEMP tablespace 
+REM 
+alter tablespace TEMP begin backup; 
+!tar -rvf /dev/rmt/0hc /db05/oracle/CC1/temp01.dbf 
+alter tablespace TEMP end backup; 
+REM 
+REM   Follow the same pattern to back up the rest 
+REM   of the tablespaces. 
+REM 
+REM     
+REM  Step 2.  备份归档日志文件. 
+archive log stop 
+REM 
+REM   Exit Server Manager, using the indicator set earlier. 
+exit 
+EOFarch1 
+# 
+#  Record which files are in the destination directory. 
+#     Do this by setting an environment variable that is 
+#  equal to the directory listing for the destination  
+#  directory. 
+#  For this example, the log_archive_dest is  
+#  /db01/oracle/arch/CC1. 
+# 
+FILES=`ls /db01/oracle/arch/CC1/arch*.dbf`; export FILES 
+# 
+#  Now go back into Server Manager and restart the 
+#  archiving process.  Set an indicator (called EOFarch2 
+#  in this example). 
+# 
+svrmgrl <<eofarch2></eofarch2> connect internal 
+archive log start; 
+exit 
+EOFarch2 
+# 
+#  Now back up the archived redo logs to the tape 
+#  device via the "tar" command, then delete them 
+#  from the destination device via the "rm" command. 
+#  You may choose to compress them instead. 
+# 
+tar -rvf /dev/rmt/0hc $FILES 
+rm -f $FILES 
+# 
+#     Step 3.  备份控制文件到磁盘. 
+# 
+svrmgrl <<eofarch3></eofarch3> connect internal 
+alter database backup controlfile to 
+   ’db01/oracle/CC1/CC1controlfile.bck’; 
+exit 
+EOFarch3 
+# 
+#  备份控制文件到磁带. 
+# 
+tar -rvf /dev/rmt/0hc /db01/oracle/CC1/CC1controlfile.bck 
+# 
+#  End of hot backup script. 
+//自动生成开始备份的脚本 
+set pagesize 0 feedback off 
+select  
+    ’alter tablespace ’||Tablespace_Name||’ begin backup;’ 
+  from DBA_TABLESPACES 
+ where Status <> ’INVALID’ 
+spool alter_begin.sql 
+/ 
+spool off 
+//自动生成备份结束的脚本 
+set pagesize 0 feedback off 
+select  
+    ’alter tablespace ’||Tablespace_Name||’ end backup;’ 
+  from DBA_TABLESPACES 
+ where Status <> ’INVALID’ 
+spool alter_end.sql 
+/ 
+spool off 
+//备份归档日志文件的脚本. 
+REM  See text for alternatives. 
+#     Step 1: Stop the archiving process. This will keep 
+#     additional archived redo log files from being written 
+#     to the destination directory during this process. 
+# 
+svrmgrl <<eofarch1></eofarch1> connect internal as sysdba 
+archive log stop; 
+REM 
+REM   Exit Server Manager using the indicator set earlier. 
+exit 
+EOFarch1 
+# 
+#     Step 2: Record which files are in the destination  
+#  directory. 
+#     Do this by setting an environment variable that is 
+#  equal to the directory listing for the destination  
+#  directory. 
+#  For this example, the log_archive_dest is 
+#  /db01/oracle/arch/CC1. 
+# 
+FILES=`ls /db01/oracle/arch/CC1/arch*.dbf`; export FILES 
+# 
+#     Step 3: Go back into Server Manager and restart the 
+#  archiving process. Set an indicator (called EOFarch2 
+#  in this example). 
+# 
+svrmgrl <<eofarch2></eofarch2> connect internal as sysdba 
+archive log start; 
+exit 
+EOFarch2 
+# 
+#     Step 4. Back up the archived redo logs to the tape 
+#  device via the "tar" command, then delete them 
+#  from the destination device via the "rm" command. 
+# 
+tar -rvf /dev/rmt/0hc $FILES 
+# 
+#     Step 5. Delete those files from the destination directory. 
+# 
+rm -f $FILES 
+# 
+#     End of archived redo log file backup script. 
+REM  磁盘到磁盘的备份 
+REM 
+REM   Back up the RBS tablespace - to another disk (UNIX) 
+REM 
+alter tablespace RBS begin backup; 
+!cp /db02/oracle/CC1/rbs01.dbf /db10/oracle/CC1/backups 
+alter tablespace RBS end backup; 
+REM 
+REM  移动归档日志文件的shell脚本 
+# 
+# Procedure for moving archived redo logs to another device 
+# 
+svrmgrl <<eofarch2></eofarch2> connect internal as sysdba 
+archive log stop; 
+!mv /db01/oracle/arch/CC1 /db10/oracle/arch/CC1 
+archive log start; 
+exit 
+EOFarch2 
+# 
+# end of archived redo log directory move. 
+//生成创建控制文件命令 
+alter database backup controlfile to trace; 
+//时间点恢复的例子 
+connect internal as sysdba 
+startup mount instance_name; 
+recover database until time ’1999-08-07:14:40:00’; 
+//创建恢复目录 
+rman rcvcat rman/rman@> remote_username/remote_password@service_name 
+to 
+username/password@service_name 
+[append|create|insert|replace] 
+TABLE_NAME 
+using subquery; 
+// 在(UNIX)下创建恢复目录 
+RMAN> create catalog tablespace rcvcat; 
+// 在(NT)下创建恢复目录 
+RMAN> create catalog tablespace "RCVCAT"; 
+//连接描述符范例  
+(DESCRIPTION= 
+      (ADDRESS= 
+            (PROTOCOL=TCP) 
+            (HOST=HQ) 
+            (PORT=1521)) 
+      (CONNECT DATA= 
+            (SID=loc))) 
+// listener.ora 的条目entry 
+// listener.ora 的条目entry 
+LISTENER = 
+(ADDRESS_LIST = 
+(ADDRESS= 
+(PROTOCOL=IPC) 
+(KEY= loc.world) 
+) 
+) 
+SID_LIST_LISTENER = 
+(SID_LIST = 
+(SID_DESC = 
+(SID_NAME = loc) 
+(ORACLE_HOME = /orasw/app/oracle/product/8.1.5.1) 
+) 
+) 
+// tnsnames.ora 的条目 
+LOC= 
+(DESCRIPTION= 
+(ADDRESS = 
+(PROTOCOL = TCP) 
+(HOST = HQ) 
+(PORT = 1521)) 
+) 
+(CONNECT_DATA = 
+(SERVICE_NAME = loc) 
+(INSTANCE_NAME = loc) 
+) 
+) 
+//连接参数的设置（sql*net） 
+LOC =(DESCRIPTION= 
+(ADDRESS= 
+(COMMUNITY=TCP.HQ.COMPANY) 
+(PROTOCOL=TCP) 
+(HOST=HQ) 
+(PORT=1521)) 
+(CONNECT DATA= 
+(SID=loc))) 
+//参数文件配置范例 
+// tnsnames.ora 
+HQ =(DESCRIPTION= 
+(ADDRESS= 
+(PROTOCOL=TCP) 
+(HOST=HQ) 
+(PORT=1521)) 
+(CONNECT DATA= 
+(SID=loc))) 
+// listener.ora 
+LISTENER = 
+(ADDRESS_LIST = 
+(ADDRESS= 
+(PROTOCOL=IPC) 
+(KEY= loc) 
+) 
+) 
+SID_LIST_LISTENER = 
+(SID_LIST = 
+(SID_DESC = 
+(SID_NAME = loc) 
+(ORACLE_HOME = /orasw/app/oracle/product/8.1.5.1) 
+) 
+) 
+// Oracle8I tnsnames.ora 
+LOC= 
+(DESCRIPTION= 
+(ADDRESS = 
+(PROTOCOL = TCP) 
+(HOST = HQ) 
+(PORT = 1521)) 
+) 
+(CONNECT_DATA = 
+(SERVICE_NAME = loc) 
+(INSTANCE_NAME = loc) 
+) 
+) 
+//使用 COPY 实现数据库之间的复制 
+copy from 
+REM COPY example 
+set copycommit 1 
+set arraysize 1000 
+copy from HR/PUFFINSTUFF@loc - 
+create EMPLOYEE - 
+using - 
+select * from EMPLOYEE 
+
+//监视器的管理 
+lsnrctl start 
+lsnrctl start my_lsnr 
+lsnrctl status 
+lsnrctl status hq 
+检查监视器的进程 
+ps -ef | grep tnslsnr 
+//在 lsnrctl 内停止监视器 
+set password lsnr_password 
+stop 
+//在lsnrctl 内列出所有的服务 
+set password lsnr_password 
+services 
+//启动或停止一个NT的listener 
+net start Oracle<version_name></version_name>TNSListener 
+net stop Oracle<version_name></version_name>TNSListener 
+// tnsnames.ora 文件的内容 
+fld1 = 
+(DESCRIPTION = 
+(ADDRESS_LIST = 
+(ADDRESS = (PROTOCOL = TCP) 
+(HOST = server1.fld.com)(PORT = 1521)) 
+) 
+(CONNECT_DATA = 
+(SID = fld1) 
+) 
+) 
+//操作系统网络的管理 
+telnet host_name 
+ping host_name 
+/etc/hosts 文件 
+130.110.238.109 nmhost 
+130.110.238.101 txhost 
+130.110.238.102 azhost arizona 
+//oratab 表项 
+loc:/orasw/app/oracle/product/8.1.5.1:Y 
+cc1:/orasw/app/oracle/product/8.1.5.1:N 
+old:/orasw/app/oracle/product/8.1.5.0:Y
+//创建一个控制文件命令到跟踪文件 
+alter database backup controlfile to trace; 
+//增加一个新的日志文件组的语句 
+connect internal as sysdba 
+alter database 
+add logfile group 4 
+(’/db01/oracle/CC1/log_1c.dbf’, 
+ ’/db02/oracle/CC1/log_2c.dbf’) size 5M; 
+alter database 
+add logfile member ’/db03/oracle/CC1/log_3c.dbf’ 
+to group 4; 
+//在Server Manager上MOUNT并打开一个数据库: 
+connect internal as sysdba 
+startup mount ORA1 exclusive; 
+alter database open; 
+//生成数据字典 
+@catalog 
+@catproc 
+//在init.ora 中备份数据库的位置 
+log_archive_dest_1 = ’/db00/arch’ 
+log_archive_dest_state_1 = enable 
+log_archive_dest_2 = "service=stby.world mandatory reopen=60" 
+log_archive_dest_state_2 = enable 
+//对用户的表空间的指定和管理相关的语句 
+create user USERNAME identified by PASSWORD 
+default tablespace TABLESPACE_NAME; 
+alter user USERNAME default tablespace TABLESPACE_NAME; 
+alter user SYSTEM quota 0 on SYSTEM; 
+alter user SYSTEM quota 50M on TOOLS; 
+create user USERNAME identified by PASSWORD 
+default tablespace DATA 
+temporary tablespace TEMP; 
+alter user USERNAME temporary tablespace TEMP; 
+//重新指定一个数据文件的大小 : 
+alter database 
+datafile ’/db05/oracle/CC1/data01.dbf’ resize 200M; 
+//创建一个自动扩展的数据文件: 
+create tablespace DATA 
+datafile ’/db05/oracle/CC1/data01.dbf’ size 200M 
+autoextend ON 
+next 10M 
+maxsize 250M; 
+//在表空间上增加一个自动扩展的数据文件: 
+alter tablespace DATA 
+add datafile ’/db05/oracle/CC1/data02.dbf’ 
+size 50M 
+autoextend ON 
+maxsize 300M; 
+//修改参数: 
+alter database 
+datafile ’/db05/oracle/CC1/data01.dbf’ 
+autoextend ON 
+maxsize 300M; 
+//在数据文件移动期间重新命名: 
+alter database rename file 
+ ’/db01/oracle/CC1/data01.dbf’ to 
+ ’/db02/oracle/CC1/data01.dbf’; 
+alter tablespace DATA rename datafile 
+ ’/db01/oracle/CC1/data01.dbf’ to 
+ ’/db02/oracle/CC1/data01.dbf’; 
+alter database rename file  
+ ’/db05/oracle/CC1/redo01CC1.dbf’ to 
+ ’/db02/oracle/CC1/redo01CC1.dbf’; 
+alter database datafile ’/db05/oracle/CC1/data01.dbf’  
+resize 80M; 
+//创建和使用角色: 
+create role APPLICATION_USER; 
+grant CREATE SESSION to APPLICATION_USER; 
+grant APPLICATION_USER to username; 
+ //回滚段的管理 
+create rollback segment SEGMENT_NAME 
+tablespace RBS; 
+alter rollback segment SEGMENT_NAME offline; 
+drop rollback segment SEGMENT_NAME; 
+alter rollback segment SEGMENT_NAME online; 
+//回滚段上指定事务 
+commit; 
+set transaction use rollback segment ROLL_BATCH; 
+insert into TABLE_NAME 
+select * from DATA_LOAD_TABLE; 
+commit; 
+//查询回滚段的 大小和优化参数 
+select * from DBA_SEGMENTS 
+ where Segment_Type = ’ROLLBACK’; 
+select N.Name,         /* rollback segment name */ 
+       S.OptSize       /* rollback segment OPTIMAL size */ 
+from V$ROLLNAME N, V$ROLLSTAT S 
+where N.USN=S.USN; 
+//回收回滚段 
+alter rollback segment R1 shrink to 15M; 
+alter rollback segment R1 shrink; 
+//例子 
+set transaction use rollback segment SEGMENT_NAME 
+alter tablespace RBS 
+default storage 
+(initial 125K next 125K minextents 18 maxextents 249) 
+create rollback segment R4 tablespace RBS 
+   storage (optimal 2250K); 
+alter rollback segment R4 online; 
+select Sessions_Highwater from V$LICENSE; 
+grant select on EMPLOYEE to PUBLIC; 
+//用户和角色  
+create role ACCOUNT_CREATOR; 
+grant CREATE SESSION, CREATE USER, ALTER USER  
+   to ACCOUNT_CREATOR; 
+alter user THUMPER default role NONE; 
+alter user THUMPER default role CONNECT; 
+alter user THUMPER default role all except ACCOUNT_CREATOR; 
+alter profile DEFAULT 
+limit idle_time 60; 
+create profile LIMITED_PROFILE limit 
+FAILED_LOGIN_ATTEMPTS 5; 
+create user JANE identified by EYRE 
+profile LIMITED_PROFILE; 
+grant CREATE SESSION to JANE; 
+alter user JANE account unlock; 
+alter user JANE account lock; 
+alter profile LIMITED_PROFILE limit 
+PASSWORD_LIFE_TIME 30; 
+alter user jane password expire; 
+//创建操作系统用户 
+REM  Creating OPS$ accounts 
+create user OPS$FARMER 
+identified by SOME_PASSWORD 
+default tablespace USERS 
+temporary tablespace TEMP; 
+REM  Using identified externally 
+create user OPS$FARMER 
+identified externally 
+default tablespace USERS 
+temporary tablespace TEMP; 
+//执行ORAPWD 
+ORAPWD FILE=filename PASSWORD=password ENTRIES=max_users 
+create role APPLICATION_USER; 
+grant CREATE SESSION to APPLICATION_USER; 
+create role DATA_ENTRY_CLERK; 
+grant select, insert on THUMPER.EMPLOYEE to DATA_ENTRY_CLERK; 
+grant select, insert on THUMPER.TIME_CARDS to DATA_ENTRY_CLERK; 
+grant select, insert on THUMPER.DEPARTMENT to DATA_ENTRY_CLERK; 
+grant APPLICATION_USER to DATA_ENTRY_CLERK; 
+grant DATA_ENTRY_CLERK to MCGREGOR; 
+grant DATA_ENTRY_CLERK to BPOTTER 
+
+
+
+

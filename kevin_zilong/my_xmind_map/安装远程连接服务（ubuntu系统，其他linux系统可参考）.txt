@@ -1,0 +1,30 @@
+
+
+VMware 虚拟机软件
+
+宿主操作系统上虚拟机出一个 操作系统
+
+1 在windows上安装VMWare
+
+2 在VM上安装linux
+
+
+在ubuntu中不建议直接使用root用户
+root用户是linux中权限最高的用户  -----passwd zhangsan
+
+安装ubuntu的时候设置的用户实际上是一个管理员用户 不用直接使用root用户
+sudo command
+
+
+
+sudo apt-get install vim gcc g++ tree openssh-server
+
+
+如果执行出错 那就执行 rm /var/lib/apt/lists/partial/ -rf 然后执行sudo apt-get update 然后再进行安装
+
+
+
+使用putty连接linux
+1 获取linux IP地址 ifconfig
+2 判断当前机器和目标IP是否通畅  ping 目标IP
+3 如果通畅可以将该IP直接输入到putty中连接  选择是  并且输入linux的用户名和密码
